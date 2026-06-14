@@ -1,0 +1,39 @@
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; padding: 1rem clamp(1rem, 4vw, 2rem);
+  background: rgba(255,255,255,0.9); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.nav__logo { font-weight: 800; font-size: 1.25rem; color: var(--blue); }
+.nav__links { display: flex; gap: 1.5rem; }
+.nav__links a { color: var(--muted); font-weight: 500; }
+.nav__links a:hover { color: var(--ink); }
+.nav__actions { display: flex; align-items: center; gap: 0.75rem; }
+
+.hero {
+  text-align: center; padding: clamp(3rem, 8vw, 6rem) 1.5rem;
+  max-width: 820px; margin: 0 auto;
+}
+.hero__subtitle { font-size: 1.15rem; margin: 1.25rem auto 2rem; max-width: 640px; }
+.hero__trust { margin-top: 1.5rem; font-size: 0.9rem; color: var(--muted); }
+
+.section { max-width: var(--maxw); margin: 0 auto; padding: clamp(2.5rem, 6vw, 4.5rem) 1.5rem; }
+.section h2 { text-align: center; margin-bottom: 2rem; }
+.problem { text-align: center; max-width: 760px; }
+.benefits__list { list-style: none; display: grid; gap: 0.75rem; max-width: 520px; margin: 0 auto; }
+.benefits__list li { background: var(--bg-alt); padding: 0.85rem 1rem; border-radius: var(--radius); }
+
+.cards, .steps { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.pricing { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); align-items: start; }
+
+.cta { text-align: center; background: var(--bg-alt); border-radius: var(--radius); }
+.calendly { min-height: 320px; margin: 2rem 0 1rem; }
+
+.footer { text-align: center; padding: 2.5rem 1.5rem; border-top: 1px solid var(--border); }
+.footer__brand { font-weight: 800; color: var(--blue); font-size: 1.15rem; }
+.footer__rights { font-size: 0.85rem; margin-top: 0.5rem; }
+
+@media (max-width: 640px) {
+  .nav__links { display: none; }
+}
