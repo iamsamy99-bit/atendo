@@ -1,4 +1,4 @@
-const ELEVENLABS_SCRIPT_SRC = 'https://elevenlabs.io/convai-widget/index.js'
+const ELEVENLABS_SCRIPT_SRC = 'https://unpkg.com/@elevenlabs/convai-widget-embed'
 
 export function initVoiceWidget(agentId: string): void {
   if (!agentId) return
@@ -7,11 +7,12 @@ export function initVoiceWidget(agentId: string): void {
   const script = document.createElement('script')
   script.src = ELEVENLABS_SCRIPT_SRC
   script.async = true
+  script.type = 'text/javascript'
   document.head.appendChild(script)
 
-  const widget = document.createElement('elevenlabs-convai')
+  const widget = document.querySelector('elevenlabs-convai') ?? document.createElement('elevenlabs-convai')
   widget.setAttribute('agent-id', agentId)
-  document.body.appendChild(widget)
+  if (!widget.parentElement) document.body.appendChild(widget)
 }
 
 export function openVoiceWidget(): void {
