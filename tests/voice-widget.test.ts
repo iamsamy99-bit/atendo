@@ -17,7 +17,7 @@ describe('initVoiceWidget', () => {
     initVoiceWidget('agent-abc')
     const script = document.head.querySelector('script') as HTMLScriptElement
     expect(script).not.toBeNull()
-    expect(script.src).toContain('unpkg.com/@elevenlabs/convai-widget-embed')
+    expect(script.src).toContain('elevenlabs.io/convai-widget/index.js')
     expect(script.async).toBe(true)
   })
 

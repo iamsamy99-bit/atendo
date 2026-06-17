@@ -19,3 +19,33 @@ h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); }
 p { color: var(--muted); }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
+
+/* ── Hero entrance ───────────────────────────────────────────── */
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+.hero h1          { animation: heroIn 0.65s ease both; }
+.hero__subtitle   { animation: heroIn 0.65s 0.15s ease both; }
+.hero .btn--lg    { animation: heroIn 0.65s 0.28s ease both; }
+.hero__trust      { animation: heroIn 0.65s 0.42s ease both; }
+
+/* ── Scroll reveal ───────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* Stagger delays for sibling groups */
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.18s; }
+.d3 { transition-delay: 0.28s; }
+
+/* ── FAQ open ────────────────────────────────────────────────── */
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+.faq details[open] p { animation: fadeSlideIn 0.25s ease both; }

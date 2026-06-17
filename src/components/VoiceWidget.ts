@@ -1,4 +1,4 @@
-const ELEVENLABS_SCRIPT_SRC = 'https://unpkg.com/@elevenlabs/convai-widget-embed'
+const ELEVENLABS_SCRIPT_SRC = 'https://elevenlabs.io/convai-widget/index.js'
 
 export function initVoiceWidget(agentId: string): void {
   if (!agentId) return

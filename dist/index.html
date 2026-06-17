@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Atendo — Agentes de voz con IA</title>
     <meta name="description" content="Agentes telefónicos con IA y sitios web para negocios en México y Estados Unidos." />
-    <script type="module" crossorigin src="/assets/main-CFbDiqRM.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/main-B-gQo-rt.css">
-    <link rel="stylesheet" crossorigin href="/assets/base-bRp30Jui.css">
+    <script type="module" crossorigin src="/assets/main-CX1Ue0V3.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/main-C6EaZlaV.css">
+    <link rel="stylesheet" crossorigin href="/assets/base-9ABHK0ey.css">
   </head>
   <body>
     <header class="nav">
-      <a class="nav__logo" href="#top">Atendo</a>
+      <a class="nav__logo" href="#top">
+        <img src="/logo.png" alt="" width="36" height="36" />
+        Atendo
+      </a>
       <nav class="nav__links">
         <a href="#services" data-i18n="nav.services"></a>
         <a href="#pricing" data-i18n="nav.pricing"></a>
@@ -28,22 +31,23 @@
         <h1 data-i18n="hero.title"></h1>
         <p class="hero__subtitle" data-i18n="hero.subtitle"></p>
         <a href="#book" class="btn btn--primary btn--lg" data-i18n="hero.cta"></a>
+        <button id="voice-cta" class="btn btn--outline btn--lg" data-i18n="hero.cta_demo" type="button"></button>
         <p class="hero__trust" data-i18n="hero.trust"></p>
       </section>
 
-      <section class="section problem">
+      <section class="section problem reveal">
         <h2 data-i18n="problem.title"></h2>
         <p data-i18n="problem.body"></p>
       </section>
 
       <section id="services" class="section">
-        <h2 data-i18n="services.title"></h2>
+        <h2 class="reveal" data-i18n="services.title"></h2>
         <div class="cards">
-          <article class="card">
+          <article class="card reveal d1">
             <h3 data-i18n="services.voice.title"></h3>
             <p data-i18n="services.voice.body"></p>
           </article>
-          <article class="card">
+          <article class="card reveal d2">
             <h3 data-i18n="services.web.title"></h3>
             <p data-i18n="services.web.body"></p>
           </article>
@@ -53,9 +57,9 @@
       <section class="section">
         <h2 data-i18n="how.title"></h2>
         <div class="steps">
-          <div class="step"><h3 data-i18n="how.step1.title"></h3><p data-i18n="how.step1.body"></p></div>
-          <div class="step"><h3 data-i18n="how.step2.title"></h3><p data-i18n="how.step2.body"></p></div>
-          <div class="step"><h3 data-i18n="how.step3.title"></h3><p data-i18n="how.step3.body"></p></div>
+          <div class="step reveal d1"><h3 data-i18n="how.step1.title"></h3><p data-i18n="how.step1.body"></p></div>
+          <div class="step reveal d2"><h3 data-i18n="how.step2.title"></h3><p data-i18n="how.step2.body"></p></div>
+          <div class="step reveal d3"><h3 data-i18n="how.step3.title"></h3><p data-i18n="how.step3.body"></p></div>
         </div>
       </section>
 
@@ -72,7 +76,7 @@
       <section id="pricing" class="section">
         <h2 data-i18n="pricing.title"></h2>
         <div class="pricing">
-          <article class="plan">
+          <article class="plan reveal d1">
             <h3 data-i18n="pricing.starter.name"></h3>
             <p class="plan__price" data-i18n="pricing.starter.price"></p>
             <ul>
@@ -82,7 +86,7 @@
             </ul>
             <a href="#book" class="btn btn--outline" data-i18n="pricing.cta"></a>
           </article>
-          <article class="plan plan--featured">
+          <article class="plan plan--featured reveal d2">
             <span class="plan__badge" data-i18n="pricing.pro.badge"></span>
             <h3 data-i18n="pricing.pro.name"></h3>
             <p class="plan__price" data-i18n="pricing.pro.price"></p>
@@ -93,7 +97,7 @@
             </ul>
             <a href="#book" class="btn btn--primary" data-i18n="pricing.cta"></a>
           </article>
-          <article class="plan">
+          <article class="plan reveal d3">
             <h3 data-i18n="pricing.premium.name"></h3>
             <p class="plan__price" data-i18n="pricing.premium.price"></p>
             <ul>
@@ -110,10 +114,10 @@
       <section id="faq" class="section">
         <h2 data-i18n="faq.title"></h2>
         <div class="faq">
-          <details><summary data-i18n="faq.q1"></summary><p data-i18n="faq.a1"></p></details>
-          <details><summary data-i18n="faq.q2"></summary><p data-i18n="faq.a2"></p></details>
-          <details><summary data-i18n="faq.q3"></summary><p data-i18n="faq.a3"></p></details>
-          <details><summary data-i18n="faq.q4"></summary><p data-i18n="faq.a4"></p></details>
+          <details class="reveal"><summary data-i18n="faq.q1"></summary><p data-i18n="faq.a1"></p></details>
+          <details class="reveal d1"><summary data-i18n="faq.q2"></summary><p data-i18n="faq.a2"></p></details>
+          <details class="reveal d2"><summary data-i18n="faq.q3"></summary><p data-i18n="faq.a3"></p></details>
+          <details class="reveal d3"><summary data-i18n="faq.q4"></summary><p data-i18n="faq.a4"></p></details>
         </div>
       </section>
 
@@ -121,16 +125,26 @@
         <h2 data-i18n="cta.title"></h2>
         <p data-i18n="cta.body"></p>
         <div id="calendly" class="calendly"></div>
-        <p class="cta__fallback" data-i18n="cta.fallback"></p>
+        <p class="cta__fallback"><a href="https://wa.me/523171340304" target="_blank" rel="noopener" data-i18n="cta.fallback"></a></p>
       </section>
     </main>
 
     <footer class="footer">
-      <p class="footer__brand">Atendo</p>
+      <p class="footer__brand"><img src="/logo.png" alt="" width="28" height="28" style="vertical-align:middle;margin-right:0.4rem;" />Atendo</p>
       <p data-i18n="footer.tagline"></p>
       <p class="footer__rights">© 2026 Atendo. <span data-i18n="footer.rights"></span></p>
       <p class="footer__legal" style="margin-top:.5rem;font-size:.85rem"><a href="/terminos.html">Términos y Condiciones</a> · <a href="/privacidad.html">Aviso de Privacidad</a></p>
+      <p style="margin-top:.75rem;font-size:.9rem">
+        <a href="https://t.me/Atendo_service_bot" target="_blank" rel="noopener" style="color:#229ED9;font-weight:600">✈ Telegram</a>
+        &nbsp;·&nbsp;
+        <a href="https://wa.me/523171340304" target="_blank" rel="noopener" style="color:#25D366;font-weight:600">💬 WhatsApp</a>
+        &nbsp;·&nbsp;
+        <a href="mailto:samgarcia.tech@gmail.com" style="color:var(--blue);font-weight:600">✉ Email</a>
+      </p>
     </footer>
 
+    <a class="tg-float" href="https://t.me/Atendo_service_bot" target="_blank" rel="noopener" aria-label="Telegram">✈ Telegram</a>
+    <a class="wa-float" href="https://wa.me/523171340304" target="_blank" rel="noopener" aria-label="WhatsApp">💬 WhatsApp</a>
+    <elevenlabs-convai id="sofia-widget"></elevenlabs-convai>
   </body>
 </html>
