@@ -46,7 +46,7 @@
   "pricing.pro.f3": "Agenda + recordatorios",
   "pricing.pro.badge": "Más popular",
   "pricing.premium.name": "Empresa",
-  "pricing.premium.price": "$14,900 MXN/mes",
+  "pricing.premium.price": "$24,900 MXN/mes",
   "pricing.premium.f1": "Varios agentes",
   "pricing.premium.f2": "Minutos a la medida",
   "pricing.premium.f3": "Sitio web incluido",
@@ -67,5 +67,8 @@
   "cta.fallback": "¿No carga el calendario? Escríbenos por WhatsApp.",
 
   "footer.tagline": "Agentes de voz con IA y sitios web para tu negocio.",
-  "footer.rights": "Todos los derechos reservados."
+  "footer.rights": "Todos los derechos reservados.",
+
+  "hero.cta_demo": "Prueba el agente en vivo →",
+  "widget.tooltip": "Habla con Sofía"
 }
