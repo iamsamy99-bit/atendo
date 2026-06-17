@@ -47,8 +47,12 @@
   from { opacity: 0; transform: translateX(64px); }
   to   { opacity: 1; transform: translateX(0); }
 }
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-64px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
 .wa-float {
-  position: fixed; right: 18px; bottom: 82px; z-index: 50;
+  position: fixed; right: 18px; bottom: 18px; z-index: 50;
   background: #25D366; color: #fff; font-weight: 700;
   padding: 0.7rem 1.1rem; border-radius: 999px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.18);
@@ -57,7 +61,7 @@
 }
 .wa-float:hover { background: #1ebe5b; transform: scale(1.06); }
 .tg-float {
-  position: fixed; right: 18px; bottom: 146px; z-index: 50;
+  position: fixed; right: 18px; bottom: 76px; z-index: 50;
   background: #229ED9; color: #fff; font-weight: 700;
   padding: 0.7rem 1.1rem; border-radius: 999px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.18);
@@ -65,3 +69,7 @@
   transition: transform 0.15s ease, background 0.15s ease;
 }
 .tg-float:hover { background: #1a8bbf; transform: scale(1.06); }
+elevenlabs-convai {
+  position: fixed; left: 18px; bottom: 18px; right: auto; z-index: 50;
+  animation: slideInLeft 0.45s 0.84s ease both;
+}
