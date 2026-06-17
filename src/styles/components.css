@@ -35,6 +35,7 @@
   padding: 0.25rem 0.75rem; border-radius: 999px;
 }
 .pricing__note { text-align: center; margin-top: 1.5rem; font-size: 0.9rem; }
+.section__subtitle { text-align: center; max-width: 620px; margin: -1rem auto 2rem; color: var(--muted); }
 
 .faq { max-width: 720px; margin: 0 auto; display: grid; gap: 0.75rem; }
 .faq details { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; }
