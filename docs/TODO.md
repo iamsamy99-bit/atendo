@@ -1,9 +1,10 @@
 # Atendo Landing — Pendientes
 
 ## Deploy
-- [x] **Cloudflare Pages** — HOST OFICIAL. En vivo en https://atendo-9a5.pages.dev (proyecto `atendo`, cuenta iamsamy99@gmail.com). Redeploy: `npm run build && npx wrangler pages deploy dist --project-name atendo --branch main --commit-dirty=true`. Ver docs/deploy-cloudflare.md
-- [ ] **Dominio personalizado** (opcional) — conectar atendo.com/.mx en Cloudflare → Workers & Pages → atendo → Custom domains
-- [x] **Deploy a Surge.sh** — respaldo en https://atendo.surge.sh (ya no es el host principal)
+- [!] **Crisp bloquea `*.pages.dev` y `*.workers.dev`** (WebSocket relay responde HTTP 451 por Origin; verificado 02-jul-2026 con curl). El chat NUNCA funcionará en atendo-9a5.pages.dev. netlify.app, surge.sh y dominios propios SÍ están permitidos. Por eso **la URL principal temporal es https://atendo.surge.sh** (canonical/OG/sitemap apuntan ahí) hasta tener dominio propio. El CTA "abre el chat" tiene fallback a WhatsApp si Crisp no conecta.
+- [ ] **Dominio personalizado** (AHORA PRIORITARIO por lo de Crisp) — comprar atendo.mx o similar y conectarlo en Cloudflare → Workers & Pages → atendo → Custom domains; luego regresar canonical/OG/sitemap al dominio propio.
+- [x] **Cloudflare Pages** — en vivo en https://atendo-9a5.pages.dev (proyecto `atendo`, cuenta iamsamy99@gmail.com). Redeploy: `npm run build && npx wrangler pages deploy dist --project-name atendo --branch main --commit-dirty=true`. Ver docs/deploy-cloudflare.md
+- [x] **Deploy a Surge.sh** — https://atendo.surge.sh (host principal TEMPORAL: el chat Crisp funciona ahí). Redeploy: `npm run build && npx surge dist atendo.surge.sh`
 - [~] **Netlify** — descartado (sin créditos). netlify.toml se conserva por si acaso.
 
 ## Urgente
