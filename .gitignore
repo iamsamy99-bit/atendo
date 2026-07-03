@@ -1,2 +1,16 @@
 .superpowers/
 .env.local
+
+# Dependencias
+node_modules/
+
+# Tooling local de agentes (skills instaladas con npx skills add)
+.agents/
+.claude/
+
+# Local Netlify folder
+.netlify
+
+# Build output (se genera con npm run build)
+dist/
+*.zip

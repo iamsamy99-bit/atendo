@@ -1,0 +1,72 @@
+{
+  "name": "Atendo — Cobro de anticipo (Vapi → Stripe + WhatsApp)",
+  "flow": [
+    {
+      "id": 1,
+      "module": "gateway:CustomWebHook",
+      "version": 1,
+      "parameters": { "hook": null, "maxResults": 1 },
+      "mapper": {},
+      "metadata": {
+        "designer": { "x": 0, "y": 0 },
+        "restore": { "parameters": { "hook": { "label": "Vapi — cobrarAnticipo" } } },
+        "parameters": [
+          { "name": "hook", "type": "hook:gateway-webhook", "label": "Webhook", "required": true },
+          { "name": "maxResults", "type": "number", "label": "Maximum number of results" }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "module": "stripe:createPaymentLink",
+      "version": 1,
+      "parameters": { "__IMTCONN__": null },
+      "mapper": {
+        "line_items": [ { "price": "price_REEMPLAZAR_CON_TU_PRICE_ID", "quantity": 1 } ],
+        "metadata": [
+          { "key": "cliente", "value": "{{1.message.toolCallList[0].function.arguments.nombre}}" },
+          { "key": "telefono", "value": "{{1.message.toolCallList[0].function.arguments.telefono}}" }
+        ]
+      },
+      "metadata": {
+        "designer": { "x": 300, "y": 0 },
+        "restore": { "parameters": { "__IMTCONN__": { "label": "Stripe del cliente" } } },
+        "parameters": [ { "name": "__IMTCONN__", "type": "account:stripe,stripe2", "label": "Connection", "required": true } ]
+      }
+    },
+    {
+      "id": 3,
+      "module": "twilio:ActionSendMessage",
+      "version": 2,
+      "parameters": { "account": null },
+      "mapper": {
+        "from": "whatsapp:+14155238886",
+        "to": "whatsapp:+{{1.message.toolCallList[0].function.arguments.telefono}}",
+        "body": "Hola {{1.message.toolCallList[0].function.arguments.nombre}}! Para confirmar tu cita, deja tu anticipo aqui: {{2.url}}"
+      },
+      "metadata": {
+        "designer": { "x": 600, "y": 0 },
+        "restore": { "parameters": { "account": { "label": "Twilio del cliente" } } },
+        "parameters": [ { "name": "account", "type": "account:twilio", "label": "Connection", "required": true } ]
+      }
+    },
+    {
+      "id": 4,
+      "module": "gateway:WebhookRespond",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "status": "200",
+        "body": "{\"results\":[{\"toolCallId\":\"{{1.message.toolCallList[0].id}}\",\"result\":\"Te acabo de enviar el link del anticipo por WhatsApp. En cuanto lo cubras, tu cita queda confirmada.\"}]}",
+        "headers": [ { "key": "Content-Type", "value": "application/json" } ]
+      },
+      "metadata": { "designer": { "x": 900, "y": 0 }, "parameters": [] }
+    }
+  ],
+  "metadata": {
+    "instant": true,
+    "version": 1,
+    "scenario": { "roundtrips": 1, "maxErrors": 3, "autoCommit": true, "autoCommitTriggerLast": true, "sequential": false, "confidential": false, "dataloss": false, "dlq": false },
+    "designer": { "orphans": [] }
+  }
+}

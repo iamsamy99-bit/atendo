@@ -5,11 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Atendo — Agentes de voz con IA</title>
     <meta name="description" content="Agentes telefónicos con IA y sitios web para negocios en México y Estados Unidos." />
+    <link rel="canonical" href="https://atendo-9a5.pages.dev/" />
+    <meta name="theme-color" content="#0b1020" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Atendo" />
+    <meta property="og:title" content="Atendo — Agentes de voz con IA" />
+    <meta property="og:description" content="Agentes telefónicos con IA que contestan, informan y agendan citas 24/7. Para negocios en México y Estados Unidos." />
+    <meta property="og:image" content="https://atendo-9a5.pages.dev/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://atendo-9a5.pages.dev/" />
+    <meta property="og:locale" content="es_MX" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Atendo — Agentes de voz con IA" />
+    <meta name="twitter:description" content="Agentes telefónicos con IA que contestan, informan y agendan citas 24/7. Para negocios en México y Estados Unidos." />
+    <meta name="twitter:image" content="https://atendo-9a5.pages.dev/og-image.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Atendo",
+        "url": "https://atendo-9a5.pages.dev/",
+        "logo": "https://atendo-9a5.pages.dev/logo-full.png",
+        "description": "Agentes telefonicos con IA que contestan, informan y agendan citas 24/7 para negocios en Mexico y Estados Unidos.",
+        "areaServed": ["MX", "US"],
+        "telephone": "+16692680598",
+        "sameAs": [
+          "https://t.me/Atendo_service_bot",
+          "https://wa.me/523171340304"
+        ],
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "name": "Agente de voz con IA",
+            "category": "AI voice agent"
+          },
+          {
+            "@type": "Offer",
+            "name": "Chatbot de WhatsApp y Telegram",
+            "category": "AI chatbot"
+          }
+        ]
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300;1,9..144,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <header class="nav">
+
+    <a class="skip-link" href="#top" data-i18n="skip.content"></a>
+
+    <!-- NAV -->
+    <header id="main-nav" class="nav">
       <a class="nav__logo" href="#top">
-        <img src="/logo.png" alt="" width="36" height="36" />
+        <span class="nav__logo-img">
+          <img src="/logo.png" alt="Atendo logo" width="34" height="34" />
+        </span>
         Atendo
       </a>
       <nav class="nav__links">
@@ -19,209 +75,565 @@
         <a href="#faq" data-i18n="nav.faq"></a>
       </nav>
       <div class="nav__actions">
-        <button id="lang-toggle" class="lang-toggle" type="button">EN</button>
-        <a href="#book" class="btn btn--primary" data-i18n="nav.cta"></a>
+        <a class="nav__phone" href="tel:+16692680598" aria-label="Llamar a Sofía" data-lead-event="phone_click" data-lead-source="nav-phone">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.05-.24 11.36 11.36 0 0 0 3.55.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.55 1 1 0 0 1-.24 1.05l-2.2 2.2z"/>
+          </svg>
+          <span>+1 669 268 0598</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language">EN</button>
+        <a href="#book" class="btn btn--primary" data-i18n="nav.cta" data-lead-event="cta_click" data-lead-source="nav-demo"></a>
       </div>
     </header>
 
     <main id="top">
-      <section class="hero">
-        <h1 data-i18n="hero.title"></h1>
-        <p class="hero__subtitle" data-i18n="hero.subtitle"></p>
-        <a href="#book" class="btn btn--primary btn--lg" data-i18n="hero.cta"></a>
-        <button id="voice-cta" class="btn btn--outline btn--lg" data-i18n="hero.cta_demo" type="button"></button>
-        <p class="hero__trust" data-i18n="hero.trust"></p>
+
+      <!-- HERO DARK -->
+      <section class="hero-dark">
+        <canvas id="heroCanvas" aria-hidden="true"></canvas>
+        <div class="hero-dark__fade" aria-hidden="true"></div>
+        <div class="hero-dark__inner">
+          <!-- Text -->
+          <div class="hero-dark__text">
+            <div class="hero-tag" data-i18n="hero.tag"></div>
+            <h1 class="hero-dark__h1">
+              <span data-i18n="hero.line1"></span>
+              <em data-i18n="hero.line2"></em>
+            </h1>
+            <p class="hero-dark__sub" data-i18n="hero.subtitle"></p>
+            <div class="hero-dark__ctas">
+              <a href="#book" class="btn btn--primary btn--lg" data-i18n="hero.cta" data-lead-event="cta_click" data-lead-source="hero-demo"></a>
+              <a id="voice-cta" href="tel:+16692680598" class="btn btn--outline btn--lg" data-i18n="hero.cta_demo" data-lead-event="phone_click" data-lead-source="hero-phone"></a>
+            </div>
+            <p class="hero__trust" data-i18n="hero.trust"></p>
+            <div class="trust-strip" aria-label="Atendo trust signals">
+              <span data-i18n="trust.signal1"></span>
+              <span data-i18n="trust.signal2"></span>
+              <span data-i18n="trust.signal3"></span>
+            </div>
+          </div>
+
+          <!-- Live call card mockup -->
+          <div class="hero-dark__mockup" aria-hidden="true">
+            <div class="call-card">
+              <div class="call-card__header">
+                <div class="call-card__avatar">
+                  <img src="/sofia-avatar.jpg" alt="" width="38" height="38" />
+                </div>
+                <div class="call-card__info">
+                  <div class="call-card__name" data-i18n="card.name"></div>
+                  <div class="call-card__live" data-i18n="card.live"></div>
+                </div>
+                <div class="call-card__duration">02:14</div>
+              </div>
+              <div class="call-card__msgs">
+                <div class="call-bubble call-bubble--ai">
+                  <p data-i18n="card.b1"></p>
+                </div>
+                <div class="call-bubble call-bubble--user">
+                  <p data-i18n="card.b2"></p>
+                </div>
+                <div class="call-bubble call-bubble--ai">
+                  <p data-i18n="card.b3"></p>
+                </div>
+              </div>
+              <div class="wave-sm">
+                <div class="wave-sm__bar"></div>
+                <div class="wave-sm__bar"></div>
+                <div class="wave-sm__bar"></div>
+                <div class="wave-sm__bar"></div>
+                <div class="wave-sm__bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-dark__scroll" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3v10M4 9l4 4 4-4"/></svg>
+          scroll
+        </div>
       </section>
 
-      <section class="section problem reveal">
-        <h2 data-i18n="problem.title"></h2>
-        <p data-i18n="problem.body"></p>
+      <!-- INDUSTRIES -->
+      <section class="section industries">
+        <div class="section-head text-center">
+          <span class="section-label" data-i18n="industries.sectionLabel"></span>
+          <h2 data-reveal data-i18n="industries.title"></h2>
+          <p class="section-sub" data-i18n="industries.subtitle"></p>
+        </div>
+        <div class="industry-grid">
+          <article class="industry" data-reveal>
+            <div class="industry__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 15l2 2 4-4"/>
+              </svg>
+            </div>
+            <span class="industry__label" data-i18n="industries.health.label"></span>
+            <h3 data-i18n="industries.health.title"></h3>
+            <p data-i18n="industries.health.body"></p>
+          </article>
+          <article class="industry" data-reveal>
+            <div class="industry__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
+            </div>
+            <span class="industry__label" data-i18n="industries.services.label"></span>
+            <h3 data-i18n="industries.services.title"></h3>
+            <p data-i18n="industries.services.body"></p>
+          </article>
+          <article class="industry" data-reveal>
+            <div class="industry__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l1.5-5h15L21 9"/><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 12v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8"/><path d="M9 21v-6h6v6"/>
+              </svg>
+            </div>
+            <span class="industry__label" data-i18n="industries.local.label"></span>
+            <h3 data-i18n="industries.local.title"></h3>
+            <p data-i18n="industries.local.body"></p>
+          </article>
+        </div>
       </section>
 
+      <!-- SERVICES -->
       <section id="services" class="section">
-        <h2 class="reveal" data-i18n="services.title"></h2>
+        <div class="section-head text-center">
+          <span class="section-label" data-i18n="services.sectionLabel"></span>
+          <h2 data-reveal data-i18n="services.title"></h2>
+          <p class="section-sub" data-i18n="services.sub"></p>
+        </div>
         <div class="cards">
-          <article class="card reveal d1">
+          <!-- Voice -->
+          <article class="card" data-reveal>
+            <div class="card__icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.45 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-1.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.27 15z"/>
+              </svg>
+            </div>
             <h3 data-i18n="services.voice.title"></h3>
             <p data-i18n="services.voice.body"></p>
           </article>
-          <article class="card reveal d2">
+          <!-- Chat -->
+          <article class="card" data-reveal>
+            <div class="card__icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
             <h3 data-i18n="services.chat.title"></h3>
             <p data-i18n="services.chat.body"></p>
           </article>
-          <article class="card reveal d3">
+          <!-- Web -->
+          <article class="card" data-reveal>
+            <div class="card__icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </div>
             <h3 data-i18n="services.web.title"></h3>
             <p data-i18n="services.web.body"></p>
           </article>
         </div>
       </section>
 
+      <!-- VOICE FEATURE (dark) -->
+      <section class="voice-feature">
+        <div class="voice-feature__inner">
+          <div class="voice-feature__text" data-reveal>
+            <span class="section-label section-label--teal" data-i18n="voiceFeature.sectionLabel"></span>
+            <h2 class="voice-feature__h2">
+              <span data-i18n="voiceFeature.line1"></span>
+              <span data-i18n="voiceFeature.line2"></span>
+            </h2>
+            <p data-i18n="voiceFeature.body"></p>
+            <div class="voice-stats">
+              <div class="voice-stat">
+                <span class="voice-stat__val" data-i18n="voiceFeature.s1v"></span>
+                <span class="voice-stat__label" data-i18n="voiceFeature.s1l"></span>
+              </div>
+              <div class="voice-stat">
+                <span class="voice-stat__val" data-i18n="voiceFeature.s2v"></span>
+                <span class="voice-stat__label" data-i18n="voiceFeature.s2l"></span>
+              </div>
+              <div class="voice-stat">
+                <span class="voice-stat__val" data-i18n="voiceFeature.s3v"></span>
+                <span class="voice-stat__label" data-i18n="voiceFeature.s3l"></span>
+              </div>
+            </div>
+          </div>
+          <div class="voice-visualizer" data-reveal>
+            <div class="convo-card" aria-hidden="true">
+              <div class="convo-card__header">
+                <div class="convo-card__avatar convo-card__avatar--photo">
+                  <img src="/sofia-avatar.jpg" alt="" width="36" height="36" />
+                </div>
+                <div>
+                  <div class="convo-card__name" data-i18n="card.name"></div>
+                  <div class="convo-card__status" data-i18n="card.online"></div>
+                </div>
+              </div>
+              <div class="convo-messages">
+                <div class="convo-bubble convo-bubble--received">
+                  <p data-i18n="card.b1"></p>
+                </div>
+                <div class="convo-bubble convo-bubble--sent">
+                  <p data-i18n="card.b4"></p>
+                </div>
+                <div class="convo-bubble convo-bubble--received">
+                  <p data-i18n="card.b5"></p>
+                </div>
+                <div class="convo-confirm">
+                  <span class="convo-confirm__icon">✓</span>
+                  <span class="convo-confirm__text" data-i18n="card.confirm"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AGENTS SHOWCASE -->
+      <section class="agents-showcase">
+        <div class="section-head text-center">
+          <span class="section-label" data-i18n="agents.sectionLabel"></span>
+          <h2 data-reveal class="agents-showcase__h2"><span data-i18n="agents.line1"></span> <em data-i18n="agents.line2"></em></h2>
+          <p class="section-sub" data-i18n="agents.subtitle"></p>
+        </div>
+
+        <div class="agent-cards">
+          <!-- Sofía -->
+          <article class="agent-card agent-card--sofia" data-reveal>
+            <div class="agent-card__banner">
+              <img src="/sofia-banner.jpg" alt="Sofía, agente de voz de ventas de Atendo" loading="lazy" />
+              <span class="agent-card__status"><span class="agent-card__dot"></span><span data-i18n="agents.sofia.status"></span></span>
+            </div>
+            <div class="agent-card__body">
+              <div class="agent-card__id">
+                <h3 class="agent-card__name">Sofía</h3>
+                <span class="agent-card__role" data-i18n="agents.sofia.role"></span>
+              </div>
+              <p class="agent-card__desc" data-i18n="agents.sofia.desc"></p>
+              <ul class="agent-card__tags">
+                <li data-i18n="agents.sofia.t1"></li><li data-i18n="agents.sofia.t2"></li><li data-i18n="agents.sofia.t3"></li><li data-i18n="agents.sofia.t4"></li>
+              </ul>
+              <a href="tel:+16692680598" class="btn btn--primary" data-lead-event="phone_click" data-lead-source="agent-card-sofia">
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true" style="margin-right:7px;vertical-align:-3px"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.05-.24 11.36 11.36 0 0 0 3.55.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.55 1 1 0 0 1-.24 1.05l-2.2 2.2z"/></svg>
+                <span data-i18n="agents.sofia.cta"></span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Diego -->
+          <article class="agent-card agent-card--diego" data-reveal>
+            <div class="agent-card__banner">
+              <img src="/diego-banner.jpg" alt="Diego, agente de voz recepcionista de Atendo" loading="lazy" />
+              <span class="agent-card__status agent-card__status--demo" data-i18n="agents.diego.status"></span>
+            </div>
+            <div class="agent-card__body">
+              <div class="agent-card__id">
+                <h3 class="agent-card__name">Diego</h3>
+                <span class="agent-card__role" data-i18n="agents.diego.role"></span>
+              </div>
+              <p class="agent-card__desc" data-i18n="agents.diego.desc"></p>
+              <ul class="agent-card__tags">
+                <li data-i18n="agents.diego.t1"></li><li data-i18n="agents.diego.t2"></li><li data-i18n="agents.diego.t3"></li><li data-i18n="agents.diego.t4"></li>
+              </ul>
+              <a href="tel:+19569061491" class="btn btn--outline2" data-lead-event="phone_click" data-lead-source="agent-card-diego">
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true" style="margin-right:7px;vertical-align:-3px"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.05-.24 11.36 11.36 0 0 0 3.55.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.55 1 1 0 0 1-.24 1.05l-2.2 2.2z"/></svg>
+                <span data-i18n="agents.diego.cta"></span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
       <section class="section">
-        <h2 data-i18n="how.title"></h2>
+        <div class="section-head text-center">
+          <h2 data-reveal data-i18n="how.title"></h2>
+        </div>
         <div class="steps">
-          <div class="step reveal d1"><h3 data-i18n="how.step1.title"></h3><p data-i18n="how.step1.body"></p></div>
-          <div class="step reveal d2"><h3 data-i18n="how.step2.title"></h3><p data-i18n="how.step2.body"></p></div>
-          <div class="step reveal d3"><h3 data-i18n="how.step3.title"></h3><p data-i18n="how.step3.body"></p></div>
+          <div class="step" data-reveal>
+            <h3 data-i18n="how.step1.title"></h3>
+            <p data-i18n="how.step1.body"></p>
+          </div>
+          <div class="step" data-reveal>
+            <h3 data-i18n="how.step2.title"></h3>
+            <p data-i18n="how.step2.body"></p>
+          </div>
+          <div class="step" data-reveal>
+            <h3 data-i18n="how.step3.title"></h3>
+            <p data-i18n="how.step3.body"></p>
+          </div>
         </div>
       </section>
 
-      <section class="section benefits">
-        <h2 data-i18n="benefits.title"></h2>
-        <ul class="benefits__list">
-          <li data-i18n="benefits.b1"></li>
-          <li data-i18n="benefits.b2"></li>
-          <li data-i18n="benefits.b3"></li>
-          <li data-i18n="benefits.b4"></li>
-        </ul>
-      </section>
-
-      <section id="pricing" class="section">
-        <h2 data-i18n="pricing.title"></h2>
-        <div class="pricing">
-          <article class="plan reveal d1">
+      <!-- PRICING — VOICE -->
+      <section id="pricing" class="section--alt-wrap">
+        <div class="section section-head text-center">
+          <span class="section-label" data-i18n="pricing.sectionLabel"></span>
+          <h2 data-reveal data-i18n="pricing.title"></h2>
+        </div>
+        <div class="plans section">
+          <article class="plan2" data-reveal>
             <h3 data-i18n="pricing.starter.name"></h3>
-            <p class="plan__price" data-i18n="pricing.starter.price"></p>
-            <ul>
-              <li data-i18n="pricing.starter.f1"></li>
-              <li data-i18n="pricing.starter.f2"></li>
-              <li data-i18n="pricing.starter.f3"></li>
+            <div class="plan2__price">
+              <span class="plan2__price-num" data-i18n="pricing.starter.priceNum"></span>
+              <span class="plan2__price-per" data-i18n="pricing.starter.pricePer"></span>
+            </div>
+            <ul class="plan2__features">
+              <li><span class="check">✓</span><span data-i18n="pricing.starter.f1"></span></li>
+              <li><span class="check">✓</span><span data-i18n="pricing.starter.f2"></span></li>
+              <li><span class="check">✓</span><span data-i18n="pricing.starter.f3"></span></li>
             </ul>
-            <a href="#book" class="btn btn--outline" data-i18n="pricing.cta"></a>
+            <a href="#book" class="btn btn--outline2" style="margin-top:28px" data-i18n="pricing.cta" data-lead-event="cta_click" data-lead-source="pricing-plan" data-plan="voice-starter"></a>
           </article>
-          <article class="plan plan--featured reveal d2">
-            <span class="plan__badge" data-i18n="pricing.pro.badge"></span>
+          <article class="plan2 plan2--featured" data-reveal>
+            <span class="plan2__badge" data-i18n="pricing.pro.badge"></span>
             <h3 data-i18n="pricing.pro.name"></h3>
-            <p class="plan__price" data-i18n="pricing.pro.price"></p>
-            <ul>
-              <li data-i18n="pricing.pro.f1"></li>
-              <li data-i18n="pricing.pro.f2"></li>
-              <li data-i18n="pricing.pro.f3"></li>
+            <div class="plan2__price">
+              <span class="plan2__price-num" data-i18n="pricing.pro.priceNum"></span>
+              <span class="plan2__price-per" data-i18n="pricing.pro.pricePer"></span>
+            </div>
+            <ul class="plan2__features">
+              <li><span class="check">✓</span><span data-i18n="pricing.pro.f1"></span></li>
+              <li><span class="check">✓</span><span data-i18n="pricing.pro.f2"></span></li>
+              <li><span class="check">✓</span><span data-i18n="pricing.pro.f3"></span></li>
             </ul>
-            <a href="#book" class="btn btn--primary" data-i18n="pricing.cta"></a>
+            <a href="#book" class="btn btn--outline" style="margin-top:28px" data-i18n="pricing.cta" data-lead-event="cta_click" data-lead-source="pricing-plan" data-plan="voice-pro"></a>
           </article>
-          <article class="plan reveal d3">
+          <article class="plan2" data-reveal>
             <h3 data-i18n="pricing.premium.name"></h3>
-            <p class="plan__price" data-i18n="pricing.premium.price"></p>
-            <ul>
-              <li data-i18n="pricing.premium.f1"></li>
-              <li data-i18n="pricing.premium.f2"></li>
-              <li data-i18n="pricing.premium.f3"></li>
+            <div class="plan2__price">
+              <span class="plan2__price-num" data-i18n="pricing.premium.priceNum"></span>
+              <span class="plan2__price-per" data-i18n="pricing.premium.pricePer"></span>
+            </div>
+            <ul class="plan2__features">
+              <li><span class="check">✓</span><span data-i18n="pricing.premium.f1"></span></li>
+              <li><span class="check">✓</span><span data-i18n="pricing.premium.f2"></span></li>
+              <li><span class="check">✓</span><span data-i18n="pricing.premium.f3"></span></li>
             </ul>
-            <a href="#book" class="btn btn--outline" data-i18n="pricing.cta"></a>
+            <a href="#book" class="btn btn--outline2" style="margin-top:28px" data-i18n="pricing.cta" data-lead-event="cta_click" data-lead-source="pricing-plan" data-plan="voice-enterprise"></a>
           </article>
         </div>
-        <p class="pricing__note" data-i18n="pricing.note"></p>
+        <p class="pricing__note section" data-i18n="pricing.note"></p>
       </section>
 
+      <!-- CHATBOTS -->
       <section id="chatbots" class="section">
-        <h2 class="reveal" data-i18n="chatbots.title"></h2>
-        <p class="section__subtitle reveal" data-i18n="chatbots.subtitle"></p>
-        <div class="pricing">
-          <article class="plan reveal d1">
+        <div class="section-head text-center">
+          <span class="section-label" data-i18n="chatbots.sectionLabel"></span>
+          <h2 data-reveal data-i18n="chatbots.title"></h2>
+          <p class="section-sub" data-i18n="chatbots.subtitle"></p>
+        </div>
+        <div class="plans">
+          <article class="plan2" data-reveal>
             <h3 data-i18n="chatbots.starter.name"></h3>
-            <p class="plan__price" data-i18n="chatbots.starter.price"></p>
-            <ul>
-              <li data-i18n="chatbots.starter.f1"></li>
-              <li data-i18n="chatbots.starter.f2"></li>
-              <li data-i18n="chatbots.starter.f3"></li>
+            <div class="plan2__price">
+              <span class="plan2__price-num" data-i18n="chatbots.starter.priceNum"></span>
+              <span class="plan2__price-per" data-i18n="chatbots.starter.pricePer"></span>
+            </div>
+            <ul class="plan2__features">
+              <li><span class="check">✓</span><span data-i18n="chatbots.starter.f1"></span></li>
+              <li><span class="check">✓</span><span data-i18n="chatbots.starter.f2"></span></li>
+              <li><span class="check">✓</span><span data-i18n="chatbots.starter.f3"></span></li>
             </ul>
-            <a href="#book" class="btn btn--outline" data-i18n="pricing.cta"></a>
+            <a href="#book" class="btn btn--outline2" style="margin-top:28px" data-i18n="chatbots.cta" data-lead-event="cta_click" data-lead-source="pricing-plan" data-plan="chat-starter"></a>
           </article>
-          <article class="plan plan--featured reveal d2">
-            <span class="plan__badge" data-i18n="chatbots.negocio.badge"></span>
+          <article class="plan2 plan2--featured" data-reveal>
+            <span class="plan2__badge" data-i18n="chatbots.negocio.badge"></span>
             <h3 data-i18n="chatbots.negocio.name"></h3>
-            <p class="plan__price" data-i18n="chatbots.negocio.price"></p>
-            <ul>
-              <li data-i18n="chatbots.negocio.f1"></li>
-              <li data-i18n="chatbots.negocio.f2"></li>
-              <li data-i18n="chatbots.negocio.f3"></li>
+            <div class="plan2__price">
+              <span class="plan2__price-num" data-i18n="chatbots.negocio.priceNum"></span>
+              <span class="plan2__price-per" data-i18n="chatbots.negocio.pricePer"></span>
+            </div>
+            <ul class="plan2__features">
+              <li><span class="check">✓</span><span data-i18n="chatbots.negocio.f1"></span></li>
+              <li><span class="check">✓</span><span data-i18n="chatbots.negocio.f2"></span></li>
+              <li><span class="check">✓</span><span data-i18n="chatbots.negocio.f3"></span></li>
             </ul>
-            <a href="#book" class="btn btn--primary" data-i18n="pricing.cta"></a>
+            <a href="#book" class="btn btn--outline" style="margin-top:28px" data-i18n="chatbots.cta" data-lead-event="cta_click" data-lead-source="pricing-plan" data-plan="chat-business"></a>
           </article>
-          <article class="plan reveal d3">
+          <article class="plan2" data-reveal>
             <h3 data-i18n="chatbots.pro.name"></h3>
-            <p class="plan__price" data-i18n="chatbots.pro.price"></p>
-            <ul>
-              <li data-i18n="chatbots.pro.f1"></li>
-              <li data-i18n="chatbots.pro.f2"></li>
-              <li data-i18n="chatbots.pro.f3"></li>
+            <div class="plan2__price">
+              <span class="plan2__price-num" data-i18n="chatbots.pro.priceNum"></span>
+              <span class="plan2__price-per" data-i18n="chatbots.pro.pricePer"></span>
+            </div>
+            <ul class="plan2__features">
+              <li><span class="check">✓</span><span data-i18n="chatbots.pro.f1"></span></li>
+              <li><span class="check">✓</span><span data-i18n="chatbots.pro.f2"></span></li>
+              <li><span class="check">✓</span><span data-i18n="chatbots.pro.f3"></span></li>
             </ul>
-            <a href="#book" class="btn btn--outline" data-i18n="pricing.cta"></a>
+            <a href="#book" class="btn btn--outline2" style="margin-top:28px" data-i18n="chatbots.cta" data-lead-event="cta_click" data-lead-source="pricing-plan" data-plan="chat-pro"></a>
           </article>
         </div>
       </section>
 
-      <section class="section bundles">
-        <h2 class="reveal" data-i18n="bundles.title"></h2>
-        <p class="section__subtitle reveal" data-i18n="bundles.subtitle"></p>
-        <div class="pricing">
-          <article class="plan reveal d1">
+      <!-- BUNDLES -->
+      <section class="section--alt-wrap">
+        <div class="section section-head text-center">
+          <span class="section-label" data-i18n="bundles.sectionLabel"></span>
+          <h2 data-reveal data-i18n="bundles.title"></h2>
+          <p class="section-sub" data-i18n="bundles.subtitle"></p>
+        </div>
+        <div class="plans section">
+          <article class="plan2" data-reveal>
             <h3 data-i18n="bundles.b1.name"></h3>
-            <p class="plan__price" data-i18n="bundles.b1.price"></p>
-            <ul>
-              <li data-i18n="bundles.b1.f1"></li>
-              <li data-i18n="bundles.b1.f2"></li>
+            <div class="plan2__price">
+              <span class="plan2__price-num" data-i18n="bundles.b1.priceNum"></span>
+              <span class="plan2__price-per" data-i18n="bundles.b1.pricePer"></span>
+            </div>
+            <ul class="plan2__features">
+              <li><span class="check">✓</span><span data-i18n="bundles.b1.f1"></span></li>
+              <li><span class="check">✓</span><span data-i18n="bundles.b1.f2"></span></li>
             </ul>
-            <a href="#book" class="btn btn--outline" data-i18n="pricing.cta"></a>
+            <a href="#book" class="btn btn--outline2" style="margin-top:28px" data-i18n="bundles.cta" data-lead-event="cta_click" data-lead-source="pricing-plan" data-plan="bundle-starter"></a>
           </article>
-          <article class="plan plan--featured reveal d2">
-            <span class="plan__badge" data-i18n="bundles.b2.badge"></span>
+          <article class="plan2 plan2--featured" data-reveal>
+            <span class="plan2__badge" data-i18n="bundles.b2.badge"></span>
             <h3 data-i18n="bundles.b2.name"></h3>
-            <p class="plan__price" data-i18n="bundles.b2.price"></p>
-            <ul>
-              <li data-i18n="bundles.b2.f1"></li>
-              <li data-i18n="bundles.b2.f2"></li>
+            <div class="plan2__price">
+              <span class="plan2__price-num" data-i18n="bundles.b2.priceNum"></span>
+              <span class="plan2__price-per" data-i18n="bundles.b2.pricePer"></span>
+            </div>
+            <ul class="plan2__features">
+              <li><span class="check">✓</span><span data-i18n="bundles.b2.f1"></span></li>
+              <li><span class="check">✓</span><span data-i18n="bundles.b2.f2"></span></li>
             </ul>
-            <a href="#book" class="btn btn--primary" data-i18n="pricing.cta"></a>
+            <a href="#book" class="btn btn--outline" style="margin-top:28px" data-i18n="bundles.cta" data-lead-event="cta_click" data-lead-source="pricing-plan" data-plan="bundle-business"></a>
           </article>
-          <article class="plan reveal d3">
+          <article class="plan2" data-reveal>
             <h3 data-i18n="bundles.b3.name"></h3>
-            <p class="plan__price" data-i18n="bundles.b3.price"></p>
-            <ul>
-              <li data-i18n="bundles.b3.f1"></li>
-              <li data-i18n="bundles.b3.f2"></li>
+            <div class="plan2__price">
+              <span class="plan2__price-num" data-i18n="bundles.b3.priceNum"></span>
+              <span class="plan2__price-per" data-i18n="bundles.b3.pricePer"></span>
+            </div>
+            <ul class="plan2__features">
+              <li><span class="check">✓</span><span data-i18n="bundles.b3.f1"></span></li>
+              <li><span class="check">✓</span><span data-i18n="bundles.b3.f2"></span></li>
             </ul>
-            <a href="#book" class="btn btn--outline" data-i18n="pricing.cta"></a>
+            <a href="#book" class="btn btn--outline2" style="margin-top:28px" data-i18n="bundles.cta" data-lead-event="cta_click" data-lead-source="pricing-plan" data-plan="bundle-enterprise"></a>
           </article>
         </div>
-        <p class="pricing__note" data-i18n="bundles.note"></p>
+        <p class="pricing__note section" data-i18n="bundles.note"></p>
       </section>
 
+      <!-- FAQ -->
       <section id="faq" class="section">
-        <h2 data-i18n="faq.title"></h2>
-        <div class="faq">
-          <details class="reveal"><summary data-i18n="faq.q1"></summary><p data-i18n="faq.a1"></p></details>
-          <details class="reveal d1"><summary data-i18n="faq.q2"></summary><p data-i18n="faq.a2"></p></details>
-          <details class="reveal d2"><summary data-i18n="faq.q3"></summary><p data-i18n="faq.a3"></p></details>
-          <details class="reveal d3"><summary data-i18n="faq.q4"></summary><p data-i18n="faq.a4"></p></details>
+        <div class="section-head text-center">
+          <h2 data-reveal data-i18n="faq.title"></h2>
+        </div>
+        <div class="faq2">
+          <div class="faq2__item">
+            <h4 class="faq2__h">
+              <button class="faq2__q" type="button" aria-expanded="false" aria-controls="faq-a0">
+                <span data-i18n="faq.q0"></span>
+                <span class="faq2__icon" aria-hidden="true">+</span>
+              </button>
+            </h4>
+            <div class="faq2__a" id="faq-a0"><p data-i18n="faq.a0"></p></div>
+          </div>
+          <div class="faq2__item">
+            <h4 class="faq2__h">
+              <button class="faq2__q" type="button" aria-expanded="false" aria-controls="faq-a1">
+                <span data-i18n="faq.q1"></span>
+                <span class="faq2__icon" aria-hidden="true">+</span>
+              </button>
+            </h4>
+            <div class="faq2__a" id="faq-a1"><p data-i18n="faq.a1"></p></div>
+          </div>
+          <div class="faq2__item">
+            <h4 class="faq2__h">
+              <button class="faq2__q" type="button" aria-expanded="false" aria-controls="faq-a2">
+                <span data-i18n="faq.q2"></span>
+                <span class="faq2__icon" aria-hidden="true">+</span>
+              </button>
+            </h4>
+            <div class="faq2__a" id="faq-a2"><p data-i18n="faq.a2"></p></div>
+          </div>
+          <div class="faq2__item">
+            <h4 class="faq2__h">
+              <button class="faq2__q" type="button" aria-expanded="false" aria-controls="faq-a3">
+                <span data-i18n="faq.q3"></span>
+                <span class="faq2__icon" aria-hidden="true">+</span>
+              </button>
+            </h4>
+            <div class="faq2__a" id="faq-a3"><p data-i18n="faq.a3"></p></div>
+          </div>
+          <div class="faq2__item">
+            <h4 class="faq2__h">
+              <button class="faq2__q" type="button" aria-expanded="false" aria-controls="faq-a4">
+                <span data-i18n="faq.q4"></span>
+                <span class="faq2__icon" aria-hidden="true">+</span>
+              </button>
+            </h4>
+            <div class="faq2__a" id="faq-a4"><p data-i18n="faq.a4"></p></div>
+          </div>
         </div>
       </section>
 
-      <section id="book" class="section cta">
-        <h2 data-i18n="cta.title"></h2>
-        <p data-i18n="cta.body"></p>
-        <div id="calendly" class="calendly"></div>
-        <p class="cta__fallback"><a href="https://wa.me/523171340304" target="_blank" rel="noopener" data-i18n="cta.fallback"></a></p>
+      <!-- CTA DARK -->
+      <section id="book" class="cta-dark">
+        <div class="cta-dark__inner">
+          <span class="section-label" data-i18n="cta.tag"></span>
+          <h2 data-i18n="cta.title"></h2>
+          <p data-i18n="cta.body"></p>
+          <a href="https://calendly.com/iamsamy99/30min?utm_source=landing&utm_medium=cta&utm_campaign=voice-demo" target="_blank" rel="noopener" class="btn btn--primary btn--lg" data-i18n="cta.btn" data-lead-event="cta_click" data-lead-source="cta-calendly"></a>
+          <div id="calendly" class="calendly" style="margin-top:40px"></div>
+          <p class="cta__fallback">
+            <a href="https://wa.me/523171340304?text=Hola%20Atendo%2C%20vengo%20de%20la%20landing%20y%20quiero%20agendar%20una%20demo%20de%20Sofia." target="_blank" rel="noopener" data-i18n="cta.wa" data-lead-event="whatsapp_click" data-lead-source="calendar-fallback"></a>
+            <span data-i18n="cta.or"></span>
+            <a href="#crisp" data-i18n="cta.chat" data-lead-event="crisp_open" data-lead-source="calendar-fallback"></a>
+          </p>
+        </div>
       </section>
+
     </main>
 
-    <footer class="footer">
-      <p class="footer__brand"><img src="/logo.png" alt="" width="28" height="28" style="vertical-align:middle;margin-right:0.4rem;" />Atendo</p>
-      <p data-i18n="footer.tagline"></p>
-      <p class="footer__rights">© 2026 Atendo. <span data-i18n="footer.rights"></span></p>
-      <p class="footer__legal" style="margin-top:.5rem;font-size:.85rem"><a href="/terminos.html">Términos y Condiciones</a> · <a href="/privacidad.html">Aviso de Privacidad</a></p>
-      <p style="margin-top:.75rem;font-size:.9rem">
-        <a href="https://t.me/Atendo_service_bot" target="_blank" rel="noopener" style="color:#229ED9;font-weight:600">✈ Telegram</a>
-        &nbsp;·&nbsp;
-        <a href="https://wa.me/523171340304" target="_blank" rel="noopener" style="color:#25D366;font-weight:600">💬 WhatsApp</a>
-        &nbsp;·&nbsp;
-        <a href="mailto:samgarcia.tech@gmail.com" style="color:var(--blue);font-weight:600">✉ Email</a>
-      </p>
+    <!-- FOOTER DARK -->
+    <footer class="footer-dark">
+      <div class="footer-dark__inner">
+        <div class="footer-dark__brand">
+          <div class="footer-dark__brand-img">
+            <img src="/logo.png" alt="Atendo" width="34" height="34" />
+          </div>
+          <span>Atendo</span>
+        </div>
+        <p data-i18n="footer.tagline"></p>
+        <div class="footer-dark__links">
+          <a href="https://t.me/Atendo_service_bot" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M21.94 3.14a1.5 1.5 0 0 0-1.53-.26L2.9 9.79a1.5 1.5 0 0 0 .12 2.83l4.42 1.4 1.7 5.44a1.5 1.5 0 0 0 2.53.62l2.45-2.57 4.3 3.14a1.5 1.5 0 0 0 2.36-.9l3-14.98a1.5 1.5 0 0 0-.84-1.63zM9.5 13.5l8.4-6.9-6.9 8.4-.3 3.2-1.2-4.7z"/></svg>
+            Telegram
+          </a>
+          <a href="https://wa.me/523171340304?text=Hola%20Atendo%2C%20vengo%20de%20la%20landing%20y%20quiero%20mas%20informacion." target="_blank" rel="noopener" data-lead-event="whatsapp_click" data-lead-source="footer">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.2 1.1-1.7 1.2-.4 0-.9.2-3.1-.6-2.6-1-4.3-3.7-4.4-3.9-.1-.2-1.1-1.4-1.1-2.7s.7-1.9 1-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.8 2c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.6.4 0 .1 0 .7-.4 1.2z"/></svg>
+            WhatsApp
+          </a>
+          <a href="mailto:samgarcia.tech@gmail.com">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            Email
+          </a>
+        </div>
+        <div class="footer-dark__bottom">
+          <p>© 2026 Atendo. <span data-i18n="footer.rights"></span></p>
+          <div>
+            <a href="/terminos.html">Términos</a>
+            <a href="/privacidad.html">Privacidad</a>
+          </div>
+        </div>
+      </div>
     </footer>
 
+    <!-- Botón flotante: llamar a Sofía (agente de voz VAPI) -->
+    <a class="call-float" href="tel:+16692680598" aria-label="Llamar a Sofía" data-lead-event="phone_click" data-lead-source="floating-phone">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+        <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.05-.24 11.36 11.36 0 0 0 3.55.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.55 1 1 0 0 1-.24 1.05l-2.2 2.2z"/>
+      </svg>
+      <span class="call-float__text" data-i18n="float.call"></span>
+    </a>
+
     <script type="module" src="/src/main.ts"></script>
-    <a class="tg-float" href="https://t.me/Atendo_service_bot" target="_blank" rel="noopener" aria-label="Telegram">✈ Telegram</a>
-    <a class="wa-float" href="https://wa.me/523171340304" target="_blank" rel="noopener" aria-label="WhatsApp">💬 WhatsApp</a>
-    <elevenlabs-convai id="sofia-widget"></elevenlabs-convai>
   </body>
 </html>

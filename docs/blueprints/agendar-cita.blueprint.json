@@ -1,0 +1,72 @@
+{
+  "name": "Atendo — Agendar cita (Vapi → Calendar + WhatsApp/SMS)",
+  "flow": [
+    {
+      "id": 1,
+      "module": "gateway:CustomWebHook",
+      "version": 1,
+      "parameters": { "hook": null, "maxResults": 1 },
+      "mapper": {},
+      "metadata": {
+        "designer": { "x": 0, "y": 0 },
+        "restore": { "parameters": { "hook": { "label": "Vapi — agendarCita" } } },
+        "parameters": [
+          { "name": "hook", "type": "hook:gateway-webhook", "label": "Webhook", "required": true },
+          { "name": "maxResults", "type": "number", "label": "Maximum number of results" }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "module": "google-calendar:createAnEvent",
+      "version": 5,
+      "parameters": { "__IMTCONN__": null },
+      "mapper": {
+        "calendar": "primary",
+        "summary": "{{1.message.toolCallList[0].function.arguments.servicio}} — {{1.message.toolCallList[0].function.arguments.nombre}}",
+        "start": "{{1.message.toolCallList[0].function.arguments.inicio}}",
+        "end": "{{1.message.toolCallList[0].function.arguments.fin}}",
+        "description": "Cita agendada por el agente de voz Atendo.\nCliente: {{1.message.toolCallList[0].function.arguments.nombre}}\nTel: {{1.message.toolCallList[0].function.arguments.telefono}}"
+      },
+      "metadata": {
+        "designer": { "x": 300, "y": 0 },
+        "restore": { "parameters": { "__IMTCONN__": { "label": "Google Calendar del cliente" } } },
+        "parameters": [ { "name": "__IMTCONN__", "type": "account:google", "label": "Connection", "required": true } ]
+      }
+    },
+    {
+      "id": 3,
+      "module": "twilio:ActionSendMessage",
+      "version": 2,
+      "parameters": { "account": null },
+      "mapper": {
+        "from": "whatsapp:+14155238886",
+        "to": "whatsapp:+{{1.message.toolCallList[0].function.arguments.telefono}}",
+        "body": "Hola {{1.message.toolCallList[0].function.arguments.nombre}}! Tu cita quedo agendada. Te esperamos."
+      },
+      "metadata": {
+        "designer": { "x": 600, "y": 0 },
+        "restore": { "parameters": { "account": { "label": "Twilio del cliente" } } },
+        "parameters": [ { "name": "account", "type": "account:twilio", "label": "Connection", "required": true } ]
+      }
+    },
+    {
+      "id": 4,
+      "module": "gateway:WebhookRespond",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "status": "200",
+        "body": "{\"results\":[{\"toolCallId\":\"{{1.message.toolCallList[0].id}}\",\"result\":\"Listo, agende tu cita. Te acabo de enviar la confirmacion por WhatsApp.\"}]}",
+        "headers": [ { "key": "Content-Type", "value": "application/json" } ]
+      },
+      "metadata": { "designer": { "x": 900, "y": 0 }, "parameters": [] }
+    }
+  ],
+  "metadata": {
+    "instant": true,
+    "version": 1,
+    "scenario": { "roundtrips": 1, "maxErrors": 3, "autoCommit": true, "autoCommitTriggerLast": true, "sequential": false, "confidential": false, "dataloss": false, "dlq": false },
+    "designer": { "orphans": [] }
+  }
+}

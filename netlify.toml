@@ -12,7 +12,7 @@
     Referrer-Policy             = "strict-origin-when-cross-origin"
     Strict-Transport-Security   = "max-age=31536000; includeSubDomains; preload"
     Permissions-Policy          = "camera=(), microphone=(), geolocation=(), payment=()"
-    Content-Security-Policy     = "default-src 'self'; script-src 'self' https://assets.calendly.com; frame-src https://calendly.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://calendly.com https://api.calendly.com; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+    Content-Security-Policy     = "default-src 'self'; script-src 'self' 'unsafe-inline' https://assets.calendly.com https://client.crisp.chat https://elevenlabs.io; frame-src https://calendly.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; connect-src 'self' https://calendly.com https://api.calendly.com https://client.crisp.chat wss://client.relay.crisp.chat https://api.elevenlabs.io wss://*.elevenlabs.io; font-src 'self' data: https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
 
 # Cache Vite-hashed assets forever (filenames change on content change)
 [[headers]]

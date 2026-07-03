@@ -1,6 +1,8 @@
 // Loads the Calendly inline widget. If it fails to load (offline, blocked),
 // the fallback paragraph already in the DOM stays visible.
-const CALENDLY_URL = 'https://calendly.com/iamsamy99/30min' // Calendly real de Samuel
+import { trackCalendlyView } from './leadEvents'
+
+const CALENDLY_URL = 'https://calendly.com/iamsamy99/30min?utm_source=landing&utm_medium=calendar&utm_campaign=voice-demo'
 
 export function initCalendly(): void {
   const container = document.getElementById('calendly')
@@ -14,6 +16,7 @@ export function initCalendly(): void {
     if (window.Calendly) {
       // @ts-expect-error global
       window.Calendly.initInlineWidget({ url: CALENDLY_URL, parentElement: container })
+      trackCalendlyView('calendar-inline')
     }
   }
   script.onerror = () => {

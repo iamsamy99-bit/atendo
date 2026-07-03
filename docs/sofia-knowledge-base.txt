@@ -31,20 +31,29 @@ SERVICIOS
    - Se conecta al número existente del negocio o a uno nuevo
    - Nunca se cansa, nunca llega tarde, nunca tiene mal día
 
-2. SITIOS WEB PROFESIONALES
+2. CHATBOTS DE WHATSAPP Y TELEGRAM
+   - Asistente de chat con IA que responde mensajes al instante, 24/7
+   - Disponible en WhatsApp, Telegram e Instagram según el plan
+   - Agenda citas, responde preguntas frecuentes y captura datos de clientes
+   - Sin necesidad de cambiar el número o canal que el negocio ya usa
+   - Reportes de conversaciones incluidos en planes Negocio y superiores
+
+3. SITIOS WEB PROFESIONALES
    - Páginas modernas, rápidas y atractivas
    - Optimizadas para Google (SEO)
    - Diseñadas para convertir visitas en clientes
    - Integradas con el agente de voz cuando aplica
    - Compatibles con móvil y computadora
-   - Incluidas en el Plan Empresa; disponibles como add-on en otros planes
+   - Incluidas en el Plan Empresa de voz y en el Plan Empresa Completo
 
 ---
 
 PLANES Y PRECIOS
 ----------------
 
-PLAN ESENCIAL
+── AGENTES DE VOZ CON IA ──
+
+PLAN ESENCIAL (voz)
    MXN: $4,900 por mes
    USD: $497 por mes
    Incluye:
@@ -54,7 +63,7 @@ PLAN ESENCIAL
    - Soporte técnico por correo
    Ideal para: negocios pequeños — clínicas, consultores, comercios, servicios a domicilio
 
-PLAN NEGOCIO (el más popular)
+PLAN NEGOCIO (voz) — el más popular
    MXN: $9,900 por mes
    USD: $997 por mes
    Incluye:
@@ -65,7 +74,7 @@ PLAN NEGOCIO (el más popular)
    - Soporte técnico prioritario por WhatsApp
    Ideal para: negocios en crecimiento — restaurantes, salones, clínicas medianas, despachos
 
-PLAN EMPRESA
+PLAN EMPRESA (voz)
    MXN: $24,900 por mes
    USD: $2,497 por mes
    Incluye:
@@ -75,6 +84,52 @@ PLAN EMPRESA
    - Integraciones avanzadas (CRM, calendario, WhatsApp)
    - Soporte técnico dedicado con tiempo de respuesta garantizado
    Ideal para: empresas grandes, franquicias, cadenas de negocios, múltiples líneas
+
+── CHATBOTS (WHATSAPP & TELEGRAM) ──
+
+PLAN CHAT ESENCIAL
+   MXN: $1,490 por mes
+   USD: $149 por mes
+   Incluye:
+   - 1 canal (WhatsApp o Telegram)
+   - Respuestas automáticas con IA
+   - Hasta 500 conversaciones al mes
+   Ideal para: negocios pequeños que quieren automatizar su canal de mensajería principal
+
+PLAN CHAT NEGOCIO — el más popular
+   MXN: $2,990 por mes
+   USD: $299 por mes
+   Incluye:
+   - WhatsApp + Telegram
+   - Agenda de citas + reportes de conversaciones
+   - Hasta 1,000 conversaciones al mes
+   Ideal para: negocios en crecimiento con volumen moderado de mensajes
+
+PLAN CHAT PRO
+   MXN: $4,990 por mes
+   USD: $499 por mes
+   Incluye:
+   - WhatsApp + Telegram + Instagram
+   - CRM básico + integraciones
+   - Hasta 3,000 conversaciones al mes
+   Ideal para: negocios con alto volumen de mensajes y múltiples canales
+
+── PAQUETES VOZ + CHAT (precio especial) ──
+
+PAQUETE ESENCIAL COMPLETO
+   MXN: $5,900 por mes  (ahorra 20% vs. contratar por separado)
+   USD: $597 por mes
+   Incluye: Voz Esencial + Chat Esencial
+
+PAQUETE NEGOCIO COMPLETO — mejor valor
+   MXN: $11,900 por mes  (ahorra 22% vs. contratar por separado)
+   USD: $1,197 por mes
+   Incluye: Voz Negocio + Chat Negocio
+
+PAQUETE EMPRESA COMPLETO
+   MXN: $27,900 por mes
+   USD: $2,797 por mes
+   Incluye: Voz Empresa + Chat Pro + sitio web incluido + soporte dedicado
 
 Condiciones generales:
    - Sin contratos forzosos — se puede cancelar con 30 días de aviso
