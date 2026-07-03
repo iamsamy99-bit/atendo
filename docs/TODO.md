@@ -26,8 +26,8 @@
 - [x] **Vapi — agregar 3 funciones a Sofía** — captureLeadInfo, agendarDemo, consultarDisponibilidad añadidas vía API + instrucciones en el system prompt (2026-06-30)
 - [x] **Vapi — fix cuelgues raros** — los `endCallPhrases` incluían frases de cortesía ('que tengas buen día', 'nos vemos', 'adiós') que colgaban la llamada cuando Sofía las decía. Reducidos a despedidas explícitas del cliente; para colgar usa el tool `endCall` (2026-06-30)
 - [ ] **Telnyx — número MX** — comprar número lada 55/33 y conectarlo a Vapi. API key ya guardada en `.env.local` (TELNYX_API_KEY). Pasos en docs/telnyx-mexico-number.md. Alternativa: ya hay cuenta de Twilio, se podría portar/comprar el MX ahí.
-- [ ] **Calendly** — verificar que el widget carga correctamente en producción. Si falla, la landing muestra WhatsApp y Crisp como respaldo.
-- [ ] **ElevenLabs** — confirmar que `VITE_ELEVENLABS_AGENT_ID` está seteada en el hosting → Environment variables
+- [x] **Calendly** — verificado en producción (02-jul-2026, headless Chrome sobre atendo.surge.sh): el iframe embebido renderiza el calendario con disponibilidad real, sin errores de consola. Nota: el idioma del widget lo decide el navegador del visitante (Calendly no acepta param de locale).
+- [~] **ElevenLabs `VITE_ELEVENLABS_AGENT_ID`** — obsoleto: el widget convai se eliminó en c87c373; el CTA de voz ahora es `tel:+16692680598` directo a Sofía (Vapi). La var puede borrarse de `.env.local`/`.env.example` cuando se haga limpieza.
 
 ## Mejoras futuras
 - [x] **SEO base** — meta tags Open Graph, Twitter card, sitemap.xml, robots.txt y JSON-LD agregados para el dominio actual de Cloudflare Pages
