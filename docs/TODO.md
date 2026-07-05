@@ -1,8 +1,8 @@
 # Atendo Landing — Pendientes
 
 ## Deploy
-- [!] **Crisp bloquea `*.pages.dev` y `*.workers.dev`** (WebSocket relay responde HTTP 451 por Origin; verificado 02-jul-2026 con curl). El chat NUNCA funcionará en atendo-9a5.pages.dev. netlify.app, surge.sh y dominios propios SÍ están permitidos. Por eso **la URL principal temporal es https://atendo.surge.sh** (canonical/OG/sitemap apuntan ahí) hasta tener dominio propio. El CTA "abre el chat" tiene fallback a WhatsApp si Crisp no conecta.
-- [ ] **Dominio personalizado** (AHORA PRIORITARIO por lo de Crisp) — comprar atendo.mx o similar y conectarlo en Cloudflare → Workers & Pages → atendo → Custom domains; luego regresar canonical/OG/sitemap al dominio propio.
+- [x] **Dominio propio: atendo.lat** (comprado 05-jul-2026 en Porkbun, ~$1.54 USD año 1 / ~$26 renovación; auto-renew + WHOIS privacy ON; API keys en `.env.local`). NS → Cloudflare (carl/dayana), zona en la cuenta, custom domains atendo.lat + www conectados al proyecto Pages vía API. Canonical/OG/sitemap ya apuntan a https://atendo.lat. Crisp acepta el origen (203). ⏳ Falta: (1) 2 CNAME en Cloudflare DNS — dashboard → atendo.lat → DNS → `@`→atendo-9a5.pages.dev y `www`→atendo-9a5.pages.dev, ambos proxied; (2) verificar chat en vivo cuando active; (3) actualizar dominio en el dashboard de Crisp.
+- [!] **Crisp bloquea `*.pages.dev` y `*.workers.dev`** (WebSocket relay responde HTTP 451 por Origin; verificado 02-jul-2026 con curl). El chat nunca funcionará en atendo-9a5.pages.dev; en atendo.lat y atendo.surge.sh sí. El CTA "abre el chat" tiene fallback a WhatsApp si Crisp no conecta.
 - [x] **Cloudflare Pages** — en vivo en https://atendo-9a5.pages.dev (proyecto `atendo`, cuenta iamsamy99@gmail.com). Redeploy: `npm run build && npx wrangler pages deploy dist --project-name atendo --branch main --commit-dirty=true`. Ver docs/deploy-cloudflare.md
 - [x] **Deploy a Surge.sh** — https://atendo.surge.sh (host principal TEMPORAL: el chat Crisp funciona ahí). Redeploy: `npm run build && npx surge dist atendo.surge.sh`
 - [~] **Netlify** — descartado (sin créditos). netlify.toml se conserva por si acaso.
