@@ -11,6 +11,10 @@
 - [ ] **Rotar la API key de OpenAI** — fue expuesta en una sesión anterior. Generar una nueva en platform.openai.com/api-keys
 - [x] **Higiene de secretos en repo** — `.env.local` está en `.gitignore`; `.env.example` sólo debe contener placeholders. No documentar claves reales.
 
+## Correo de empresa
+- [x] **Cloudflare Email Routing activo** (05-jul-2026, gratis) — `hola@atendo.lat`, `samuel@atendo.lat` y catch-all (cualquier-cosa@atendo.lat) se reenvían a `sg8258563@gmail.com` (destino verificado). MX+SPF creados automáticamente en la zona. Administrar en: dash.cloudflare.com → atendo.lat → Email → Email Routing.
+- [ ] **"Enviar como" hola@atendo.lat desde Gmail** — configurar en Gmail de sg8258563: Configuración → Cuentas → "Enviar como" → smtp.gmail.com:587, usuario sg8258563@gmail.com + contraseña de aplicación. La app password quedó validada por SMTP; conviene generar una nueva para esto y revocar la que se compartió por chat.
+
 ## Integraciones
 - [x] **Crisp chat** — integrado con módulo que sincroniza idioma ES/EN automáticamente
 - [x] **Vapi — Sofía creada** — Assistant ID: `f861274a-c871-4ac5-8f5c-d3d5cb97c947`, voz Azure es-MX-DaliaNeural
