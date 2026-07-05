@@ -22,6 +22,8 @@
 - [x] **Precios en el prompt** — sección [Precios] con montos reales; prohibido evadir/decir "X pesos". (01-jul)
 - [x] **Fix despedida/colgado** — prompt [Cierre]: pregunta "¿algo más?", una sola despedida con "Hasta luego" + endCall; endCallPhrases=['hasta luego','hasta pronto']. Anti-interrupción: waitSeconds 1.2 + smartEndpointing vapi. (01-jul)
 - [ ] **consultarDisponibilidad = horarios estáticos** — hoy responde texto fijo (mar/jue 10-2, mié tarde). Para horarios reales conectar Calendly en Make. Ver docs/make-vapi-integration.md.
+  - [!] **Bug encontrado (03-jul-2026)**: el availability schedule real en Calendly del event type "30 Minute Meeting" no coincide con ese texto — hoy dice domingo abierto 24h y lunes-viernes solo 16:45-17:00 (15 min). Antes de conectar, Samuel debe confirmar el horario real que quiere ofrecer.
+  - [ ] Autorizar conexión Calendly↔Make: link pendiente en `https://us2.make.com/2454147/credentials-requests/inbox?requestId=19527b72-2cb4-401e-b9ea-e4acf52e86cd` (app Calendly, módulo Make an API Call, para el escenario 5412610).
 - [ ] **WhatsApp en vivo (agendarDemo)** — enviar link de Calendly al cliente durante la llamada requiere Twilio WhatsApp sender aprobado. Por ahora solo alerta a Samuel por Telegram.
 - [x] **Vapi — agregar 3 funciones a Sofía** — captureLeadInfo, agendarDemo, consultarDisponibilidad añadidas vía API + instrucciones en el system prompt (2026-06-30)
 - [x] **Vapi — fix cuelgues raros** — los `endCallPhrases` incluían frases de cortesía ('que tengas buen día', 'nos vemos', 'adiós') que colgaban la llamada cuando Sofía las decía. Reducidos a despedidas explícitas del cliente; para colgar usa el tool `endCall` (2026-06-30)

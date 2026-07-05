@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://atendo.surge.sh/sitemap.xml
+Sitemap: https://atendo.lat/sitemap.xml
