@@ -5,12 +5,20 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && npm run build:admin",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "build:admin": "tsc -p admin/tsconfig.json && tsc -p functions/tsconfig.json && vite build --config admin/vite.config.ts",
+    "dev:admin": "vite --config admin/vite.config.ts"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260708.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.7.0",
     "jsdom": "^25.0.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "shadcn": "^4.12.0",
     "typescript": "^5.5.4",
     "vite": "^5.4.8",

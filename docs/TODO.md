@@ -42,3 +42,8 @@
 - [ ] **Blog / contenido** — artículos para SEO local (México, EE.UU.)
 - [x] **Captura alternativa** — respaldo por WhatsApp prellenado y Crisp cuando Calendly no carga
 - [x] **Flujo minimo de lead** — documentado en `docs/lead-flow.md`
+
+## CRM / Admin dashboard (2026-07-08)
+- [x] **Dashboard construido y probado en local** — SPA React en `/admin-dashboard` + API Pages Functions + D1 `atendo-crm` (remota ya con esquema y credenciales). Módulos: inicio con métricas, leads (kanban lead-flow.md), clientes, pagos, tickets. Docs: docs/admin-dashboard.md. Contraseña e ingest key en `.env.local`.
+- [ ] **Deploy a producción pendiente** — `npm run build && npx wrangler pages deploy dist --project-name atendo --branch main --commit-dirty=true` (Samuel decidió esperar; probar antes en local con `npx wrangler pages dev dist`).
+- [ ] **Conectar Make → /api/ingest-lead** — agregar módulo HTTP en la ruta end-of-call-report del escenario 5412610 (ver docs/admin-dashboard.md).

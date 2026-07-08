@@ -1,3 +1,9 @@
 name = "atendo"
 pages_build_output_dir = "dist"
 compatibility_date = "2025-06-21"
+
+# Base de datos del CRM (/admin-dashboard + /api/*)
+[[d1_databases]]
+binding = "DB"
+database_name = "atendo-crm"
+database_id = "6826303d-7566-4760-9905-be8cb76ca9c8"
