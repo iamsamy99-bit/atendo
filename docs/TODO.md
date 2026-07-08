@@ -1,7 +1,7 @@
 # Atendo Landing — Pendientes
 
 ## Deploy
-- [x] **Dominio propio: atendo.lat** (comprado 05-jul-2026 en Porkbun, ~$1.54 USD año 1 / ~$26 renovación; auto-renew + WHOIS privacy ON; API keys en `.env.local`). NS → Cloudflare (carl/dayana), zona en la cuenta, custom domains atendo.lat + www conectados al proyecto Pages vía API. Canonical/OG/sitemap ya apuntan a https://atendo.lat. Crisp acepta el origen (203). ⏳ Falta: (1) 2 CNAME en Cloudflare DNS — dashboard → atendo.lat → DNS → `@`→atendo-9a5.pages.dev y `www`→atendo-9a5.pages.dev, ambos proxied; (2) verificar chat en vivo cuando active; (3) actualizar dominio en el dashboard de Crisp.
+- [x] **Dominio propio: atendo.lat** (comprado 05-jul-2026 en Porkbun, ~$1.54 USD año 1 / ~$26 renovación; auto-renew + WHOIS privacy ON; API keys en `.env.local`). NS → Cloudflare (carl/dayana), zona en la cuenta, custom domains atendo.lat + www conectados al proyecto Pages vía API. Canonical/OG/sitemap ya apuntan a https://atendo.lat. Crisp acepta el origen (203). ✅ DNS completo (08-jul-2026): se borraron 2 registros A viejos de Surge en el @ y se creó CNAME @→atendo-9a5.pages.dev proxied (token DNS en .env.local CLOUDFLARE_DNS_TOKEN); atendo.lat y www sirven landing + /admin-dashboard. (2) verificar chat en vivo cuando active; (3) actualizar dominio en el dashboard de Crisp.
 - [!] **Crisp bloquea `*.pages.dev` y `*.workers.dev`** (WebSocket relay responde HTTP 451 por Origin; verificado 02-jul-2026 con curl). El chat nunca funcionará en atendo-9a5.pages.dev; en atendo.lat y atendo.surge.sh sí. El CTA "abre el chat" tiene fallback a WhatsApp si Crisp no conecta.
 - [x] **Cloudflare Pages** — en vivo en https://atendo-9a5.pages.dev (proyecto `atendo`, cuenta iamsamy99@gmail.com). Redeploy: `npm run build && npx wrangler pages deploy dist --project-name atendo --branch main --commit-dirty=true`. Ver docs/deploy-cloudflare.md
 - [x] **Deploy a Surge.sh** — https://atendo.surge.sh (host principal TEMPORAL: el chat Crisp funciona ahí). Redeploy: `npm run build && npx surge dist atendo.surge.sh`
@@ -45,5 +45,5 @@
 
 ## CRM / Admin dashboard (2026-07-08)
 - [x] **Dashboard construido y probado en local** — SPA React en `/admin-dashboard` + API Pages Functions + D1 `atendo-crm` (remota ya con esquema y credenciales). Módulos: inicio con métricas, leads (kanban lead-flow.md), clientes, pagos, tickets. Docs: docs/admin-dashboard.md. Contraseña e ingest key en `.env.local`.
-- [ ] **Deploy a producción pendiente** — `npm run build && npx wrangler pages deploy dist --project-name atendo --branch main --commit-dirty=true` (Samuel decidió esperar; probar antes en local con `npx wrangler pages dev dist`).
+- [x] **Deploy a producción hecho (08-jul-2026)** — CRM en vivo en https://atendo.lat/admin-dashboard/ (y www).
 - [ ] **Conectar Make → /api/ingest-lead** — agregar módulo HTTP en la ruta end-of-call-report del escenario 5412610 (ver docs/admin-dashboard.md).
