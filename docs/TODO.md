@@ -46,4 +46,4 @@
 ## CRM / Admin dashboard (2026-07-08)
 - [x] **Dashboard construido y probado en local** — SPA React en `/admin-dashboard` + API Pages Functions + D1 `atendo-crm` (remota ya con esquema y credenciales). Módulos: inicio con métricas, leads (kanban lead-flow.md), clientes, pagos, tickets. Docs: docs/admin-dashboard.md. Contraseña e ingest key en `.env.local`.
 - [x] **Deploy a producción hecho (08-jul-2026)** — CRM en vivo en https://atendo.lat/admin-dashboard/ (y www).
-- [ ] **Conectar Make → /api/ingest-lead** — agregar módulo HTTP en la ruta end-of-call-report del escenario 5412610 (ver docs/admin-dashboard.md).
+- [x] **Sofía → CRM directo (09-jul-2026)** — el serverUrl de Vapi ahora apunta a https://atendo.lat/api/vapi-webhook (secret via header): el lead se guarda en D1 SIN depender de Make, y el payload se reenvía a Make para que Telegram/email/consultarDisponibilidad sigan igual. Ya no hace falta el módulo HTTP en Make.

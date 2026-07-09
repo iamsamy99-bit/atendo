@@ -59,3 +59,20 @@ CRM además del email + Telegram actuales.
   Para cerrar todas las sesiones: `DELETE FROM sesiones`.
 - **Rotar clave de ingesta**: `UPDATE config SET valor='<nueva>' WHERE clave='ingest_key'` (y actualizarla en Make).
 - **BD local para desarrollo**: `npx wrangler d1 execute atendo-crm --local --file db/schema.sql` y luego `npx wrangler pages dev dist`.
+
+## Webhook directo de Vapi (Sofía) — 2026-07-09
+
+El `server.url` del assistant de Vapi ya NO apunta a Make sino a
+`https://atendo.lat/api/vapi-webhook` (functions/api/vapi-webhook.ts), autenticado
+con el header `x-vapi-secret` (config.vapi_secret en D1; copia en `.env.local`
+→ `VAPI_WEBHOOK_SECRET`).
+
+Flujo: `end-of-call-report` → guarda/actualiza el lead en D1 (idempotente por
+`origen = vapi:<callId>`, COALESCE para no pisar datos) y reenvía el payload a
+Make (`config.make_forward_url`) para Telegram/email. Los `tool-calls`
+(consultarDisponibilidad, captureLeadInfo, agendarDemo) se proxean a Make de
+forma síncrona, devolviendo su respuesta a Vapi — los horarios y el "LEAD EN
+VIVO" siguen funcionando igual.
+
+Si Make falla o se cancela, el CRM sigue recibiendo los leads: solo se pierde
+la notificación de Telegram/email hasta reconfigurar `make_forward_url`.
