@@ -9,15 +9,16 @@ export const onRequestPost: PagesFunction<Env> = async ctx => {
   const apiKey = ctx.env.RESEND_API_KEY
   if (!apiKey) return json({ error: 'Falta configurar RESEND_API_KEY' }, 500)
 
-  let body: { estado?: string; asunto?: string; cuerpo?: string }
+  let body: { estado?: string; asunto?: string; cuerpo?: string; ctaLabel?: string; ctaUrl?: string }
   try { body = await ctx.request.json() } catch { return json({ error: 'JSON inválido' }, 400) }
   const estado = String(body.estado ?? '').trim()
   const asunto = String(body.asunto ?? '').trim()
   const cuerpo = String(body.cuerpo ?? '').trim()
+  const cta = { ctaLabel: body.ctaLabel, ctaUrl: body.ctaUrl }
   if (!estado || !asunto || !cuerpo) return json({ error: 'Faltan estado, asunto o cuerpo' }, 400)
 
   const { results } = await ctx.env.DB
-    .prepare('SELECT id, nombre, email, empresa, telefono, industria, plan_interes, siguiente_accion, canal FROM leads WHERE estado = ?')
+    .prepare('SELECT id, nombre, email, empresa, telefono, industria, plan_interes, necesidad, siguiente_accion, canal FROM leads WHERE estado = ?')
     .bind(estado)
     .all<Lead>()
   const destinatarios = results.filter(l => l.email && l.email.includes('@'))
@@ -29,7 +30,7 @@ export const onRequestPost: PagesFunction<Env> = async ctx => {
     const r = await enviarCorreo(apiKey, {
       to: lead.email!,
       subject: personalizar(asunto, lead),
-      html: renderHtml(cuerpo, lead),
+      html: renderHtml(cuerpo, lead, cta),
     })
     await ctx.env.DB.prepare(
       'INSERT INTO seguimientos (lead_id, email, asunto, estado, origen, error, resend_id) VALUES (?, ?, ?, ?, ?, ?, ?)'
