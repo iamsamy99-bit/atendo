@@ -76,3 +76,23 @@ VIVO" siguen funcionando igual.
 
 Si Make falla o se cancela, el CRM sigue recibiendo los leads: solo se pierde
 la notificación de Telegram/email hasta reconfigurar `make_forward_url`.
+
+## Recordatorios automáticos (Worker cron) — 2026-07-09
+
+Worker aparte `worker-recordatorios/` (Cloudflare Cron, Pages no hace cron).
+Comparte la D1 `atendo-crm`. Regla acordada con Samuel:
+- Estados: contactado, propuesta_enviada, calificado
+- Antigüedad: >= 5 días sin actualizarse (leads.updated_at)
+- Máximo 1 automático por lead (guard: NOT EXISTS seguimiento con origen='automatico')
+- Solo leads con email
+
+Cron: `0 16 * * *` (10:00 AM México). Registra en `seguimientos` con
+origen='automatico' y marca `leads.ultimo_seguimiento_at`.
+
+Operación:
+- Deploy: `cd worker-recordatorios && npx wrangler deploy`
+- Secrets del worker: `RESEND_API_KEY`, `CRON_RUN_KEY` (en `.env.local`)
+- Forzar a mano (respeta el máx 1): `GET https://atendo-recordatorios.iamsamy99.workers.dev/run?key=<CRON_RUN_KEY>`
+- Cambiar cadencia: editar `DIAS_SIN_AVANCE` / `ESTADOS` en `src/index.ts` y redeploy.
+- La plantilla del recordatorio automático vive en el worker (independiente de
+  la de envíos manuales en `functions/_lib/email.ts`).

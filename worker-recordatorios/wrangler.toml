@@ -1,0 +1,13 @@
+name = "atendo-recordatorios"
+main = "src/index.ts"
+compatibility_date = "2025-06-21"
+
+# Comparte la misma base D1 del CRM (atendo-crm)
+[[d1_databases]]
+binding = "DB"
+database_name = "atendo-crm"
+database_id = "6826303d-7566-4760-9905-be8cb76ca9c8"
+
+# Corre todos los días 16:00 UTC = 10:00 AM hora de México (CST, UTC-6)
+[triggers]
+crons = ["0 16 * * *"]
