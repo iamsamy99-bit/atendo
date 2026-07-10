@@ -1,7 +1,8 @@
 import { useEffect, useState, useCallback } from 'react'
 import { api, ApiError } from '../api'
 import { Modal, Field, Form, Empty } from '../components/ui'
-import { LEAD_ESTADOS, LEAD_CANALES, fmtFecha, hoyISO, type Lead, type LeadEstado, type Cliente } from '../types'
+import SeguimientoModal from '../components/SeguimientoModal'
+import { LEAD_ESTADOS, LEAD_CANALES, fmtFecha, hoyISO, type Lead, type Cliente } from '../types'
 
 const EMPTY: Partial<Lead> = { canal: 'telefono', idioma: 'es', estado: 'nuevo' }
 const canalLabel = (c: string) => LEAD_CANALES.find(x => x.key === c)?.label ?? c
@@ -13,6 +14,7 @@ export default function Leads() {
   const [editing, setEditing] = useState<Partial<Lead> | null>(null)
   const [busy, setBusy] = useState(false)
   const [colapsadas, setColapsadas] = useState<Record<string, boolean>>({})
+  const [seguimiento, setSeguimiento] = useState(false)
 
   const load = useCallback(() => {
     api.get<Lead[]>('/leads')
@@ -95,8 +97,13 @@ export default function Leads() {
           <h1>Leads</h1>
           <p className="sub">Pipeline de ventas — toca un lead para ver y editar sus detalles</p>
         </div>
-        <button className="btn" onClick={() => setEditing({ ...EMPTY })}>+ Nuevo lead</button>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <button className="btn-ghost" onClick={() => setSeguimiento(true)}>✉ Enviar seguimiento</button>
+          <button className="btn" onClick={() => setEditing({ ...EMPTY })}>+ Nuevo lead</button>
+        </div>
       </div>
+
+      {seguimiento && <SeguimientoModal onClose={() => { setSeguimiento(false); load() }} />}
 
       {error && <div className="error-box">{error}</div>}
 

@@ -15,3 +15,4 @@ node_modules/
 dist/
 *.zip
 .wrangler/
+.dev.vars
