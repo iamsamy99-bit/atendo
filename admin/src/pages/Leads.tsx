@@ -12,10 +12,21 @@ export default function Leads() {
   const [error, setError] = useState('')
   const [editing, setEditing] = useState<Partial<Lead> | null>(null)
   const [busy, setBusy] = useState(false)
+  const [colapsadas, setColapsadas] = useState<Record<string, boolean>>({})
 
   const load = useCallback(() => {
     api.get<Lead[]>('/leads')
-      .then(setLeads)
+      .then(data => {
+        setLeads(data)
+        // En móvil la cascada arranca compacta: columnas vacías colapsadas.
+        if (window.innerWidth < 820) {
+          const c: Record<string, boolean> = {}
+          for (const e of LEAD_ESTADOS) {
+            if (!data.some(l => l.estado === e.key)) c[e.key] = true
+          }
+          setColapsadas(c)
+        }
+      })
       .catch(() => setError('No se pudieron cargar los leads.'))
       .finally(() => setLoading(false))
   }, [])
@@ -54,11 +65,6 @@ export default function Leads() {
     }
   }
 
-  const mover = async (lead: Lead, estado: LeadEstado) => {
-    const updated = await api.put<Lead>(`/leads/${lead.id}`, { estado })
-    setLeads(prev => prev.map(l => (l.id === updated.id ? updated : l)))
-  }
-
   // Ganado → ofrecer convertir a cliente
   const convertir = async (lead: Lead) => {
     if (!confirm(`¿Crear cliente a partir de "${lead.nombre}"?`)) return
@@ -87,7 +93,7 @@ export default function Leads() {
       <div className="page-head">
         <div>
           <h1>Leads</h1>
-          <p className="sub">Pipeline de ventas — toca una tarjeta para ver o editar</p>
+          <p className="sub">Pipeline de ventas — toca un lead para ver y editar sus detalles</p>
         </div>
         <button className="btn" onClick={() => setEditing({ ...EMPTY })}>+ Nuevo lead</button>
       </div>
@@ -100,36 +106,32 @@ export default function Leads() {
         <div className="kanban">
           {LEAD_ESTADOS.map(col => {
             const items = leads.filter(l => l.estado === col.key)
+            const cerrada = !!colapsadas[col.key]
             return (
-              <div className="kcol" key={col.key}>
-                <div className="kcol-head">
+              <div className={`kcol ${cerrada ? 'closed' : ''}`} key={col.key}>
+                <button
+                  className="kcol-head"
+                  onClick={() => setColapsadas(p => ({ ...p, [col.key]: !p[col.key] }))}
+                  aria-expanded={!cerrada}
+                >
                   <span>{col.label}</span>
                   <span className="count">{items.length}</span>
-                </div>
-                {items.map(l => (
-                  <div className="kcard" key={l.id} onClick={() => setEditing(l)}>
-                    <div className="name">{l.nombre}</div>
-                    <div className="meta">
-                      {canalLabel(l.canal)}{l.empresa ? ` · ${l.empresa}` : ''}
-                    </div>
-                    <div className="meta">{fmtFecha(l.created_at)}{l.plan_interes ? ` · Plan: ${l.plan_interes}` : ''}</div>
-                    {l.siguiente_accion && <div className="next">→ {l.siguiente_accion}</div>}
-                    <div style={{ marginTop: 8, display: 'flex', gap: 6 }} onClick={e => e.stopPropagation()}>
-                      <select
-                        value={l.estado}
-                        onChange={e => mover(l, e.target.value as LeadEstado)}
-                        style={{ flex: 1, fontSize: '0.75rem', padding: '4px 6px', borderRadius: 8, border: '1px solid var(--border)' }}
-                        aria-label="Mover a estado"
-                      >
-                        {LEAD_ESTADOS.map(e2 => <option key={e2.key} value={e2.key}>{e2.label}</option>)}
-                      </select>
-                      {l.estado === 'ganado' && !l.cliente_id && (
-                        <button className="btn-ghost" style={{ fontSize: '0.72rem', padding: '4px 8px' }} onClick={() => convertir(l)}>
-                          → Cliente
-                        </button>
-                      )}
-                    </div>
-                  </div>
+                  <span className={`chev ${cerrada ? '' : 'open'}`} aria-hidden="true">▾</span>
+                </button>
+                {!cerrada && items.length === 0 && (
+                  <p className="krow-empty">Sin leads aquí</p>
+                )}
+                {!cerrada && items.map((l, idx) => (
+                  <button className="krow" key={l.id} style={{ animationDelay: `${Math.min(idx, 8) * 40}ms` }} onClick={() => setEditing(l)}>
+                    <span className="krow-main">
+                      <span className="krow-name">{l.nombre}</span>
+                      <span className="krow-meta">
+                        {canalLabel(l.canal)}{l.empresa ? ` · ${l.empresa}` : ''}
+                        {l.siguiente_accion ? ` · → ${l.siguiente_accion}` : ''}
+                      </span>
+                    </span>
+                    <span className="krow-chev" aria-hidden="true">›</span>
+                  </button>
                 ))}
               </div>
             )
@@ -145,6 +147,9 @@ export default function Leads() {
             <>
               {editing.id && <button className="btn-danger" onClick={remove}>Eliminar</button>}
               <div className="right">
+                {editing.id && editing.estado === 'ganado' && !editing.cliente_id && (
+                  <button className="btn-ghost" onClick={() => convertir(editing as Lead)}>→ Cliente</button>
+                )}
                 <button className="btn-ghost" onClick={() => setEditing(null)}>Cancelar</button>
                 <button className="btn" onClick={save} disabled={busy}>{busy ? 'Guardando…' : 'Guardar'}</button>
               </div>

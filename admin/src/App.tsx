@@ -67,6 +67,7 @@ function Login({ onOk }: { onOk: () => void }) {
 export default function App() {
   const [auth, setAuth] = useState<boolean | null>(null)
   const [route, setRoute] = useState<Route>(currentRoute)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     api.get('/me').then(() => setAuth(true)).catch(() => setAuth(false))
@@ -78,6 +79,9 @@ export default function App() {
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
 
+  // Al navegar se cierra el drawer móvil
+  useEffect(() => { setMenuOpen(false) }, [route])
+
   const logout = useCallback(async () => {
     try { await api.post('/logout', {}) } catch { /* la sesión local igual se descarta */ }
     setAuth(false)
@@ -86,9 +90,22 @@ export default function App() {
   if (auth === null) return <div className="loading">Cargando…</div>
   if (!auth) return <Login onOk={() => setAuth(true)} />
 
+  const activeLabel = ROUTES.find(r => r.key === route)?.label ?? ''
+
   return (
     <div className="shell">
-      <nav className="sidebar">
+      {/* Barra superior móvil: hamburguesa + sección actual */}
+      <header className="mobile-top">
+        <button className="hamburger" onClick={() => setMenuOpen(true)} aria-label="Abrir menú">
+          <span /><span /><span />
+        </button>
+        <div className="brand">atendo<span>.</span></div>
+        <span className="mobile-route">{activeLabel}</span>
+      </header>
+
+      {menuOpen && <div className="drawer-backdrop" onClick={() => setMenuOpen(false)} />}
+
+      <nav className={`sidebar ${menuOpen ? 'open' : ''}`}>
         <div className="brand">atendo<span>.</span></div>
         {ROUTES.map(r => (
           <a key={r.key} href={`#/${r.key}`} className={route === r.key ? 'active' : ''}>
@@ -98,12 +115,15 @@ export default function App() {
         <div className="spacer" />
         <button className="logout" onClick={logout}>Cerrar sesión</button>
       </nav>
+
       <main className="main">
-        {route === 'inicio' && <Inicio />}
-        {route === 'leads' && <Leads />}
-        {route === 'clientes' && <Clientes />}
-        {route === 'pagos' && <Pagos />}
-        {route === 'tickets' && <Tickets />}
+        <div key={route} className="page-enter">
+          {route === 'inicio' && <Inicio />}
+          {route === 'leads' && <Leads />}
+          {route === 'clientes' && <Clientes />}
+          {route === 'pagos' && <Pagos />}
+          {route === 'tickets' && <Tickets />}
+        </div>
       </main>
     </div>
   )
