@@ -52,6 +52,6 @@ export function initCalendly(): void {
     calLink: CAL_LINK,
     layout: 'month_view',
   })
-  Cal('ui', { hideEventTypeDetails: false, layout: 'month_view' })
+  Cal('ui', { theme: 'dark', hideEventTypeDetails: false, layout: 'month_view' })
   trackCalendlyView('calendar-inline')
 }

@@ -194,5 +194,18 @@
   "agents.diego.t2": "Citas",
   "agents.diego.t3": "Urgencias",
   "agents.diego.t4": "Atención 24/7",
-  "agents.diego.cta": "Escuchar la demo"
+  "agents.diego.cta": "Escuchar la demo",
+  "chatsim.u1": "Hola, ¿hacen envíos a domicilio? 🛵",
+  "chatsim.a1": "¡Hola! Claro que sí 😊 ¿Me compartes tu nombre y tu zona para cotizarte el envío?",
+  "chatsim.u2": "Soy Ana, colonia Americana",
+  "chatsim.a2": "¡Listo, Ana! Tu pedido llega en 35 min. Te mando la confirmación por WhatsApp ✅",
+  "chatsim.chip1": "⚡ Lead guardado en CRM",
+  "chatsim.chip2": "🗓️ Seguimiento programado",
+  "chatsim.input": "Escribe un mensaje…",
+  "industries.ecom.label": "E-commerce",
+  "industries.ecom.title": "Tiendas en línea",
+  "industries.ecom.body": "Responde dudas de productos, da seguimiento a pedidos y recupera ventas por chat, a cualquier hora.",
+  "industries.realty.label": "Visitas",
+  "industries.realty.title": "Inmobiliarias",
+  "industries.realty.body": "Califica interesados por teléfono o WhatsApp y agenda visitas a propiedades en automático."
 }

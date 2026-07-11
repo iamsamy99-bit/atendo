@@ -194,5 +194,18 @@
   "agents.diego.t2": "Appointments",
   "agents.diego.t3": "Urgent care",
   "agents.diego.t4": "24/7 service",
-  "agents.diego.cta": "Hear the demo"
+  "agents.diego.cta": "Hear the demo",
+  "chatsim.u1": "Hi, do you deliver? 🛵",
+  "chatsim.a1": "Hi! We sure do 😊 Could you share your name and area so I can quote the delivery?",
+  "chatsim.u2": "I'm Ana, downtown",
+  "chatsim.a2": "Done, Ana! Your order arrives in 35 min. Confirmation on its way via WhatsApp ✅",
+  "chatsim.chip1": "⚡ Lead saved to CRM",
+  "chatsim.chip2": "🗓️ Follow-up scheduled",
+  "chatsim.input": "Type a message…",
+  "industries.ecom.label": "E-commerce",
+  "industries.ecom.title": "Online stores",
+  "industries.ecom.body": "Answers product questions, tracks orders and recovers sales over chat, any time of day.",
+  "industries.realty.label": "Showings",
+  "industries.realty.title": "Real estate",
+  "industries.realty.body": "Qualifies prospects over phone or WhatsApp and books property showings automatically."
 }

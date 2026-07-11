@@ -6,6 +6,12 @@ export type Lang = 'es' | 'en'
 const dictionaries: Record<Lang, Record<string, string>> = { es, en }
 const STORAGE_KEY = 'atendo.lang'
 
+/** Lookup directo para módulos que pintan texto por JS (p.ej. el chat simulado). */
+export function t(key: string, lang?: Lang): string {
+  const l: Lang = lang ?? (document.documentElement.lang === 'en' ? 'en' : 'es')
+  return dictionaries[l][key] ?? key
+}
+
 export function getInitialLang(): Lang {
   const stored = localStorage.getItem(STORAGE_KEY)
   return stored === 'en' ? 'en' : 'es'
