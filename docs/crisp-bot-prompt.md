@@ -48,7 +48,7 @@ Paquetes voz + chat (descuento 20-22%):
 - Empresa Completo: $27,900 MXN / $2,797 USD
 
 CONTACTO Y SIGUIENTE PASO
-- Demo gratuita (30 min): https://calendly.com/iamsamy99/30min
+- Demo gratuita (30 min): https://cal.com/samuel-garcia-gbsw4p/30min
 - WhatsApp: https://wa.me/523171340304
 - Telegram: https://t.me/Atendo_service_bot
 - Correo: samgarcia.tech@gmail.com

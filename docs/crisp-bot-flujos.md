@@ -51,7 +51,7 @@ Mensaje 2 (bot):
 ```
 "Perfecto. La mejor forma de ver cómo funcionaría para tu negocio específico es con una demo de 30 minutos — es gratis y sin compromiso.
 
-👉 https://calendly.com/iamsamy99/30min
+👉 https://cal.com/samuel-garcia-gbsw4p/30min
 
 Samuel te muestra el agente en acción y responde todas tus dudas."
 ```
@@ -136,7 +136,7 @@ Mensaje 1 (bot):
 "La demo es gratuita, dura 30 minutos y Samuel te muestra el agente en acción para tu tipo de negocio.
 
 👉 Elige tu horario aquí:
-https://calendly.com/iamsamy99/30min
+https://cal.com/samuel-garcia-gbsw4p/30min
 
 ¿Hay algo más en lo que te pueda ayudar mientras tanto?"
 ```
@@ -160,7 +160,7 @@ Mensaje 1 (bot):
 💬 https://wa.me/523171340304
 
 También puedes agendar una llamada directamente:
-📅 https://calendly.com/iamsamy99/30min
+📅 https://cal.com/samuel-garcia-gbsw4p/30min
 
 ¿O prefieres que tomemos tu nombre y correo para que Samuel te escriba?"
 
@@ -236,7 +236,7 @@ Te respondemos en el siguiente horario hábil. Si es urgente:
 💬 WhatsApp: https://wa.me/523171340304
 
 También puedes agendar una demo directamente:
-📅 https://calendly.com/iamsamy99/30min"
+📅 https://cal.com/samuel-garcia-gbsw4p/30min"
 ```
 
 ---
@@ -276,7 +276,7 @@ Ir a Settings → Saved Replies → crear los siguientes:
 
 | Atajo | Texto |
 |---|---|
-| `/demo` | La demo es gratuita y dura 30 min. Agéndala aquí: https://calendly.com/iamsamy99/30min |
+| `/demo` | La demo es gratuita y dura 30 min. Agéndala aquí: https://cal.com/samuel-garcia-gbsw4p/30min |
 | `/precio` | Planes desde $4,900 MXN/mes. ¿Te mando el detalle de precios? |
 | `/voz` | El agente contesta llamadas 24/7, agenda citas y habla español e inglés. |
 | `/wa` | También puedes escribirnos por WhatsApp: https://wa.me/523171340304 |
