@@ -12,7 +12,8 @@ export interface Plantilla {
   ctaUrl: string
 }
 
-const CALENDLY = 'https://calendly.com/iamsamy99/30min'
+// Página de agendado real (Cal.com); el Calendly viejo tenía el horario mal configurado.
+const CALENDLY = 'https://cal.com/samuel-garcia-gbsw4p/30min'
 
 export const PLANTILLAS: Plantilla[] = [
   {

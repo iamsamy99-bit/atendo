@@ -4,6 +4,7 @@
 export interface Env {
   DB: D1Database
   RESEND_API_KEY?: string
+  CALCOM_API_KEY?: string
 }
 
 const SESSION_COOKIE = 'atendo_session'
