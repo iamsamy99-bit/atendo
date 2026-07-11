@@ -1,0 +1,12 @@
+{
+  "appId": "lat.atendo.admin",
+  "appName": "Atendo",
+  "webDir": "www",
+  "server": {
+    "url": "https://atendo.lat/admin-dashboard/",
+    "cleartext": false
+  },
+  "android": {
+    "backgroundColor": "#09090b"
+  }
+}
