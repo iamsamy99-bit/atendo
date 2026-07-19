@@ -62,6 +62,28 @@ export interface Ticket {
   notas: string | null
 }
 
+export interface LlamadaIA {
+  id: number
+  created_at: string
+  updated_at: string
+  lead_id: number
+  call_id: string
+  telefono: string
+  estado: 'iniciada' | 'completada' | 'fallida'
+  resultado: string | null
+  resumen: string | null
+}
+
+export const LLAMADA_RESULTADOS: Record<string, string> = {
+  demo_agendada: '✅ Demo agendada',
+  interesado: '👍 Interesado',
+  volver_a_llamar: '↻ Volver a llamar',
+  no_interesado: '✕ No interesado',
+  no_llamar: '⛔ No volver a llamar',
+  buzon: '📼 Buzón de voz',
+  sin_conversacion: '— Sin conversación',
+}
+
 export interface Metrics {
   clientes_activos: number
   ingresos_mes: number

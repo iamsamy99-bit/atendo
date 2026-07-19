@@ -2,6 +2,12 @@ name = "atendo"
 pages_build_output_dir = "dist"
 compatibility_date = "2025-06-21"
 
+# Llamadas salientes con IA (Sofía Ventas). La llave privada de Vapi es
+# secret de Pages (VAPI_PRIVATE_KEY), no va aquí.
+[vars]
+VAPI_OUTBOUND_ASSISTANT_ID = "5b9a9bc0-deb9-4068-acd8-cdbecdb81773"
+VAPI_OUTBOUND_PHONE_ID = "978ce92b-57ac-4a9d-9715-b60474627e0b"
+
 # Base de datos del CRM (/admin-dashboard + /api/*)
 [[d1_databases]]
 binding = "DB"

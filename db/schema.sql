@@ -67,6 +67,30 @@ CREATE TABLE IF NOT EXISTS tickets (
 );
 CREATE INDEX IF NOT EXISTS idx_tickets_estado ON tickets(estado);
 
+-- Llamadas salientes con IA (Sofía Ventas vía Vapi), ligadas a su lead
+CREATE TABLE IF NOT EXISTS llamadas_ia (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+  lead_id INTEGER NOT NULL REFERENCES leads(id) ON DELETE CASCADE,
+  call_id TEXT NOT NULL UNIQUE,
+  telefono TEXT NOT NULL,
+  estado TEXT NOT NULL DEFAULT 'iniciada' CHECK (estado IN ('iniciada','completada','fallida')),
+  resultado TEXT,
+  resumen TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_llamadas_ia_lead ON llamadas_ia(lead_id);
+
+-- Cola del marcador automático de campañas (worker-campanas la consume por cron)
+CREATE TABLE IF NOT EXISTS campana_cola (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  lead_id INTEGER NOT NULL REFERENCES leads(id) ON DELETE CASCADE,
+  estado TEXT NOT NULL DEFAULT 'pendiente' CHECK (estado IN ('pendiente','llamada_iniciada','omitida','error')),
+  detalle TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_campana_cola_estado ON campana_cola(estado);
+
 -- Sesiones del dashboard (login superadmin)
 CREATE TABLE IF NOT EXISTS sesiones (
   token TEXT PRIMARY KEY,

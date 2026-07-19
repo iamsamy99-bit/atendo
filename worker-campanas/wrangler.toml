@@ -1,0 +1,19 @@
+name = "atendo-campanas"
+main = "src/index.ts"
+compatibility_date = "2025-06-21"
+
+# Comparte la misma base D1 del CRM (atendo-crm)
+[[d1_databases]]
+binding = "DB"
+database_name = "atendo-crm"
+database_id = "6826303d-7566-4760-9905-be8cb76ca9c8"
+
+# Sofía Ventas (Vapi). VAPI_PRIVATE_KEY y CRON_RUN_KEY son secrets del worker.
+[vars]
+VAPI_OUTBOUND_ASSISTANT_ID = "5b9a9bc0-deb9-4068-acd8-cdbecdb81773"
+VAPI_OUTBOUND_PHONE_ID = "978ce92b-57ac-4a9d-9715-b60474627e0b"
+
+# Cada 10 min, lun-vie, 16:00-23:50 UTC = 9:00-16:50 en Hermosillo (UTC-7 fijo,
+# Sonora no tiene horario de verano). Máx 2 llamadas por corrida.
+[triggers]
+crons = ["*/10 16-23 * * 1-5"]

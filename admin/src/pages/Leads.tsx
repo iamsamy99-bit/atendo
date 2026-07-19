@@ -2,10 +2,68 @@ import { useEffect, useState, useCallback } from 'react'
 import { api, ApiError } from '../api'
 import { Modal, Field, Form, Empty } from '../components/ui'
 import SeguimientoModal from '../components/SeguimientoModal'
-import { LEAD_ESTADOS, LEAD_CANALES, fmtFecha, hoyISO, type Lead, type Cliente } from '../types'
+import CampanaModal from '../components/CampanaModal'
+import { LEAD_ESTADOS, LEAD_CANALES, LLAMADA_RESULTADOS, fmtFecha, hoyISO, type Lead, type Cliente, type LlamadaIA } from '../types'
 
 const EMPTY: Partial<Lead> = { canal: 'telefono', idioma: 'es', estado: 'nuevo' }
 const canalLabel = (c: string) => LEAD_CANALES.find(x => x.key === c)?.label ?? c
+
+// Panel de llamadas salientes con IA (Sofía Ventas) dentro del modal del lead.
+function LlamadasIA({ leadId, telefono }: { leadId: number; telefono: string | null }) {
+  const [llamadas, setLlamadas] = useState<LlamadaIA[]>([])
+  const [marcando, setMarcando] = useState(false)
+  const [msg, setMsg] = useState('')
+
+  const cargar = useCallback(() => {
+    api.get<LlamadaIA[]>(`/llamadas-ia?lead_id=${leadId}`).then(setLlamadas).catch(() => {})
+  }, [leadId])
+
+  useEffect(cargar, [cargar])
+
+  const llamar = async () => {
+    if (marcando) return
+    if (!confirm(`Sofía (IA) marcará al ${telefono} para ofrecer Atendo y agendar demo. ¿Iniciar la llamada?`)) return
+    setMarcando(true); setMsg('')
+    try {
+      const r = await api.post<{ telefono: string }>('/llamadas-ia', { lead_id: leadId })
+      setMsg(`📞 Llamando al ${r.telefono}… el resultado aparecerá aquí al colgar.`)
+      cargar()
+    } catch (err) {
+      setMsg(err instanceof ApiError ? err.message : 'No se pudo iniciar la llamada')
+    } finally {
+      setMarcando(false)
+    }
+  }
+
+  return (
+    <div style={{ margin: '4px 0 16px', padding: 12, borderRadius: 10, background: 'rgba(139,92,246,.08)', border: '1px solid rgba(139,92,246,.25)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap' }}>
+        <strong style={{ fontSize: 14 }}>🤖 Llamadas con IA</strong>
+        <div style={{ display: 'flex', gap: 6 }}>
+          <button type="button" className="btn-ghost" onClick={cargar} title="Actualizar">↻</button>
+          <button type="button" className="btn" onClick={llamar} disabled={!telefono || marcando}>
+            {marcando ? 'Marcando…' : '📞 Llamar con IA'}
+          </button>
+        </div>
+      </div>
+      {!telefono && <p className="sub" style={{ margin: '8px 0 0' }}>Agrega un teléfono al lead para poder llamarle.</p>}
+      {msg && <p className="sub" style={{ margin: '8px 0 0' }}>{msg}</p>}
+      {llamadas.length > 0 && (
+        <ul style={{ listStyle: 'none', margin: '10px 0 0', padding: 0, display: 'grid', gap: 8 }}>
+          {llamadas.map(ll => (
+            <li key={ll.id} style={{ fontSize: 13, lineHeight: 1.45 }}>
+              <span style={{ opacity: .75 }}>{fmtFecha(ll.created_at)}</span>{' · '}
+              <strong>
+                {ll.estado === 'iniciada' ? '⏳ En curso / sin reporte' : (LLAMADA_RESULTADOS[ll.resultado ?? ''] ?? ll.resultado ?? ll.estado)}
+              </strong>
+              {ll.resumen && <div style={{ opacity: .85 }}>{ll.resumen}</div>}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}
 
 export default function Leads() {
   const [leads, setLeads] = useState<Lead[]>([])
@@ -15,6 +73,7 @@ export default function Leads() {
   const [busy, setBusy] = useState(false)
   const [colapsadas, setColapsadas] = useState<Record<string, boolean>>({})
   const [seguimiento, setSeguimiento] = useState(false)
+  const [campana, setCampana] = useState(false)
 
   const load = useCallback(() => {
     api.get<Lead[]>('/leads')
@@ -98,12 +157,14 @@ export default function Leads() {
           <p className="sub">Pipeline de ventas — toca un lead para ver y editar sus detalles</p>
         </div>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <button className="btn-ghost" onClick={() => setCampana(true)}>📣 Campaña IA</button>
           <button className="btn-ghost" onClick={() => setSeguimiento(true)}>✉ Enviar seguimiento</button>
           <button className="btn" onClick={() => setEditing({ ...EMPTY })}>+ Nuevo lead</button>
         </div>
       </div>
 
       {seguimiento && <SeguimientoModal onClose={() => { setSeguimiento(false); load() }} />}
+      {campana && <CampanaModal leads={leads} onClose={() => { setCampana(false); load() }} />}
 
       {error && <div className="error-box">{error}</div>}
 
@@ -164,6 +225,7 @@ export default function Leads() {
           }
         >
           {error && <div className="error-box">{error}</div>}
+          {editing.id && <LlamadasIA leadId={editing.id} telefono={editing.telefono ?? null} />}
           <Form onSubmit={save}>
             <div className="form-grid">
               <Field label="Nombre *">

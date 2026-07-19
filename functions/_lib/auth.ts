@@ -5,6 +5,9 @@ export interface Env {
   DB: D1Database
   RESEND_API_KEY?: string
   CALCOM_API_KEY?: string
+  VAPI_PRIVATE_KEY?: string
+  VAPI_OUTBOUND_ASSISTANT_ID?: string
+  VAPI_OUTBOUND_PHONE_ID?: string
 }
 
 const SESSION_COOKIE = 'atendo_session'

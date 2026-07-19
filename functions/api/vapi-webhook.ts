@@ -15,6 +15,9 @@ interface VapiStructuredData {
   interes?: string
   quiere_demo?: boolean | string
   tipo_negocio?: string
+  // Solo llamadas salientes (Sofía Ventas):
+  resultado?: string
+  volver_cuando?: string
 }
 
 interface VapiToolCall {
@@ -83,6 +86,56 @@ async function guardarLead(db: D1Database, msg: VapiMessage): Promise<void> {
     quiereDemo ? 'Agendar demo' : 'Dar seguimiento', notas).run()
 }
 
+// Si el call_id pertenece a una llamada saliente (tabla llamadas_ia), actualiza
+// esa fila y el lead ligado en vez de crear un lead nuevo. Devuelve false si la
+// llamada no es saliente (flujo entrante normal).
+async function actualizarLlamadaSaliente(db: D1Database, msg: VapiMessage): Promise<boolean> {
+  const callId = msg.call?.id
+  if (!callId) return false
+  const llamada = await db
+    .prepare('SELECT id, lead_id FROM llamadas_ia WHERE call_id = ?')
+    .bind(callId)
+    .first<{ id: number; lead_id: number }>()
+  if (!llamada) return false
+
+  const sd = msg.analysis?.structuredData ?? {}
+  const resumen = msg.analysis?.summary ?? msg.summary ?? null
+  const quiereDemo = String(sd.quiere_demo).toLowerCase() === 'si' || String(sd.quiere_demo).toLowerCase() === 'sí' || sd.quiere_demo === true
+  const resultado = sd.resultado || (quiereDemo ? 'demo_agendada' : 'sin_conversacion')
+
+  await db.prepare(
+    "UPDATE llamadas_ia SET estado = 'completada', resultado = ?, resumen = ?, updated_at = datetime('now') WHERE id = ?"
+  ).bind(resultado, resumen, llamada.id).run()
+
+  const lead = await db.prepare('SELECT estado, notas FROM leads WHERE id = ?')
+    .bind(llamada.lead_id).first<{ estado: string; notas: string | null }>()
+  if (!lead) return true
+
+  // Avanzar el pipeline sin degradar leads que ya iban más adelante.
+  const tempranos = ['nuevo', 'contactado', 'calificado']
+  let nuevoEstado: string | null = null
+  if (resultado === 'demo_agendada' && tempranos.includes(lead.estado)) nuevoEstado = 'demo_agendada'
+  else if (['interesado', 'volver_a_llamar', 'no_interesado'].includes(resultado) && lead.estado === 'nuevo') nuevoEstado = 'contactado'
+
+  const acciones: Record<string, string> = {
+    demo_agendada: 'Demo agendada por Sofía IA — confirmar por WhatsApp',
+    interesado: 'Dar seguimiento (interesado en llamada IA)',
+    volver_a_llamar: `Volver a llamar${sd.volver_cuando ? `: ${sd.volver_cuando}` : ''}`,
+    no_llamar: 'NO VOLVER A LLAMAR (lo pidió en llamada IA)',
+  }
+  const fecha = new Date().toISOString().slice(0, 10)
+  const nota = [`[Llamada IA ${fecha}] Resultado: ${resultado}`,
+    sd.telefono ? `WhatsApp dictado: ${sd.telefono}` : null,
+    resumen].filter(Boolean).join('\n')
+
+  await db.prepare(
+    `UPDATE leads SET estado = COALESCE(?, estado), siguiente_accion = COALESCE(?, siguiente_accion),
+      notas = CASE WHEN notas IS NULL OR notas = '' THEN ? ELSE notas || char(10) || char(10) || ? END,
+      updated_at = datetime('now') WHERE id = ?`
+  ).bind(nuevoEstado, acciones[resultado] ?? null, nota, nota, llamada.lead_id).run()
+  return true
+}
+
 export const onRequestPost: PagesFunction<Env> = async ctx => {
   const secret = await getConfig(ctx.env.DB, 'vapi_secret')
   if (!secret || ctx.request.headers.get('x-vapi-secret') !== secret) {
@@ -99,8 +152,12 @@ export const onRequestPost: PagesFunction<Env> = async ctx => {
     : Promise.resolve(new Response(null, { status: 204 }))
 
   if (msg.type === 'end-of-call-report') {
-    // Lo importante primero: guardar el lead en el CRM.
-    try { await guardarLead(ctx.env.DB, msg) } catch (err) { console.error('[vapi-webhook] guardarLead:', err) }
+    // Lo importante primero: registrar en el CRM. Si la llamada fue saliente
+    // (Sofía Ventas), actualiza el lead existente; si no, crea el lead entrante.
+    try {
+      const fueSaliente = await actualizarLlamadaSaliente(ctx.env.DB, msg)
+      if (!fueSaliente) await guardarLead(ctx.env.DB, msg)
+    } catch (err) { console.error('[vapi-webhook] end-of-call:', err) }
     // Copia a Make (Telegram/email) sin bloquear la respuesta a Vapi.
     ctx.waitUntil(forward().catch(err => console.error('[vapi-webhook] forward:', err)))
     return json({ ok: true })
