@@ -8,6 +8,7 @@ export interface Env {
   VAPI_PRIVATE_KEY?: string
   VAPI_OUTBOUND_ASSISTANT_ID?: string
   VAPI_OUTBOUND_PHONE_ID?: string
+  VAPI_CALLBACK_ASSISTANT_ID?: string
 }
 
 const SESSION_COOKIE = 'atendo_session'

@@ -29,7 +29,17 @@ CREATE TABLE IF NOT EXISTS campana_cola (
   estado TEXT NOT NULL DEFAULT 'pendiente' CHECK (estado IN ('pendiente','llamada_iniciada','omitida','error')),
   detalle TEXT
 );
-CREATE INDEX IF NOT EXISTS idx_campana_cola_estado ON campana_cola(estado);"
+CREATE INDEX IF NOT EXISTS idx_campana_cola_estado ON campana_cola(estado);
+CREATE TABLE IF NOT EXISTS callback_solicitudes (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  ip TEXT,
+  telefono TEXT NOT NULL,
+  lead_id INTEGER REFERENCES leads(id) ON DELETE SET NULL,
+  estado TEXT NOT NULL DEFAULT 'recibida' CHECK (estado IN ('recibida','llamada','rechazada')),
+  detalle TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_callback_fecha ON callback_solicitudes(created_at);"
 
 echo "== 2/5 Secret VAPI_PRIVATE_KEY en Pages =="
 printf '%s' "$VAPI_PRIVATE_KEY" | npx wrangler pages secret put VAPI_PRIVATE_KEY --project-name atendo

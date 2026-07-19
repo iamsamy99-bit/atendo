@@ -207,5 +207,18 @@
   "industries.ecom.body": "Responde dudas de productos, da seguimiento a pedidos y recupera ventas por chat, a cualquier hora.",
   "industries.realty.label": "Visitas",
   "industries.realty.title": "Inmobiliarias",
-  "industries.realty.body": "Califica interesados por teléfono o WhatsApp y agenda visitas a propiedades en automático."
+  "industries.realty.body": "Califica interesados por teléfono o WhatsApp y agenda visitas a propiedades en automático.",
+  "callback.float": "¿Te llamamos?",
+  "callback.title": "Sofía te llama en segundos",
+  "callback.body": "Deja tu nombre y teléfono y nuestra asistente con IA te marca al instante para resolver tus dudas.",
+  "callback.name": "Tu nombre",
+  "callback.phone": "Tu teléfono (10 dígitos)",
+  "callback.submit": "Llámame ahora",
+  "callback.sending": "Marcando…",
+  "callback.success": "¡Listo! Tu teléfono sonará en unos segundos. 📞",
+  "callback.repeat": "Ya te llamamos hoy. ¿No pudiste contestar? Escríbenos por WhatsApp.",
+  "callback.limit": "Por ahora no podemos llamarte desde aquí. Escríbenos por WhatsApp o inténtalo más tarde.",
+  "callback.error": "Algo falló al iniciar la llamada. Inténtalo de nuevo o escríbenos por WhatsApp.",
+  "callback.invalid": "Revisa tu nombre y tu teléfono (10 dígitos).",
+  "callback.consent": "Al enviar aceptas recibir una llamada de nuestra asistente con inteligencia artificial."
 }

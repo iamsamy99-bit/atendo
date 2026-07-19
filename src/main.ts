@@ -10,6 +10,7 @@ import { initCrisp } from './ui/crisp'
 import { initLeadEvents } from './ui/leadEvents'
 import { initChatSim } from './ui/chatSim'
 import { initSpotlight } from './ui/spotlight'
+import { initCallback } from './ui/callback'
 
 const lang = getInitialLang()
 applyTranslations(lang)
@@ -20,3 +21,4 @@ initAnimations()
 initCrisp(lang)
 initChatSim()
 initSpotlight()
+initCallback()

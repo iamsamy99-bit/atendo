@@ -4,6 +4,7 @@ type LeadEvent =
   | 'whatsapp_click'
   | 'phone_click'
   | 'crisp_open'
+  | 'callback_submit'
 
 type LeadEventDetail = {
   event: LeadEvent
@@ -22,6 +23,10 @@ function track(detail: LeadEventDetail): void {
 
 export function trackCalendlyView(source = 'landing'): void {
   track({ event: 'calendly_view', source })
+}
+
+export function trackCallbackSubmit(source = 'landing'): void {
+  track({ event: 'callback_submit', source })
 }
 
 export function initLeadEvents(): void {

@@ -207,5 +207,18 @@
   "industries.ecom.body": "Answers product questions, tracks orders and recovers sales over chat, any time of day.",
   "industries.realty.label": "Showings",
   "industries.realty.title": "Real estate",
-  "industries.realty.body": "Qualifies prospects over phone or WhatsApp and books property showings automatically."
+  "industries.realty.body": "Qualifies prospects over phone or WhatsApp and books property showings automatically.",
+  "callback.float": "Request a call",
+  "callback.title": "Sofía calls you in seconds",
+  "callback.body": "Leave your name and number and our AI assistant will call you right away to answer your questions.",
+  "callback.name": "Your name",
+  "callback.phone": "Your phone number",
+  "callback.submit": "Call me now",
+  "callback.sending": "Calling…",
+  "callback.success": "Done! Your phone will ring in a few seconds. 📞",
+  "callback.repeat": "We already called you today. Missed it? Message us on WhatsApp.",
+  "callback.limit": "We can't place the call right now. Message us on WhatsApp or try again later.",
+  "callback.error": "Something went wrong starting the call. Try again or message us on WhatsApp.",
+  "callback.invalid": "Please check your name and phone number.",
+  "callback.consent": "By submitting, you agree to receive a call from our AI assistant."
 }

@@ -91,6 +91,18 @@ CREATE TABLE IF NOT EXISTS campana_cola (
 );
 CREATE INDEX IF NOT EXISTS idx_campana_cola_estado ON campana_cola(estado);
 
+-- Solicitudes de callback desde la landing (rate-limit + auditoría)
+CREATE TABLE IF NOT EXISTS callback_solicitudes (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  ip TEXT,
+  telefono TEXT NOT NULL,
+  lead_id INTEGER REFERENCES leads(id) ON DELETE SET NULL,
+  estado TEXT NOT NULL DEFAULT 'recibida' CHECK (estado IN ('recibida','llamada','rechazada')),
+  detalle TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_callback_fecha ON callback_solicitudes(created_at);
+
 -- Sesiones del dashboard (login superadmin)
 CREATE TABLE IF NOT EXISTS sesiones (
   token TEXT PRIMARY KEY,
