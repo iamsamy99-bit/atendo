@@ -112,8 +112,8 @@
             </div>
           </div>
 
-          <!-- Simulador de agente IA en vivo -->
-          <div class="hero-dark__mockup" aria-hidden="true">
+          <!-- Simulador de agente IA en vivo — interactivo: prueba a escribirle -->
+          <div class="hero-dark__mockup">
             <div class="chat-sim" id="chat-sim">
               <div class="chat-sim__header">
                 <div class="chat-sim__avatar">
@@ -126,10 +126,10 @@
                 <span class="chat-sim__badge">IA</span>
               </div>
               <div class="chat-sim__msgs" id="chat-sim-msgs"></div>
-              <div class="chat-sim__input">
-                <span data-i18n="chatsim.input"></span>
-                <span class="chat-sim__send">➤</span>
-              </div>
+              <form class="chat-sim__input" id="chat-sim-form" autocomplete="off">
+                <input type="text" id="chat-sim-field" data-i18n-placeholder="chatsim.input" aria-label="Escribe un mensaje para probar el agente" maxlength="140" />
+                <button type="submit" class="chat-sim__send" aria-label="Enviar mensaje">➤</button>
+              </form>
               <div class="chat-sim__chips" id="chat-sim-chips">
                 <span class="chat-chip chat-chip--left" data-i18n="chatsim.chip1"></span>
                 <span class="chat-chip chat-chip--right" data-i18n="chatsim.chip2"></span>
@@ -273,7 +273,7 @@
             </div>
           </div>
           <div class="voice-visualizer" data-reveal>
-            <div class="convo-card" aria-hidden="true">
+            <div class="convo-card" id="voice-convo">
               <div class="convo-card__header">
                 <div class="convo-card__avatar convo-card__avatar--photo">
                   <img src="/sofia-avatar.jpg" alt="" width="36" height="36" />
@@ -283,7 +283,7 @@
                   <div class="convo-card__status" data-i18n="card.online"></div>
                 </div>
               </div>
-              <div class="convo-messages">
+              <div class="convo-messages" id="voice-convo-msgs">
                 <div class="convo-bubble convo-bubble--received">
                   <p data-i18n="card.b1"></p>
                 </div>
@@ -298,6 +298,10 @@
                   <span class="convo-confirm__text" data-i18n="card.confirm"></span>
                 </div>
               </div>
+              <form class="chat-sim__input" id="voice-convo-form" autocomplete="off" style="margin-top:16px">
+                <input type="text" id="voice-convo-field" data-i18n-placeholder="chatsim.input" aria-label="Escribe un mensaje para probar el agente" maxlength="140" />
+                <button type="submit" class="chat-sim__send" aria-label="Enviar mensaje">➤</button>
+              </form>
             </div>
           </div>
         </div>

@@ -190,14 +190,33 @@ main p { color: var(--muted); }
 .chat-typing__dot:nth-child(2) { animation-delay: 0.15s; }
 .chat-typing__dot:nth-child(3) { animation-delay: 0.3s; }
 .chat-sim__input {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-top: 14px; padding: 10px 14px;
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 14px; padding: 6px 8px 6px 14px;
   border: 1px solid var(--border);
   border-radius: 999px;
-  color: var(--muted-light); font-size: 13px;
   background: transparent;
+  transition: border-color 0.2s ease;
 }
-.chat-sim__send { color: var(--cyan); font-size: 14px; }
+.chat-sim__input:focus-within { border-color: var(--cyan); }
+.chat-sim__input input {
+  flex: 1; min-width: 0; border: none; background: none; outline: none;
+  font-family: var(--font); font-size: 13px; color: var(--ink);
+  padding: 6px 0;
+}
+.chat-sim__input input::placeholder { color: var(--muted-light); }
+.chat-sim__input input:disabled { opacity: 0.6; }
+.chat-sim__send {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 50%;
+  border: none; background: var(--cyan); color: #fff; font-size: 13px;
+  cursor: pointer; transition: background 0.2s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.chat-sim__send:hover { background: var(--blue-dark, #006786); }
+.chat-sim__send:active { transform: scale(0.92); }
+.chat-sim__send:disabled { opacity: 0.5; cursor: default; }
+
+/* "Escribiendo…" dentro de la tarjeta de voz (reusa el punto animado del chat-sim) */
+.convo-typing { display: flex; gap: 4px; padding: 10px 14px; }
 
 .chat-sim__chips { position: absolute; inset: 0; pointer-events: none; }
 .chat-chip {

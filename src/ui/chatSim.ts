@@ -1,9 +1,11 @@
 // Simulador de conversación del agente IA en el hero.
-// Loop: mensaje del cliente → "escribiendo…" → respuesta tecleada por la IA →
-// segundo intercambio → chips de acción con rebote elástico → pausa → reinicio.
-// Todo con transform/opacity (GPU). Se pausa fuera del viewport y respeta
-// prefers-reduced-motion (muestra la conversación completa, sin loop).
+// Loop de ambientación: mensaje del cliente → "escribiendo…" → respuesta
+// tecleada por la IA → segundo intercambio → chips de acción → pausa →
+// reinicio — hasta que la persona escribe algo de verdad: ahí el widget
+// pasa a modo interactivo (para de reiniciarse) y contesta con
+// fakeChatEngine según palabras clave, en el idioma activo del sitio.
 import { t } from '../i18n/i18n'
+import { getReply, currentLang } from './fakeChatEngine'
 
 const TYPE_MS = 26          // velocidad de tecleo de la IA (ms por carácter)
 const READ_MS = 900         // pausa "leyendo" antes de escribir
@@ -23,41 +25,22 @@ export function initChatSim(): void {
   const root = document.getElementById('chat-sim')
   const msgs = document.getElementById('chat-sim-msgs')
   const chips = document.getElementById('chat-sim-chips')
+  const form = document.getElementById('chat-sim-form') as HTMLFormElement | null
+  const field = document.getElementById('chat-sim-field') as HTMLInputElement | null
   if (!root || !msgs || !chips) return
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-  if (reduceMotion) {
-    // Sin animación: conversación completa, estática.
-    for (const [cls, key] of [
-      ['user', 'chatsim.u1'], ['ai', 'chatsim.a1'],
-      ['user', 'chatsim.u2'], ['ai', 'chatsim.a2'],
-    ] as const) {
-      const b = el('div', `chat-msg chat-msg--${cls} chat-msg--in`)
-      b.appendChild(el('p', '', t(key)))
-      msgs.appendChild(b)
-    }
-    chips.classList.add('chat-sim__chips--in')
-    return
-  }
-
-  // Pausar el loop cuando el hero no se ve o la pestaña está oculta.
-  let visible = true
-  new IntersectionObserver((entries) => { visible = entries[0]?.isIntersecting ?? true }).observe(root)
-  const waitVisible = async () => {
-    while (!visible || document.hidden) await sleep(500)
-  }
+  let interactive = false
 
   const addBubble = async (side: 'user' | 'ai', text: string): Promise<void> => {
     const bubble = el('div', `chat-msg chat-msg--${side}`)
     const p = el('p', '')
     bubble.appendChild(p)
     msgs.appendChild(bubble)
-    // reflow para que la transición de entrada corra
     void bubble.offsetHeight
     bubble.classList.add('chat-msg--in')
 
-    if (side === 'user') {
+    if (side === 'user' || reduceMotion) {
       p.textContent = text
       return
     }
@@ -78,21 +61,78 @@ export function initChatSim(): void {
     wrap.remove()
   }
 
+  // ── Modo interactivo: la persona escribe, el motor de reglas contesta ──
+  if (form && field) {
+    const sendBtn = form.querySelector<HTMLButtonElement>('.chat-sim__send')
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+      const text = field.value.trim()
+      if (!text) return
+
+      void (async () => {
+        if (!interactive) {
+          interactive = true
+          msgs.innerHTML = ''
+          chips.classList.remove('chat-sim__chips--in')
+          root.classList.remove('chat-sim--done')
+        }
+        field.value = ''
+        field.disabled = true
+        if (sendBtn) sendBtn.disabled = true
+
+        await addBubble('user', text)
+        await showTyping(600 + Math.random() * 500)
+        await addBubble('ai', getReply(text, currentLang()))
+
+        field.disabled = false
+        if (sendBtn) sendBtn.disabled = false
+        field.focus()
+      })()
+    })
+  }
+
+  if (reduceMotion) {
+    // Sin animación: conversación de ejemplo completa y estática, pero el
+    // formulario sigue funcionando igual (solo sin el efecto de tecleo).
+    for (const [cls, key] of [
+      ['user', 'chatsim.u1'], ['ai', 'chatsim.a1'],
+      ['user', 'chatsim.u2'], ['ai', 'chatsim.a2'],
+    ] as const) {
+      const b = el('div', `chat-msg chat-msg--${cls} chat-msg--in`)
+      b.appendChild(el('p', '', t(key)))
+      msgs.appendChild(b)
+    }
+    chips.classList.add('chat-sim__chips--in')
+    return
+  }
+
+  // Pausar el loop cuando el hero no se ve o la pestaña está oculta.
+  let visible = true
+  new IntersectionObserver((entries) => { visible = entries[0]?.isIntersecting ?? true }).observe(root)
+  const waitVisible = async () => {
+    while (!visible || document.hidden) await sleep(500)
+  }
+
   const run = async (): Promise<void> => {
     for (;;) {
+      if (interactive) return // la persona ya está usando el chat de verdad
       await waitVisible()
+      if (interactive) return
       msgs.innerHTML = ''
       chips.classList.remove('chat-sim__chips--in')
       root.classList.remove('chat-sim--done')
 
       await sleep(600)
+      if (interactive) return
       await addBubble('user', t('chatsim.u1'))
       await showTyping(READ_MS)
       await addBubble('ai', t('chatsim.a1'))
+      if (interactive) return
       await sleep(1100)
       await addBubble('user', t('chatsim.u2'))
       await showTyping(READ_MS)
       await addBubble('ai', t('chatsim.a2'))
+      if (interactive) return
 
       // Chips de acción con escala elástica, en cascada
       await sleep(500)

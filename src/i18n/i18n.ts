@@ -29,6 +29,11 @@ export function applyTranslations(lang: Lang): void {
     }
     el.textContent = value
   })
+  document.querySelectorAll<HTMLInputElement>('[data-i18n-placeholder]').forEach((el) => {
+    const key = el.dataset.i18nPlaceholder!
+    const value = dict[key]
+    el.placeholder = value ?? key
+  })
   document.documentElement.lang = lang
 }
 

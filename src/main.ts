@@ -9,6 +9,7 @@ import { initAnimations } from './ui/animations'
 import { initCrisp } from './ui/crisp'
 import { initLeadEvents } from './ui/leadEvents'
 import { initChatSim } from './ui/chatSim'
+import { initVoiceConvo } from './ui/voiceConvo'
 import { initSpotlight } from './ui/spotlight'
 import { initCallback } from './ui/callback'
 
@@ -20,5 +21,6 @@ initCalendly()
 initAnimations()
 initCrisp(lang)
 initChatSim()
+initVoiceConvo()
 initSpotlight()
 initCallback()
