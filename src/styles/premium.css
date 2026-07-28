@@ -27,14 +27,46 @@
 
 :root body { background: var(--bg); color: var(--ink); }
 :root ::selection { background: color-mix(in srgb, var(--cyan) 30%, transparent); }
-:root h2 { color: var(--ink); }
-:root main p { color: var(--muted); }
+/* Sin :root/main aquí a propósito: esas reglas empatan o superan la
+   especificidad de .cta-dark h2 / .cta-dark p (definidas en layout.css)
+   y les ganaban, dejando texto tinta-sobre-tinta ilegible en los bloques
+   oscuros. h2/p a secas quedan por debajo de cualquier selector con clase. */
+h2 { color: var(--ink); }
+main p { color: var(--muted); }
 
 /* ── Keyframes ─────────────────────────────────────────────────── */
 @keyframes dotPulse {
   0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
   30% { transform: translateY(-5px); opacity: 1; }
 }
+
+/* ── NAV: siempre papel claro (antes era transparente-sobre-hero-oscuro
+   y solo se ponía oscuro al hacer scroll; el hero ahora es claro, así
+   que el nav vive en claro todo el tiempo, con o sin scroll) ─────── */
+.nav {
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  border-bottom: 1px solid transparent;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.nav--scrolled {
+  background: color-mix(in srgb, var(--bg) 96%, transparent);
+  border-bottom-color: var(--border);
+  box-shadow: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.nav__logo { color: var(--ink); }
+.nav__logo-img { background: var(--blue-light); border-color: var(--border); }
+.nav__links a { color: var(--muted); }
+.nav__links a:hover { color: var(--ink); }
+.nav__links a::after { background: var(--cyan); }
+.nav__links a.active { color: var(--ink); }
+.nav__phone { color: var(--ink); }
+.nav__phone:hover { color: var(--cyan); }
+.nav__phone svg { color: var(--cyan); }
+.lang-toggle { background: transparent; border-color: var(--border); color: var(--muted); }
+.lang-toggle:hover { border-color: var(--ink); color: var(--ink); background: color-mix(in srgb, var(--ink) 5%, transparent); }
 
 /* ── HERO: papel crema, sin cuadrícula ni partículas ─────────────── */
 .hero-dark { background: var(--bg); overflow: visible; }
@@ -64,7 +96,8 @@
 }
 .hero-dark .btn--outline { border-color: var(--border); color: var(--ink); background: transparent; }
 .hero-dark .btn--outline:hover { border-color: var(--ink); background: color-mix(in srgb, var(--ink) 5%, transparent); }
-.hero__trust { color: var(--muted-light); }
+.hero-dark__sub { color: var(--muted); }
+.hero__trust { color: var(--muted); }
 .trust-strip span {
   border: 1px solid var(--border); background: transparent; color: var(--muted);
   border-radius: 2px;
@@ -109,10 +142,20 @@
 .chat-chip--right { border-color: color-mix(in srgb, var(--violet) 40%, transparent); }
 
 /* ── BENTO GRID (industrias) — tarjetas de papel, sin spotlight ─── */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 16px;
+}
+.bento__cell--w3 { grid-column: span 3; }
+.bento__cell--w2 { grid-column: span 2; }
 .bento__cell {
+  position: relative;
+  border-radius: 2px;
+  padding: 28px 26px;
+  overflow: hidden;
   background: #fff;
   border: 1px solid var(--border);
-  border-radius: 2px;
 }
 .bento__cell::before, .bento__cell::after { content: none; }
 .bento__cell .industry__icon { background: var(--blue-light); color: var(--cyan); border-radius: 2px; }
@@ -161,7 +204,8 @@
 .voice-feature__h2 { color: var(--ink); }
 .voice-feature__text > p { color: var(--muted); }
 .voice-stat__val { color: var(--cyan); }
-.voice-stat__label { color: var(--muted-light); }
+.voice-stat__label { color: var(--muted); }
+.hero-dark__scroll { color: var(--muted-light); }
 .convo-card { background: #fff; border: 1px solid var(--border); box-shadow: 0 3px 10px color-mix(in srgb, #2d2b2b 14%, transparent); }
 .convo-card__header { border-bottom: 1px solid var(--border); }
 .convo-card__avatar { background: var(--bg-alt); }
