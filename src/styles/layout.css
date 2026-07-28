@@ -347,7 +347,10 @@
 .cta__fallback { font-size: 15px; margin-top: 20px; }
 .cta__fallback a { color: #4ade80; font-weight: 600; }
 .cta__fallback span { color: rgba(255,255,255,0.42); }
-.calendly { height: 700px; min-height: 700px; margin: 0 0 1rem; }
+/* Sin height fija: el embed de Cal.com necesita más alto cuando muestra
+   horarios + formulario, y una altura fija hacía que ese contenido se
+   desbordara y se montara sobre lo que viene después (botón de callback). */
+.calendly { min-height: 700px; margin: 0 0 1rem; }
 
 /* ── FOOTER DARK ─────────────────────────────────────────────── */
 .footer-dark { background: var(--bg-dark3); border-top: 1px solid rgba(255,255,255,0.05); padding: clamp(2.5rem,5vw,4rem) clamp(1.25rem,4vw,3rem) clamp(1.5rem,3vw,2.5rem); }
@@ -506,6 +509,6 @@
   .cards { gap: 14px; }
   .card { padding: 26px 22px; }
   .trust-strip span { width: 100%; justify-content: center; }
-  .calendly { height: 580px; min-height: 580px; }
+  .calendly { min-height: 580px; }
   .plan2__price-num { font-size: 36px; }
 }

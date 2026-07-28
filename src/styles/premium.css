@@ -373,7 +373,10 @@ main p { color: var(--muted); }
 .faq2__a p { color: var(--muted); }
 
 /* CTA + footer: bloque de tinta (contraste editorial, como un pie de imprenta) */
-.cta-dark { background: var(--bg-dark); position: relative; overflow: hidden; }
+/* Sin overflow:hidden: cortaba el widget de Cal.com cuando se expande para
+   mostrar horarios + formulario (quedaban superpuestos). Era para un
+   efecto decorativo que ya no existe en este rediseño. */
+.cta-dark { background: var(--bg-dark); position: relative; }
 .cta-dark__inner { position: relative; z-index: 1; }
 .footer-dark { background: var(--bg-dark3); }
 
