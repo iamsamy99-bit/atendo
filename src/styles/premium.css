@@ -403,4 +403,10 @@ main p { color: var(--muted); }
   .bento { grid-template-columns: 1fr; }
   .chat-chip--left { left: 8px; }
   .chat-chip--right { right: 8px; }
+
+  /* Los dos botones flotantes iban apilados (~110px de alto) y tapaban
+     2-3 líneas de texto al hacer scroll en móvil (sin gutter lateral
+     como en desktop). Uno junto al otro solo tapa una línea. */
+  .cb-float { bottom: 18px; left: 18px; }
+  .call-float { bottom: 18px; left: 76px; }
 }
