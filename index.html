@@ -6,7 +6,7 @@
     <title>Atendo — Agentes de voz con IA</title>
     <meta name="description" content="Agentes telefónicos con IA y sitios web para negocios en México y Estados Unidos." />
     <link rel="canonical" href="https://atendo.lat/" />
-    <meta name="theme-color" content="#0b1020" />
+    <meta name="theme-color" content="#f3f2f2" />
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="apple-touch-icon" href="/logo.png" />
     <!-- Open Graph -->
@@ -54,7 +54,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300;1,9..144,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
   </head>
   <body>
 
@@ -90,16 +90,14 @@
 
       <!-- HERO DARK -->
       <section class="hero-dark">
-        <div class="grid-bg" aria-hidden="true"></div>
-        <canvas id="heroCanvas" aria-hidden="true"></canvas>
-        <div class="hero-dark__fade" aria-hidden="true"></div>
         <div class="hero-dark__inner">
           <!-- Text -->
           <div class="hero-dark__text">
             <div class="hero-tag" data-i18n="hero.tag"></div>
             <h1 class="hero-dark__h1">
-              <span data-i18n="hero.line1"></span>
-              <em data-i18n="hero.line2"></em>
+              <span class="plate-head"><span class="paper" data-i18n="hero.line1"></span><span class="plate plate-c" aria-hidden="true" data-i18n="hero.line1"></span><span class="plate plate-m" aria-hidden="true" data-i18n="hero.line1"></span></span>
+              <br />
+              <em class="plate-head"><span class="paper" data-i18n="hero.line2"></span><span class="plate plate-c" aria-hidden="true" data-i18n="hero.line2"></span><span class="plate plate-m" aria-hidden="true" data-i18n="hero.line2"></span></em>
             </h1>
             <p class="hero-dark__sub" data-i18n="hero.subtitle"></p>
             <div class="hero-dark__ctas">
@@ -305,6 +303,34 @@
         </div>
       </section>
 
+      <!-- FEATURE ILUSTRADA 1: agente contestando -->
+      <section class="illus-feature" data-reveal>
+        <div class="illus-feature__text">
+          <span class="section-label" data-i18n="feature1.label"></span>
+          <h2 data-i18n="feature1.title"></h2>
+          <p data-i18n="feature1.body"></p>
+        </div>
+        <div class="illus-feature__img">
+          <figure>
+            <img src="/illus-agente-voz.png" alt="Agente de voz con IA contestando desde su estación de trabajo" loading="lazy" width="1673" height="954" />
+          </figure>
+        </div>
+      </section>
+
+      <!-- FEATURE ILUSTRADA 2: de la llamada a la cita -->
+      <section class="illus-feature illus-feature--rev" data-reveal>
+        <div class="illus-feature__text">
+          <span class="section-label" data-i18n="feature2.label"></span>
+          <h2 data-i18n="feature2.title"></h2>
+          <p data-i18n="feature2.body"></p>
+        </div>
+        <div class="illus-feature__img">
+          <figure>
+            <img src="/illus-llamada-a-cita.png" alt="De la llamada a la cita agendada, sin intermediarios" loading="lazy" width="1245" height="1245" />
+          </figure>
+        </div>
+      </section>
+
       <!-- AGENTS SHOWCASE -->
       <section class="agents-showcase">
         <div class="section-head text-center">
@@ -379,6 +405,12 @@
             <p data-i18n="how.step3.body"></p>
           </div>
         </div>
+      </section>
+
+      <!-- CITA EDITORIAL -->
+      <section class="pull-quote" data-reveal>
+        <blockquote data-i18n="quote.text"></blockquote>
+        <cite data-i18n="quote.cite"></cite>
       </section>
 
       <!-- PRICING — VOICE -->
