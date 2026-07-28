@@ -65,7 +65,7 @@ main p { color: var(--muted); }
 .nav__phone { color: var(--ink); }
 .nav__phone:hover { color: var(--cyan); }
 .nav__phone svg { color: var(--cyan); }
-.lang-toggle { background: transparent; border-color: var(--border); color: var(--muted); }
+.lang-toggle { background: transparent; border-color: var(--border); color: var(--muted); min-height: 44px; min-width: 44px; padding: 7px 16px; }
 .lang-toggle:hover { border-color: var(--ink); color: var(--ink); background: color-mix(in srgb, var(--ink) 5%, transparent); }
 
 /* ── HERO: papel crema, sin cuadrícula ni partículas ─────────────── */
@@ -297,7 +297,8 @@ main p { color: var(--muted); }
 /* Agent cards — tarjetas de papel */
 .agent-card { background: #fff; border: 1px solid var(--border); border-radius: 2px; }
 .agent-card__name { color: var(--ink); }
-.agent-card__role { color: var(--muted-light); }
+.agent-card__role { color: var(--muted); }
+.plan2__price-per { color: var(--muted); }
 .agent-card__desc { color: var(--muted); }
 .agent-card__tags li { color: var(--ink); background: var(--bg-alt); border-color: var(--border); border-radius: 2px; }
 .agent-card__status { background: rgba(255,255,255,0.92); color: var(--blue-dark, #006786); }
