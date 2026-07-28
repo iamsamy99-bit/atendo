@@ -2,6 +2,8 @@ export function initAnimations(): void {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   if (!reduceMotion) initParticles()
+  if (!reduceMotion) initParallax()
+  initCountUp(reduceMotion)
 
   // Stagger siblings: reveal children of the same parent cascade in (max ~4 to keep it snappy).
   const groups = new Map<Element, Element[]>()
@@ -141,4 +143,81 @@ function initParticles(): void {
 
   running = true
   requestAnimationFrame(draw)
+}
+
+/** Parallax sutil: los elementos [data-parallax="N"] se desplazan hasta N px
+ *  según qué tan lejos están del centro del viewport. rAF-throttled. */
+function initParallax(): void {
+  const els = Array.from(document.querySelectorAll<HTMLElement>('[data-parallax]'))
+  if (els.length === 0) return
+
+  let ticking = false
+  const update = () => {
+    const vh = window.innerHeight
+    els.forEach((el) => {
+      const rect = el.getBoundingClientRect()
+      const center = rect.top + rect.height / 2
+      const offset = (center - vh / 2) / vh // ~ -0.6..0.6 mientras cruza el viewport
+      const strength = Number(el.dataset.parallax) || 20
+      el.style.transform = `translateY(${(offset * strength).toFixed(2)}px)`
+    })
+    ticking = false
+  }
+  const onScroll = () => {
+    if (ticking) return
+    ticking = true
+    requestAnimationFrame(update)
+  }
+  window.addEventListener('scroll', onScroll, { passive: true })
+  window.addEventListener('resize', onScroll, { passive: true })
+  update()
+}
+
+/** Números de precio que cuentan hacia arriba la primera vez que entran en
+ *  vista (ease-out cúbico). Solo anima el texto que trae un número real
+ *  ("Desde $4,900"); deja intacto "A la medida" y similares. */
+function initCountUp(reduceMotion: boolean): void {
+  const els = document.querySelectorAll<HTMLElement>('.plan2__price-num')
+  type Target = { el: HTMLElement; prefix: string; suffix: string; value: number; raw: string }
+  const targets: Target[] = []
+
+  els.forEach((el) => {
+    const raw = el.textContent || ''
+    const match = raw.match(/^(.*?)([\d][\d,]*)(.*)$/)
+    if (!match) return
+    const [, prefix, numStr, suffix] = match
+    const value = parseInt(numStr.replace(/,/g, ''), 10)
+    if (Number.isNaN(value)) return
+    if (reduceMotion) return // deja el texto final tal cual, sin animar
+    el.textContent = `${prefix}0${suffix}`
+    targets.push({ el, prefix, suffix, value, raw })
+  })
+  if (targets.length === 0) return
+
+  const animate = (t: Target) => {
+    const duration = 900
+    const start = performance.now()
+    const step = (now: number) => {
+      const p = Math.min((now - start) / duration, 1)
+      const eased = 1 - Math.pow(1 - p, 3)
+      const current = Math.round(t.value * eased)
+      t.el.textContent = `${t.prefix}${current.toLocaleString('es-MX')}${t.suffix}`
+      if (p < 1) requestAnimationFrame(step)
+      else t.el.textContent = t.raw
+    }
+    requestAnimationFrame(step)
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        const t = targets.find((x) => x.el === entry.target)
+        if (t) animate(t)
+        io.unobserve(entry.target)
+      })
+    },
+    { threshold: 0.4 }
+  )
+  targets.forEach((t) => io.observe(t.el))
 }

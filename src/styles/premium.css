@@ -85,6 +85,20 @@ main p { color: var(--muted); }
 }
 .hero-dark__h1 .plate-head .plate-c { color: var(--cyan); translate: 0.03em 0.02em; }
 .hero-dark__h1 .plate-head .plate-m { color: var(--violet); translate: -0.026em -0.018em; }
+/* Cascada cinematográfica de entrada: cada línea aparece con blur→foco,
+   una tras otra, en vez de todo el titular a la vez. */
+@keyframes heroLineIn {
+  from { opacity: 0; transform: translateY(28px); filter: blur(10px); }
+  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.hero-dark__h1 .plate-head {
+  animation: heroLineIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hero-dark__h1 span.plate-head { animation-delay: 0.05s; }
+.hero-dark__h1 em.plate-head { animation-delay: 0.24s; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-dark__h1 .plate-head { animation: none; }
+}
 .hero-tag {
   border: 1px solid var(--border);
   background: transparent;
@@ -353,11 +367,30 @@ main p { color: var(--muted); }
   background-size: 3px 3px;
 }
 
+/* ── Micro-interacciones "spring" (solo con puntero real) ─────────
+   Overshoot sutil en el transform (rebote de resorte) separado del
+   box-shadow, que se anima con su propia curva más suave. */
+@media (hover: hover) and (pointer: fine) {
+  .btn { transition: background 0.2s, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, color 0.15s, border-color 0.2s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn--primary:hover { transform: translateY(-2px) scale(1.015); }
+  .btn:active { transform: scale(0.97); }
+
+  .card, .step, .plan2, .agent-card, .bento__cell {
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+  }
+  .bento__cell:hover { transform: translateY(-3px); box-shadow: 0 14px 32px color-mix(in srgb, #2d2b2b 12%, transparent); }
+
+  .illus-feature__img figure { transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+  .illus-feature:hover .illus-feature__img figure { transform: scale(1.015); }
+}
+
 /* ── Reduced motion ────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .chat-typing__dot { animation: none !important; }
   .chat-msg { transition: none; }
   .chat-chip { transition: opacity 0.2s ease; transform: none; }
+  [data-parallax] { transform: none !important; }
 }
 
 /* ── Responsive del rediseño ──────────────────────────────────── */
