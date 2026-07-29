@@ -488,7 +488,8 @@
 
 /* ── MOBILE ──────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .hero-dark__mockup { display: none; }
+  .hero-dark__mockup { width: 100%; display: flex; justify-content: center; margin-top: 12px; }
+  .chat-sim { width: 100%; max-width: 330px; }
   .voice-feature__inner { gap: 40px; }
   .convo-card { width: 100%; max-width: 340px; }
   .voice-stats { gap: 28px; }
