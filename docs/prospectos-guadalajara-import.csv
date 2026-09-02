@@ -1,0 +1,4 @@
+nombre,empresa,telefono,email,industria,necesidad,plan_interes
+Recepción,Consultorio ejemplo,,recepcion@ejemplo.com,Medicina general,Necesita contestar llamadas y agendar consultas sin perder pacientes cuando recepción está ocupada.,Esencial
+Recepción,Clínica dental ejemplo,,hola@ejemplo.com,Clínica dental,Necesita captar citas nuevas y resolver preguntas de tratamientos y precios 24/7.,Esencial
+Equipo comercial,Spa ejemplo,,contacto@ejemplo.com,Spa,Necesita responder WhatsApp y llamadas mientras el equipo atiende en cabina.,Integral
