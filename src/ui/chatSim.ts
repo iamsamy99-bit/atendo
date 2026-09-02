@@ -29,7 +29,7 @@ export function initChatSim(): void {
   const field = document.getElementById('chat-sim-field') as HTMLInputElement | null
   if (!root || !msgs || !chips) return
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
   let interactive = false
 
   const addBubble = async (side: 'user' | 'ai', text: string): Promise<void> => {
@@ -108,7 +108,9 @@ export function initChatSim(): void {
 
   // Pausar el loop cuando el hero no se ve o la pestaña está oculta.
   let visible = true
-  new IntersectionObserver((entries) => { visible = entries[0]?.isIntersecting ?? true }).observe(root)
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => { visible = entries[0]?.isIntersecting ?? true }).observe(root)
+  }
   const waitVisible = async () => {
     while (!visible || document.hidden) await sleep(500)
   }

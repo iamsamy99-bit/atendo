@@ -13,8 +13,12 @@ export function t(key: string, lang?: Lang): string {
 }
 
 export function getInitialLang(): Lang {
-  const stored = localStorage.getItem(STORAGE_KEY)
-  return stored === 'en' ? 'en' : 'es'
+  try {
+    return localStorage.getItem(STORAGE_KEY) === 'en' ? 'en' : 'es'
+  } catch {
+    // Private browsing and restrictive embedded webviews can deny storage.
+    return 'es'
+  }
 }
 
 export function applyTranslations(lang: Lang): void {
@@ -38,6 +42,6 @@ export function applyTranslations(lang: Lang): void {
 }
 
 export function setLang(lang: Lang): void {
-  localStorage.setItem(STORAGE_KEY, lang)
+  try { localStorage.setItem(STORAGE_KEY, lang) } catch { /* storage is optional */ }
   applyTranslations(lang)
 }

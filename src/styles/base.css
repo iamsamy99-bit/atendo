@@ -14,6 +14,10 @@
   --border: color-mix(in srgb, #201e1d 16%, transparent);
   --radius: 3px;
   --radius-lg: 4px;
+  /* Radio unico para todo lo cliqueable rectangular (.btn, .lang-toggle,
+     submits). Antes convivian 2px, 7px y 10px en la misma pantalla. Los
+     botones flotantes (FAB) siguen siendo pildoras a proposito. */
+  --btn-radius: 12px;
   --maxw: 1200px;
   --font: 'Source Serif 4', Georgia, serif;
   --font-display: 'Source Serif 4', Georgia, serif;

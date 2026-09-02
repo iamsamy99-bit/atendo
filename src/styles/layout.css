@@ -17,11 +17,11 @@
   font-size: 19px; font-weight: 700; letter-spacing: -0.4px; color: #fff;
 }
 .nav__logo-img {
-  width: 36px; height: 36px; background: rgba(255,255,255,0.12); border-radius: 9px;
-  overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-  border: 1px solid rgba(255,255,255,0.1);
+  width: auto; height: auto; background: transparent; border-radius: 0;
+  overflow: visible; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  border: none;
 }
-.nav__logo-img img { width: 30px; height: 30px; object-fit: contain; }
+.nav__logo-img img { width: 44px; height: 44px; object-fit: contain; }
 .nav__links { display: flex; gap: 2rem; }
 .nav__links a { position: relative; color: rgba(255,255,255,0.55); font-size: 15px; font-weight: 500; transition: color 0.2s; }
 .nav__links a:hover { color: #fff; }
@@ -356,8 +356,8 @@
 .footer-dark { background: var(--bg-dark3); border-top: 1px solid rgba(255,255,255,0.05); padding: clamp(2.5rem,5vw,4rem) clamp(1.25rem,4vw,3rem) clamp(1.5rem,3vw,2.5rem); }
 .footer-dark__inner { max-width: var(--maxw); margin: 0 auto; }
 .footer-dark__brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-.footer-dark__brand-img { width: 36px; height: 36px; background: #fff; border-radius: 9px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-.footer-dark__brand-img img { width: 30px; height: 30px; object-fit: contain; }
+.footer-dark__brand-img { width: auto; height: auto; background: transparent; border-radius: 0; overflow: visible; display: flex; align-items: center; justify-content: center; }
+.footer-dark__brand-img img { width: 44px; height: 44px; object-fit: contain; }
 .footer-dark__brand span { font-size: 19px; font-weight: 700; color: #fff; letter-spacing: -0.4px; }
 .footer-dark__inner > p { color: #8b8178; font-size: 15px; max-width: 420px; line-height: 1.65; margin-bottom: 34px; }
 .footer-dark__links { display: flex; gap: 22px; flex-wrap: wrap; margin-bottom: 34px; }
@@ -413,12 +413,22 @@
 .nav__phone { display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.78); font-weight: 600; font-size: 14px; white-space: nowrap; transition: color 0.2s; }
 .nav__phone:hover { color: #fff; }
 .nav__phone svg { color: #60a5fa; }
-@media (max-width: 880px) { .nav__phone span { display: none; } }
+/* Rango medio: con el CTA en una linea el nav se aprieta y el logo llegaba a
+   encimarse con "Servicios". Se recortan gaps y se esconde antes el numero. */
+@media (max-width: 1000px) {
+  .nav__links { gap: 1.15rem; }
+  .nav__links a { font-size: 14px; }
+}
+@media (max-width: 960px) { .nav__phone span { display: none; } }
 @media (max-width: 720px) { .nav__phone { display: none; } }
 
 /* ── BUTTONS ─────────────────────────────────────────────────── */
-.btn { display: inline-block; font-weight: 600; cursor: pointer; padding: 0.7rem 1.3rem; border-radius: 10px; border: 1.5px solid transparent; transition: background 0.2s, transform 0.16s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.15s, color 0.15s; font-family: var(--font); font-size: 15px; }
-.btn:active { transform: scale(0.97); }
+/* inline-flex + nowrap: con `inline-block` y texto libre, "Agendar demo" se
+   partia en dos lineas al apretarse el nav (~900px), el boton crecia mas alto
+   que los 68px fijos del header y se salia del marco por arriba y por abajo. */
+.btn { display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; font-weight: 600; cursor: pointer; padding: 0.7rem 1.3rem; border-radius: var(--btn-radius); border: 1.5px solid transparent; transition: background 0.2s, transform 0.16s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.15s, color 0.15s; font-family: var(--font); font-size: 15px; }
+/* Feedback al presionar, valido tambien en tactiles (fuera de @media hover). */
+.btn:active { transform: scale(0.96); }
 .btn--primary { background: var(--blue); color: #fff; border-color: var(--blue); }
 .btn--primary:hover { background: var(--blue-dark); }
 @media (hover: hover) and (pointer: fine) {
@@ -431,7 +441,7 @@
 .btn--outline2 { background: transparent; color: var(--ink); border-color: var(--border); border-width: 2px; }
 .btn--outline2:hover { border-color: var(--blue); color: var(--blue); }
 .btn--lg { padding: 14px 30px; font-size: 16px; font-weight: 700; }
-.lang-toggle { background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.7); border-radius: 7px; padding: 7px 15px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: var(--font); letter-spacing: 0.8px; transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.16s cubic-bezier(0.23, 1, 0.32, 1); }
+.lang-toggle { background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.7); border-radius: var(--btn-radius); padding: 7px 15px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: var(--font); letter-spacing: 0.8px; transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.16s cubic-bezier(0.23, 1, 0.32, 1); }
 .lang-toggle:active { transform: scale(0.95); }
 .lang-toggle:hover { border-color: rgba(255,255,255,0.5); color: #fff; background: rgba(255,255,255,0.12); }
 
@@ -455,11 +465,11 @@
 /* Banner cover con retrato del agente */
 .agent-card__banner {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
 }
 .agent-card__banner img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center 28%;
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
   display: block; transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
 }
 /* degradado inferior para fundir con la tarjeta */
@@ -492,6 +502,10 @@
   .chat-sim { width: 100%; max-width: 330px; }
   .voice-feature__inner { gap: 40px; }
   .convo-card { width: 100%; max-width: 340px; }
+  /* `flex: 0 0 auto` impedia que el visualizador encogiera, asi que la
+     tarjeta de 316px + padding desbordaba el viewport en pantallas de
+     320px y aparecia scroll horizontal en toda la pagina. */
+  .voice-visualizer { flex: 1 1 auto; min-width: 0; max-width: 100%; }
   .voice-stats { gap: 28px; }
   .voice-stat__val { font-size: 34px; }
   .plans { gap: 16px; }
@@ -503,6 +517,18 @@
 @media (max-width: 720px) {
   .agent-cards { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
 }
+/* Pantallas muy angostas (iPhone SE y similares): con el CTA en una sola
+   linea, logo + EN + "Agendar demo" ya no caben en 320px. Se aprieta el
+   nav en vez de dejar que el texto se parta otra vez. */
+@media (max-width: 400px) {
+  .nav { gap: 8px; padding: 0 12px; }
+  .nav__actions { gap: 8px; }
+  .nav .btn--primary { padding: 0.6rem 0.85rem; font-size: 13.5px; }
+  .lang-toggle { padding: 6px 10px; font-size: 12px; }
+  .nav__logo { font-size: 17px; gap: 7px; }
+  .nav__logo-img img { width: 34px; height: 34px; }
+}
+
 @media (max-width: 640px) {
   .nav__links { display: none; }
   .hero-dark__h1 { letter-spacing: -1.5px; }

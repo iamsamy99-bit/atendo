@@ -57,7 +57,7 @@ main p { color: var(--muted); }
   -webkit-backdrop-filter: blur(8px);
 }
 .nav__logo { color: var(--ink); }
-.nav__logo-img { background: var(--blue-light); border-color: var(--border); }
+.nav__logo-img { background: transparent; border-color: transparent; }
 .nav__links a { color: var(--muted); }
 .nav__links a:hover { color: var(--ink); }
 .nav__links a::after { background: var(--cyan); }
@@ -120,7 +120,8 @@ main p { color: var(--muted); }
 /* ── BOTONES ───────────────────────────────────────────────────── */
 .btn--primary {
   background: var(--cyan); color: #fff; border: 1px solid var(--cyan);
-  border-radius: 2px;
+  /* hereda --btn-radius de .btn: antes forzaba 2px y quedaba casi cuadrado
+     junto a los .btn--outline redondeados de la misma fila. */
 }
 .btn--primary::before, .btn--primary::after { content: none; }
 .btn--primary:hover { background: var(--blue-dark, #006786); }
@@ -397,7 +398,10 @@ main p { color: var(--muted); }
   .btn { transition: background 0.2s, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, color 0.15s, border-color 0.2s; }
   .btn:hover { transform: translateY(-2px); }
   .btn--primary:hover { transform: translateY(-2px) scale(1.015); }
-  .btn:active { transform: scale(0.97); }
+  /* El :active vive fuera de este bloque (layout.css) para que el tap
+     tambien responda en tactiles; aqui solo se acorta la curva para que
+     el rebote no se coma la sensacion de "presionado". */
+  .btn:active { transform: scale(0.96); transition-duration: 0.09s; }
 
   .card, .step, .plan2, .agent-card, .bento__cell {
     transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.3s ease;
@@ -432,3 +436,71 @@ main p { color: var(--muted); }
   .cb-float { bottom: 18px; left: 18px; }
   .call-float { bottom: 18px; left: 76px; }
 }
+
+/* ── Links "saber más" de tarjetas/celdas hacia sus páginas propias ─── */
+.card__more,
+.bento__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cyan, #2563eb);
+  transition: gap 0.2s ease;
+}
+.card__more:hover,
+.bento__more:hover { gap: 10px; }
+.card__more svg,
+.bento__more svg { flex-shrink: 0; }
+
+/* ── Consistencia de controles cliqueables ─────────────────────── */
+/* Todo lo rectangular comparte --btn-radius; los FAB siguen siendo pildoras
+   (999px) porque son otra categoria de control, no un boton en linea. */
+.cb-form__submit, .chat-sim__send, button.btn, a.btn { border-radius: var(--btn-radius); }
+.chat-sim__send { border-radius: 50%; } /* icono circular: se mantiene */
+
+/* El feedback al presionar de .lang-toggle, los FAB y .chat-sim__send ya
+   vive en layout.css; no se redefine aqui para no tener dos fuentes de
+   verdad con valores distintos. */
+
+/* Estado oculto de los botones flotantes (ver src/ui/floatingCtas.ts).
+   `visibility` + `pointer-events` para que no intercepten clics de los CTA
+   que quedan debajo, no solo que no se vean. */
+.cb-float, .call-float {
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.25s;
+}
+.cb-float.floats-hidden,
+.call-float.floats-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(14px) scale(0.94);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cb-float, .call-float { transition: opacity 0.15s ease, visibility 0.15s; }
+  .cb-float.floats-hidden, .call-float.floats-hidden { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .lang-toggle, .cb-float__btn, .call-float, .chat-sim__send { transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+  .btn:hover, .btn--primary:hover { transform: none; }
+  /* El :active se conserva: es confirmacion de accion, no decoracion. */
+}
+
+/* ── Placeholder temporal mientras se generan las imágenes definitivas ── */
+.img-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  border-radius: 18px;
+  border: 1.5px dashed rgba(37, 99, 235, 0.35);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.06), rgba(20, 184, 166, 0.06));
+  color: var(--muted, #6b7280);
+  font-size: 14px;
+  font-weight: 600;
+}
+.img-placeholder svg { opacity: 0.55; flex-shrink: 0; }

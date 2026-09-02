@@ -13,17 +13,17 @@ describe('dictionaries', () => {
 
 describe('applyTranslations', () => {
   beforeEach(() => {
-    document.body.innerHTML = `<h1 data-i18n="hero.title"></h1>`
+    document.body.innerHTML = `<h1 data-i18n="hero.subtitle"></h1>`
   })
 
   it('fills element text from the dictionary', () => {
     applyTranslations('es')
-    expect(document.querySelector('h1')!.textContent).toBe(es['hero.title'])
+    expect(document.querySelector('h1')!.textContent).toBe(es['hero.subtitle'])
   })
 
   it('switches text when language changes', () => {
     applyTranslations('en')
-    expect(document.querySelector('h1')!.textContent).toBe(en['hero.title'])
+    expect(document.querySelector('h1')!.textContent).toBe(en['hero.subtitle'])
   })
 
   it('warns and leaves the key when it is missing', () => {

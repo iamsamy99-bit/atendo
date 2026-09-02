@@ -123,8 +123,10 @@ export function initCallback(): void {
   if (inline) refreshers.push(mountForm(inline, 'cta-callback'))
 
   // El toggle de idioma cambia <html lang>; re-pintar placeholders y textos.
-  new MutationObserver(() => refreshers.forEach(r => r())).observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['lang'],
-  })
+  if ('MutationObserver' in window) {
+    new MutationObserver(() => refreshers.forEach(r => r())).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['lang'],
+    })
+  }
 }

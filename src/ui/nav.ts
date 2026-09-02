@@ -17,7 +17,7 @@ export function initNav(current: Lang): void {
   const sections = links
     .map((l) => document.querySelector<HTMLElement>(l.hash))
     .filter((s): s is HTMLElement => s !== null)
-  if (sections.length) {
+  if (sections.length && 'IntersectionObserver' in window) {
     const setActive = (id: string | null) => {
       links.forEach((l) => l.classList.toggle('active', id !== null && l.hash === `#${id}`))
     }

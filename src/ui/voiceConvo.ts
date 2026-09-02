@@ -19,7 +19,7 @@ export function initVoiceConvo(): void {
   const field = document.getElementById('voice-convo-field') as HTMLInputElement | null
   if (!msgs || !form || !field) return
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
   const sendBtn = form.querySelector<HTMLButtonElement>('.chat-sim__send')
 
   const addBubble = async (side: 'sent' | 'received', text: string): Promise<void> => {

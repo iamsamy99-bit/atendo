@@ -2,7 +2,7 @@
 // sobre cada tarjeta (variables CSS --mx/--my), throttled con rAF.
 // Solo se activa con puntero fino (en táctil no hay hover que seguir).
 export function initSpotlight(): void {
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return
+  if (!window.matchMedia?.('(hover: hover) and (pointer: fine)').matches) return
 
   const grid = document.getElementById('bento')
   if (!grid) return

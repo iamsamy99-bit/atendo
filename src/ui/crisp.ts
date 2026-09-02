@@ -23,12 +23,14 @@ export function initCrisp(lang: string): void {
   document.head.appendChild(script)
 
   // Sincroniza locale cada vez que applyTranslations cambia el lang del doc
-  const observer = new MutationObserver(() => {
-    const newLang = document.documentElement.lang
-    if (newLang) window.$crisp.push(['config', 'locale', [newLang]])
-  })
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['lang'],
-  })
+  if ('MutationObserver' in window) {
+    const observer = new MutationObserver(() => {
+      const newLang = document.documentElement.lang
+      if (newLang) window.$crisp.push(['config', 'locale', [newLang]])
+    })
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['lang'],
+    })
+  }
 }

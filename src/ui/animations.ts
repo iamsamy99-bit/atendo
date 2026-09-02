@@ -1,5 +1,5 @@
 export function initAnimations(): void {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
 
   if (!reduceMotion) initParticles()
   if (!reduceMotion) initParallax()
@@ -21,18 +21,24 @@ export function initAnimations(): void {
     })
   })
 
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible')
-          io.unobserve(e.target)
-        }
-      })
-    },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-  )
-  document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el))
+  const revealEls = document.querySelectorAll<HTMLElement>('[data-reveal]')
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible')
+            io.unobserve(e.target)
+          }
+        })
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    )
+    revealEls.forEach((el) => io.observe(el))
+  } else {
+    // Older webviews should show the content instead of leaving it hidden.
+    revealEls.forEach((el) => el.classList.add('visible'))
+  }
 
   const syncFaqAria = () => {
     document.querySelectorAll<HTMLButtonElement>('.faq2__q').forEach((btn) => {
@@ -95,11 +101,13 @@ function initParticles(): void {
       running = false
     }
   }
-  const heroVisible = new IntersectionObserver((entries) => {
-    inView = entries[0]?.isIntersecting ?? true
-    setRunning()
-  })
-  heroVisible.observe(canvas)
+  if ('IntersectionObserver' in window) {
+    const heroVisible = new IntersectionObserver((entries) => {
+      inView = entries[0]?.isIntersecting ?? true
+      setRunning()
+    })
+    heroVisible.observe(canvas)
+  }
   document.addEventListener('visibilitychange', setRunning)
 
   const draw = () => {
@@ -206,6 +214,11 @@ function initCountUp(reduceMotion: boolean): void {
       else t.el.textContent = t.raw
     }
     requestAnimationFrame(step)
+  }
+
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach((target) => { target.el.textContent = target.raw })
+    return
   }
 
   const io = new IntersectionObserver(

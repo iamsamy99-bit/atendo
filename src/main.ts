@@ -12,6 +12,7 @@ import { initChatSim } from './ui/chatSim'
 import { initVoiceConvo } from './ui/voiceConvo'
 import { initSpotlight } from './ui/spotlight'
 import { initCallback } from './ui/callback'
+import { initFloatingCtas } from './ui/floatingCtas'
 
 const lang = getInitialLang()
 applyTranslations(lang)
@@ -24,3 +25,4 @@ initChatSim()
 initVoiceConvo()
 initSpotlight()
 initCallback()
+initFloatingCtas()
