@@ -5,6 +5,12 @@ export interface Env {
   DB: D1Database
   RESEND_API_KEY?: string
   CALCOM_API_KEY?: string
+  OPENAI_API_KEY?: string
+  OPENAI_MODEL?: string
+  META_WHATSAPP_ACCESS_TOKEN?: string
+  META_WHATSAPP_PHONE_NUMBER_ID?: string
+  META_WHATSAPP_VERIFY_TOKEN?: string
+  META_WHATSAPP_APP_SECRET?: string
   VAPI_PRIVATE_KEY?: string
   VAPI_OUTBOUND_ASSISTANT_ID?: string
   VAPI_OUTBOUND_PHONE_ID?: string

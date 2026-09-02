@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import { api, ApiError } from '../api'
 import { Modal, Field, Form, Empty } from '../components/ui'
 import SeguimientoModal from '../components/SeguimientoModal'
@@ -74,6 +74,7 @@ export default function Leads() {
   const [colapsadas, setColapsadas] = useState<Record<string, boolean>>({})
   const [seguimiento, setSeguimiento] = useState(false)
   const [campana, setCampana] = useState(false)
+  const [origenFiltro, setOrigenFiltro] = useState<'inbound' | 'prospeccion' | 'todos'>('inbound')
 
   const load = useCallback(() => {
     api.get<Lead[]>('/leads')
@@ -93,6 +94,14 @@ export default function Leads() {
   }, [])
 
   useEffect(load, [load])
+
+  const leadsFiltrados = useMemo(() => {
+    return leads.filter(l => {
+      if (origenFiltro === 'inbound') return l.origen !== 'prospeccion'
+      if (origenFiltro === 'prospeccion') return l.origen === 'prospeccion'
+      return true
+    })
+  }, [leads, origenFiltro])
 
   const save = async () => {
     if (!editing || busy) return
@@ -156,10 +165,26 @@ export default function Leads() {
           <h1>Leads</h1>
           <p className="sub">Pipeline de ventas — toca un lead para ver y editar sus detalles</p>
         </div>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+          <select
+            value={origenFiltro}
+            onChange={e => setOrigenFiltro(e.target.value as any)}
+            style={{
+              background: 'var(--bg-alt)',
+              border: '1px solid var(--border)',
+              borderRadius: 10,
+              padding: '8px 12px',
+              fontSize: '0.85rem',
+              color: 'var(--ink)'
+            }}
+          >
+            <option value="inbound">Leads Inbound (Landing/Chat)</option>
+            <option value="prospeccion">Prospectos Fríos</option>
+            <option value="todos">Todos los Leads</option>
+          </select>
           <button className="btn-ghost" onClick={() => setCampana(true)}>📣 Campaña IA</button>
           <button className="btn-ghost" onClick={() => setSeguimiento(true)}>✉ Enviar seguimiento</button>
-          <button className="btn" onClick={() => setEditing({ ...EMPTY })}>+ Nuevo lead</button>
+          <button className="btn" onClick={() => setEditing({ ...EMPTY, origen: origenFiltro === 'prospeccion' ? 'prospeccion' : null })}>+ Nuevo lead</button>
         </div>
       </div>
 
@@ -168,12 +193,12 @@ export default function Leads() {
 
       {error && <div className="error-box">{error}</div>}
 
-      {leads.length === 0 ? (
-        <Empty icon="➤" text="Aún no hay leads. Crea el primero o conecta tus automatizaciones de Make." />
+      {leadsFiltrados.length === 0 ? (
+        <Empty icon="➤" text="Aún no hay leads con este filtro." />
       ) : (
         <div className="kanban">
           {LEAD_ESTADOS.map(col => {
-            const items = leads.filter(l => l.estado === col.key)
+            const items = leadsFiltrados.filter(l => l.estado === col.key)
             const cerrada = !!colapsadas[col.key]
             return (
               <div className={`kcol ${cerrada ? 'closed' : ''}`} key={col.key}>

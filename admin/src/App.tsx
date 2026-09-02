@@ -3,14 +3,16 @@ import { api, ApiError } from './api'
 import { Form, Field } from './components/ui'
 import Inicio from './pages/Inicio'
 import Leads from './pages/Leads'
+import Prospectos from './pages/Prospectos'
 import Clientes from './pages/Clientes'
 import Pagos from './pages/Pagos'
 import Tickets from './pages/Tickets'
 
-type Route = 'inicio' | 'leads' | 'clientes' | 'pagos' | 'tickets'
+type Route = 'inicio' | 'leads' | 'prospectos' | 'clientes' | 'pagos' | 'tickets'
 const ROUTES: { key: Route; label: string; icon: string }[] = [
   { key: 'inicio', label: 'Inicio', icon: '◆' },
   { key: 'leads', label: 'Leads', icon: '➤' },
+  { key: 'prospectos', label: 'Prospector IA', icon: '⚡' },
   { key: 'clientes', label: 'Clientes', icon: '●' },
   { key: 'pagos', label: 'Pagos', icon: '$' },
   { key: 'tickets', label: 'Tickets', icon: '◉' },
@@ -120,6 +122,7 @@ export default function App() {
         <div key={route} className="page-enter">
           {route === 'inicio' && <Inicio />}
           {route === 'leads' && <Leads />}
+          {route === 'prospectos' && <Prospectos />}
           {route === 'clientes' && <Clientes />}
           {route === 'pagos' && <Pagos />}
           {route === 'tickets' && <Tickets />}
