@@ -4,15 +4,17 @@ import { Form, Field } from './components/ui'
 import Inicio from './pages/Inicio'
 import Leads from './pages/Leads'
 import Prospectos from './pages/Prospectos'
+import Whatsapp from './pages/Whatsapp'
 import Clientes from './pages/Clientes'
 import Pagos from './pages/Pagos'
 import Tickets from './pages/Tickets'
 
-type Route = 'inicio' | 'leads' | 'prospectos' | 'clientes' | 'pagos' | 'tickets'
+type Route = 'inicio' | 'leads' | 'prospectos' | 'whatsapp' | 'clientes' | 'pagos' | 'tickets'
 const ROUTES: { key: Route; label: string; icon: string }[] = [
   { key: 'inicio', label: 'Inicio', icon: '◆' },
   { key: 'leads', label: 'Leads', icon: '➤' },
   { key: 'prospectos', label: 'Prospector IA', icon: '⚡' },
+  { key: 'whatsapp', label: 'WhatsApp', icon: '💬' },
   { key: 'clientes', label: 'Clientes', icon: '●' },
   { key: 'pagos', label: 'Pagos', icon: '$' },
   { key: 'tickets', label: 'Tickets', icon: '◉' },
@@ -123,6 +125,7 @@ export default function App() {
           {route === 'inicio' && <Inicio />}
           {route === 'leads' && <Leads />}
           {route === 'prospectos' && <Prospectos />}
+      {route === 'whatsapp' && <Whatsapp />}
           {route === 'clientes' && <Clientes />}
           {route === 'pagos' && <Pagos />}
           {route === 'tickets' && <Tickets />}
