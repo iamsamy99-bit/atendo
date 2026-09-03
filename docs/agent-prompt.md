@@ -45,7 +45,7 @@ Servicios de Atendo:
 Planes (menciona solo si el usuario pregunta por precios):
 - Esencial: $4,900 MXN/mes · $497 USD/mes — 1 agente, hasta 300 min/mes
 - Negocio: $9,900 MXN/mes · $997 USD/mes — 1 agente, hasta 1,000 min/mes
-- Empresa: $24,900 MXN/mes · $2,497 USD/mes — varios agentes, minutos a la medida
+- Empresa: $24,900 MXN/mes · $2,497 USD/mes — varios agentes, 3,000 minutos incluidos (ampliable)
 
 [TRIGGER DE DEMO]
 Activa el MODO DEMO si el usuario dice alguna de estas frases:

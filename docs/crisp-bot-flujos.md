@@ -83,7 +83,7 @@ Mensaje 1 (bot):
   1 agente · hasta 1,000 min/mes · reportes + soporte por WhatsApp
 
 • Empresa — $24,900 MXN / $2,497 USD
-  Varios agentes · minutos a la medida · sitio web incluido
+  Varios agentes · 3,000 minutos incluidos · sitio web incluido
 
 ¿Quieres ver cuál se adapta mejor a tu negocio?"
 
@@ -96,14 +96,14 @@ Mensaje 1 (bot):
 ```
 "Planes de chatbot (WhatsApp y Telegram):
 
-• Chat Esencial — $1,490 MXN / $149 USD
-  1 canal · 500 conversaciones/mes
+• Chat Inicia — $790 MXN / $79 USD
+  1 canal · 2,000 conversaciones/mes
 
-• Chat Negocio ⭐ — $2,990 MXN / $299 USD
-  WhatsApp + Telegram · 1,000 conversaciones/mes
+• Chat Crece ⭐ — $1,590 MXN / $159 USD
+  WhatsApp + Telegram · 6,000 conversaciones/mes
 
-• Chat Pro — $4,990 MXN / $499 USD
-  WhatsApp + Telegram + Instagram · 3,000 conversaciones/mes"
+• Chat Pro — $2,790 MXN / $279 USD
+  WhatsApp + Telegram + Instagram · 10,000 conversaciones/mes"
 
 → Mostrar botones:
    [Agendar demo gratuita]
@@ -114,9 +114,9 @@ Mensaje 1 (bot):
 ```
 "Combinar voz + chat tiene un descuento de entre 20% y 22%:
 
-• Esencial Completo — $5,900 MXN / $597 USD
-• Negocio Completo ⭐ — $11,900 MXN / $1,197 USD
-• Empresa Completo — $27,900 MXN / $2,797 USD
+• Esencial Completo — $5,290 MXN / $529 USD
+• Negocio Completo ⭐ — $10,590 MXN / $1,059 USD
+• Empresa Completo — $25,900 MXN / $2,590 USD
 
 ¿Agendamos una demo para ver cuál encaja mejor con tu negocio?"
 

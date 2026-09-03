@@ -1,6 +1,8 @@
 # Precios y Planes de Atendo
 
-> Todos los precios son mensuales. Sin contratos forzosos. Sin costos de instalación.
+> Todos los precios son mensuales. Sin contratos forzosos.
+> Alta única de $1,990 MXN / $199 USD (configuración y entrenamiento del agente).
+> Última actualización: 2026-09-03.
 
 ---
 
@@ -24,7 +26,7 @@
 - **Incluye:**
   - 1 agente de voz con IA
   - Hasta 1,000 minutos de llamadas al mes
-  - **Voz premium ultra-natural (ElevenLabs)**
+  - Voz premium ultra-natural
   - Agenda de citas + recordatorios automáticos
   - Reportes mensuales de llamadas
   - Soporte técnico prioritario por WhatsApp
@@ -37,7 +39,7 @@
 - **Incluye:**
   - Varios agentes de voz (cantidad según necesidad del negocio)
   - **3,000 minutos de llamadas al mes incluidos** (base ampliable según volumen)
-  - Voz premium ultra-natural (ElevenLabs) + modelo IA avanzado
+  - Voz premium ultra-natural + modelo IA avanzado
   - Sitio web profesional incluido
   - Integraciones avanzadas (CRM, calendario, WhatsApp)
   - Implementación a la medida y soporte dedicado con tiempo de respuesta garantizado
@@ -48,55 +50,60 @@
 
 ## Chatbots (WhatsApp y Telegram)
 
-### Plan Chat Esencial
-- **MXN:** $1,490 / mes
-- **USD:** $149 / mes
+> Rediseñados en septiembre 2026: **precios más bajos y mucho más volumen incluido**.
+> El costo real de una conversación con IA es de centavos, así que el volumen se
+> puede regalar; lo que se cuida es el tiempo de soporte.
+
+### Plan Chat Inicia
+- **MXN:** $790 / mes
+- **USD:** $79 / mes
 - **Incluye:**
   - 1 canal (WhatsApp o Telegram)
   - Respuestas automáticas con IA
-  - Hasta 500 conversaciones al mes
-- **Conversación extra:** $3 MXN / $0.15 USD
+  - **2,000 conversaciones al mes**
+  - Soporte por correo
+- **Conversaciones extra:** $150 MXN / $15 USD por cada 1,000
 - **Ideal para:** negocios pequeños que quieren automatizar su canal de mensajería principal
 
-### Plan Chat Negocio ⭐ más popular
-- **MXN:** $2,990 / mes
-- **USD:** $299 / mes
+### Plan Chat Crece ⭐ más popular
+- **MXN:** $1,590 / mes
+- **USD:** $159 / mes
 - **Incluye:**
   - WhatsApp + Telegram
   - Agenda de citas + reportes de conversaciones
-  - Hasta 1,000 conversaciones al mes
-- **Conversación extra:** $2.50 MXN / $0.12 USD
+  - **6,000 conversaciones al mes**
+  - Soporte por WhatsApp
+- **Conversaciones extra:** $150 MXN / $15 USD por cada 1,000
 - **Ideal para:** negocios en crecimiento con volumen moderado de mensajes
 
 ### Plan Chat Pro
-- **MXN:** $4,990 / mes
-- **USD:** $499 / mes
+- **MXN:** $2,790 / mes
+- **USD:** $279 / mes
 - **Incluye:**
   - WhatsApp + Telegram + Instagram
   - CRM básico + integraciones
-  - Hasta 3,000 conversaciones al mes
-- **Conversación extra:** $2 MXN / $0.10 USD
+  - **10,000 conversaciones al mes**
+  - Soporte prioritario
+- **Conversaciones extra:** $150 MXN / $15 USD por cada 1,000
 - **Ideal para:** negocios con alto volumen de mensajes y múltiples canales
 
 ---
 
 ## Paquetes Voz + Chat (precio especial)
 
-Contratar voz y chat juntos genera un ahorro de entre 20% y 22% vs. contratar por separado.
-
 ### Paquete Esencial Completo
-- **MXN:** $5,900 / mes — *ahorra 20% vs. separado*
-- **USD:** $597 / mes
-- **Incluye:** Voz Esencial + Chat Esencial
+- **MXN:** $5,290 / mes — *ahorra 7% vs. separado*
+- **USD:** $529 / mes
+- **Incluye:** Voz Esencial + Chat Inicia
 
 ### Paquete Negocio Completo ⭐ mejor valor
-- **MXN:** $11,900 / mes — *ahorra 22% vs. separado*
-- **USD:** $1,197 / mes
-- **Incluye:** Voz Negocio + Chat Negocio
+- **MXN:** $10,590 / mes — *ahorra 8% vs. separado*
+- **USD:** $1,059 / mes
+- **Incluye:** Voz Negocio + Chat Crece
 
 ### Paquete Empresa Completo
-- **MXN:** desde $27,900 / mes
-- **USD:** desde $2,797 / mes
+- **MXN:** desde $25,900 / mes
+- **USD:** desde $2,590 / mes
 - **Incluye:** Voz Empresa (3,000 min) + Chat Pro + sitio web incluido + soporte dedicado
 
 ---
@@ -104,21 +111,50 @@ Contratar voz y chat juntos genera un ahorro de entre 20% y 22% vs. contratar po
 ## Condiciones generales
 
 - **Sin contratos forzosos** — se puede cancelar con 30 días de aviso
-- **Sin costos de instalación** ni cargos ocultos (planes Esencial y Negocio). El plan Empresa incluye implementación a la medida, cotizada según alcance.
+- **Alta única de $1,990 MXN / $199 USD**: cubre la configuración, el entrenamiento
+  del agente con la información del negocio y las pruebas. Se cobra una sola vez al
+  inicio; la mensualidad no la incluye.
+- **Soporte incluido por plan** (asincrónico, por correo o WhatsApp). El
+  acompañamiento adicional —capacitaciones, rediseños de flujo, cambios mayores—
+  se cotiza a **$600 MXN / hora**.
 - **Pago en MXN o USD** — transferencia bancaria, tarjeta de crédito o Stripe
-- **Minutos/conversaciones extra:** se notifican **antes** de llegar al límite. Se cobran a la tarifa del plan o se puede hacer upgrade. Ningún plan es "ilimitado" — todos tienen un bloque incluido para dar precio con transparencia.
-- **Calidad de voz por plan:** Esencial usa voz estándar profesional; Negocio y Empresa usan voz premium ultra-natural (ElevenLabs). Esto mantiene el plan de entrada accesible sin sacrificar naturalidad.
-- Los cambios de información del agente (precios, horarios, servicios) se aplican sin costo adicional dentro del plan activo
+- **Minutos/conversaciones extra:** se notifican **antes** de llegar al límite. Se
+  cobran a la tarifa del plan o se puede hacer upgrade. Ningún plan es "ilimitado".
+- **Calidad de voz por plan:** Esencial usa voz estándar profesional; Negocio y
+  Empresa usan voz premium ultra-natural.
+- Los cambios de información del agente (precios, horarios, servicios) se aplican
+  sin costo adicional dentro del plan activo
 
 ---
 
 ## Notas internas (no compartir con el cliente)
 
-- **Costo real de infraestructura:** ~$0.16 USD/min all-in (Vapi + ElevenLabs + Deepgram nova-3 + GPT-4o-mini + Twilio). El sobreconsumo se cobra a ~2.5–3x el costo.
-- **Margen bruto objetivo:** Esencial ~80%, Negocio ~65%, Empresa ~60% (con 3,000 min). Chat >90%.
-- **El costo dominante es ElevenLabs** (~$0.08/min): por eso Esencial usa voz estándar (Azure/Deepgram ~$0.02/min).
-- **Tipo de cambio de referencia:** ~19 MXN/USD — revisar antes de cotizar en USD; el USD es precio de mercado EE.UU., no conversión directa del MXN.
-- El cuello de botella real es el **tiempo de Samuel** (onboarding + ajustes), no el infra. Priorizar clientes de plan Negocio+ para rentabilidad por hora.
+Costos medidos el 2026-09-03 con la API de Vapi sobre llamadas reales, no estimados.
+
+- **Costo real de voz: $0.1185 USD/min = $2.01 MXN/min** all-in.
+  Desglose: Vapi $0.0501 (42%) · LLM gpt-4o $0.0246 (21%) · TTS Cartesia $0.0185
+  (16%) · STT Deepgram nova-3 $0.0103 (9%) · telefonía ~$0.0150 (13%).
+  Ojo: la muestra fue de una sola llamada corta; sirve de referencia, no de promedio.
+- **Costo real de chat: $0.066 MXN por conversación** (10 mensajes, gpt-4o-mini).
+  Meta cobra **$0** por los mensajes entrantes y por las respuestas libres dentro
+  de la ventana de 24 h (cambió a cobro por mensaje en julio 2025); solo se pagan
+  las plantillas. Por eso el volumen de conversaciones es casi gratis de regalar.
+- **Costo fijo por cliente/mes:** ~$643 MXN en voz (número $34 + herramientas $25 +
+  alta amortizada $233 + 1 h de soporte $350) y ~$142 en chat sin soporte.
+- **Márgenes reales** (ya contando el tiempo de Samuel a $350/h):
+  Voz Esencial 74.6% · Voz Negocio 73.2% · Chat Inicia 68.9% · Chat Crece 56.9% ·
+  Chat Pro 56.5%.
+- **El negocio NO está expuesto al precio de la IA:** el costo tendría que
+  multiplicarse por 4.6x (voz) o 35x (chat) para dejar margen cero. Y la tendencia
+  es a la baja (gpt-5-mini cuesta 10x menos que gpt-4o por token).
+- **El cuello de botella real es el tiempo de Samuel.** Chat Inicia pierde dinero a
+  partir de ~1.9 h de soporte en un mes. Por eso el soporte extra se cobra: es lo
+  único que puede romper la rentabilidad.
+- **Peor caso con excedentes cobrados** (cliente usa 3x conversaciones y pide 2 h
+  extra): el margen se mantiene en 52–54%. **Sin cobrarlos, cae a −53%.** Cobrar el
+  excedente no es opcional.
+- **Tipo de cambio de referencia:** 16.99 MXN/USD (2026-09-03). El precio en USD es
+  precio de mercado EE.UU. (~1.7x el MXN convertido), no conversión directa.
 
 ---
 

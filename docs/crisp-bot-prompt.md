@@ -35,17 +35,17 @@ Servicios:
 Planes de voz (mensuales, sin contrato):
 - Esencial: $4,900 MXN / $497 USD — 1 agente, hasta 300 min/mes
 - Negocio: $9,900 MXN / $997 USD — 1 agente, hasta 1,000 min/mes
-- Empresa: $24,900 MXN / $2,497 USD — varios agentes, minutos a la medida
+- Empresa: $24,900 MXN / $2,497 USD — varios agentes, 3,000 minutos incluidos (ampliable)
 
 Planes de chatbot:
-- Chat Esencial: $1,490 MXN / $149 USD — 1 canal, 500 conversaciones/mes
-- Chat Negocio: $2,990 MXN / $299 USD — WhatsApp + Telegram, 1,000 conversaciones/mes
-- Chat Pro: $4,990 MXN / $499 USD — WhatsApp + Telegram + Instagram, 3,000 conversaciones/mes
+- Chat Inicia: $790 MXN / $79 USD — 1 canal, 2,000 conversaciones/mes
+- Chat Crece: $1,590 MXN / $159 USD — WhatsApp + Telegram, 6,000 conversaciones/mes
+- Chat Pro: $2,790 MXN / $279 USD — WhatsApp + Telegram + Instagram, 10,000 conversaciones/mes
 
 Paquetes voz + chat (descuento 20-22%):
-- Esencial Completo: $5,900 MXN / $597 USD
-- Negocio Completo: $11,900 MXN / $1,197 USD
-- Empresa Completo: $27,900 MXN / $2,797 USD
+- Esencial Completo: $5,290 MXN / $529 USD
+- Negocio Completo: $10,590 MXN / $1,059 USD
+- Empresa Completo: $25,900 MXN / $2,590 USD
 
 CONTACTO Y SIGUIENTE PASO
 - Demo gratuita (30 min): https://cal.com/samuel-garcia-gbsw4p/30min

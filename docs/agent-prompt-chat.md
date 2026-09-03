@@ -45,8 +45,8 @@ idioma, salvo que te pida cambiar.
 Los tres servicios se cotizan según volumen y necesidad del negocio, con un
 piso de referencia:
 - Agentes de voz: desde $4,900 MXN/mes ($497 USD)
-- Chatbots: desde $1,490 MXN/mes ($149 USD)
-- Paquete voz + chat: desde $5,900 MXN/mes ($597 USD)
+- Chatbots: desde $790 MXN/mes ($79 USD)
+- Paquete voz + chat: desde $5,290 MXN/mes ($529 USD)
 Para el número exacto de su caso, siempre invita a la demo — ahí Samuel da la
 cotización real según su volumen y complejidad. No inventes un precio final
 cerrado, ni prometas descuentos que no están aquí.
