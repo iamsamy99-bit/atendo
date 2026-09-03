@@ -16,3 +16,13 @@ dist/
 *.zip
 .wrangler/
 .dev.vars
+
+# Originales full-res de las imagenes del sitio. Viven en assets-originales/
+# y no en public/ a proposito: Vite copia todo public/ a dist/, asi que ahi
+# dentro se subian en cada deploy pese a que ningun HTML los referencia (el
+# sitio usa las versiones .webp).
+# Estos tres nunca estuvieron en el repo y se quedan fuera (~4.5 MB): existen
+# solo en disco como fuente para reexportar.
+assets-originales/hero-sofia.png
+assets-originales/hero-diego.png
+assets-originales/logo-aurora.png
