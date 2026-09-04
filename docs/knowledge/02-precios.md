@@ -127,37 +127,6 @@
 
 ---
 
-## Notas internas (no compartir con el cliente)
-
-Costos medidos el 2026-09-03 con la API de Vapi sobre llamadas reales, no estimados.
-
-- **Costo real de voz: $0.1185 USD/min = $2.01 MXN/min** all-in.
-  Desglose: Vapi $0.0501 (42%) · LLM gpt-4o $0.0246 (21%) · TTS Cartesia $0.0185
-  (16%) · STT Deepgram nova-3 $0.0103 (9%) · telefonía ~$0.0150 (13%).
-  Ojo: la muestra fue de una sola llamada corta; sirve de referencia, no de promedio.
-- **Costo real de chat: $0.066 MXN por conversación** (10 mensajes, gpt-4o-mini).
-  Meta cobra **$0** por los mensajes entrantes y por las respuestas libres dentro
-  de la ventana de 24 h (cambió a cobro por mensaje en julio 2025); solo se pagan
-  las plantillas. Por eso el volumen de conversaciones es casi gratis de regalar.
-- **Costo fijo por cliente/mes:** ~$643 MXN en voz (número $34 + herramientas $25 +
-  alta amortizada $233 + 1 h de soporte $350) y ~$142 en chat sin soporte.
-- **Márgenes reales** (ya contando el tiempo de Samuel a $350/h):
-  Voz Esencial 74.6% · Voz Negocio 73.2% · Chat Inicia 68.9% · Chat Crece 56.9% ·
-  Chat Pro 56.5%.
-- **El negocio NO está expuesto al precio de la IA:** el costo tendría que
-  multiplicarse por 4.6x (voz) o 35x (chat) para dejar margen cero. Y la tendencia
-  es a la baja (gpt-5-mini cuesta 10x menos que gpt-4o por token).
-- **El cuello de botella real es el tiempo de Samuel.** Chat Inicia pierde dinero a
-  partir de ~1.9 h de soporte en un mes. Por eso el soporte extra se cobra: es lo
-  único que puede romper la rentabilidad.
-- **Peor caso con excedentes cobrados** (cliente usa 3x conversaciones y pide 2 h
-  extra): el margen se mantiene en 52–54%. **Sin cobrarlos, cae a −53%.** Cobrar el
-  excedente no es opcional.
-- **Tipo de cambio de referencia:** 16.99 MXN/USD (2026-09-03). El precio en USD es
-  precio de mercado EE.UU. (~1.7x el MXN convertido), no conversión directa.
-
----
-
 ## Demo gratuita
 
 Antes de contratar, todos los clientes reciben una demo de 30 minutos sin costo.
