@@ -597,13 +597,13 @@ export default function Prospectos() {
             <code>Nombre de contacto, Nombre de Clínica, Teléfono, Correo, Especialidad/Industria, Nota de Necesidad, Plan de interés</code><br />
             <br />
             <strong>Ejemplo:</strong><br />
-            <code>Dr. Juan Pérez, Clínica Dental Juárez, 5512345678, contacto@dentaljuarez.com, dental, Recepción y citas, Esencial</code>
+            <code>Dr. Juan Pérez, Clínica Dental Ejemplo, 5500000000, contacto@ejemplo.com, dental, Recepción y citas, Esencial</code>
           </div>
           <Field label="Pega los registros aquí:">
             <textarea 
               value={importText} 
               onChange={e => setImportText(e.target.value)} 
-              placeholder="Dr. Juan Pérez, Clínica Dental Juárez, 5512345678, contacto@dentaljuarez.com, dental" 
+              placeholder="Dr. Juan Pérez, Clínica Dental Ejemplo, 5500000000, contacto@ejemplo.com, dental" 
               style={{ minHeight: 200, fontFamily: 'monospace', fontSize: '0.85rem' }}
             />
           </Field>
@@ -652,7 +652,7 @@ export default function Prospectos() {
                   type="email" 
                   value={editing.email ?? ''} 
                   onChange={e => setEditing(prev => ({ ...prev, email: e.target.value }))} 
-                  placeholder="Ej. contacto@clinicavista.com"
+                  placeholder="Ej. contacto@ejemplo.com"
                 />
               </Field>
               <Field label="Industria / Especialidad">

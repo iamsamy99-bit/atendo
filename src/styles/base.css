@@ -1,10 +1,10 @@
 :root {
-  --blue: #0088b0;
+  --blue: #007293;  /* alineado con --cyan por contraste AA */
   --blue-dark: #006786;
   --blue-light: #e9f8ff;
   --ink: #201e1d;
   --muted: #605d5d;
-  --muted-light: #9b9797;
+  --muted-light: #6a6868; /* antes #9b9797: 2.59:1 sobre crema */
   --amber: #aa0b56;
   --bg: #f3f2f2;
   --bg-alt: #eae9e9;
