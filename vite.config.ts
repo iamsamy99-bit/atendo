@@ -11,6 +11,7 @@ export default defineConfig({
         servVoz: resolve(__dirname, 'servicios/voz.html'),
         servChat: resolve(__dirname, 'servicios/chat.html'),
         servWeb: resolve(__dirname, 'servicios/web.html'),
+        servWhatsapp: resolve(__dirname, 'servicios/whatsapp.html'),
         indSalud: resolve(__dirname, 'industrias/salud.html'),
         indEcommerce: resolve(__dirname, 'industrias/ecommerce.html'),
         indServiciosLocales: resolve(__dirname, 'industrias/servicios-locales.html'),
