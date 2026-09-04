@@ -630,3 +630,17 @@ main p { color: var(--muted); }
   border-color: #fff;
   background: rgba(255,255,255,0.12);
 }
+
+/* Ilustración del hero en las páginas de servicio.
+   El contenedor es `flex: 0 0 auto`: con la imagen a 1200px naturales no
+   cabía junto al texto y caía debajo del pliegue; con `width:100%` en la
+   imagen el cálculo era circular y colapsaba a 300px. La base definida va
+   en el contenedor y la imagen simplemente la llena. */
+.hero-dark__mockup:has(img) {
+  flex: 0 1 520px;
+  max-width: 100%;
+}
+.hero-dark__mockup img {
+  width: 100%;
+  height: auto;
+}
