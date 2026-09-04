@@ -26,3 +26,6 @@ dist/
 assets-originales/hero-sofia.png
 assets-originales/hero-diego.png
 assets-originales/logo-aurora.png
+
+# Repositorio independiente clonado dentro del proyecto: no es parte de Atendo
+the-architect/

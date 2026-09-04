@@ -38,6 +38,13 @@ export function applyTranslations(lang: Lang): void {
     const value = dict[key]
     el.placeholder = value ?? key
   })
+  // Etiquetas para lectores de pantalla: sin esto, un botón solo-icono como la
+  // hamburguesa se anunciaba siempre en español aunque el sitio estuviera en inglés.
+  document.querySelectorAll<HTMLElement>('[data-i18n-aria]').forEach((el) => {
+    const key = el.dataset.i18nAria!
+    const value = dict[key]
+    if (value) el.setAttribute('aria-label', value)
+  })
   document.documentElement.lang = lang
 }
 

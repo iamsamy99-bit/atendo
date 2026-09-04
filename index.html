@@ -68,8 +68,29 @@
         </span>
         Atendo
       </a>
-      <nav class="nav__links">
-        <a href="#services" data-i18n="nav.services"></a>
+      <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" data-i18n-aria="nav.openMenu" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav__links" id="nav-menu">
+        <div class="nav__item">
+          <button class="nav__trigger" type="button" aria-expanded="false" aria-controls="menu-servicios" data-i18n="nav.services"></button>
+        <div class="nav__menu" id="menu-servicios" hidden>
+            <a href="/servicios/voz" data-i18n="nav.menu.voz"></a>
+            <a href="/servicios/chat" data-i18n="nav.menu.chat"></a>
+            <a href="/servicios/whatsapp" data-i18n="nav.menu.whatsapp"></a>
+            <a href="/servicios/web" data-i18n="nav.menu.web"></a>
+        </div>
+        </div>
+        <div class="nav__item">
+          <button class="nav__trigger" type="button" aria-expanded="false" aria-controls="menu-industrias" data-i18n="nav.industries"></button>
+        <div class="nav__menu" id="menu-industrias" hidden>
+            <a href="/industrias/salud" data-i18n="nav.menu.salud"></a>
+            <a href="/industrias/ecommerce" data-i18n="nav.menu.ecommerce"></a>
+            <a href="/industrias/servicios-locales" data-i18n="nav.menu.servicios"></a>
+            <a href="/industrias/inmobiliaria" data-i18n="nav.menu.inmobiliaria"></a>
+            <a href="/industrias/negocio-local" data-i18n="nav.menu.local"></a>
+        </div>
+        </div>
         <a href="#pricing" data-i18n="nav.pricing"></a>
         <a href="#chatbots" data-i18n="nav.chatbots"></a>
         <a href="#faq" data-i18n="nav.faq"></a>

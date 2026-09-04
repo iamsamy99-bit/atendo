@@ -504,3 +504,108 @@ main p { color: var(--muted); }
   font-weight: 600;
 }
 .img-placeholder svg { opacity: 0.55; flex-shrink: 0; }
+
+/* ── NAVEGACIÓN: desplegables y menú móvil ────────────────────────
+   Por debajo de 860px el nav no mostraba ningún link y no había
+   hamburguesa: el sitio se quedaba literalmente sin navegación en móvil. */
+
+.nav__item { position: relative; display: flex; align-items: center; }
+
+.nav__trigger {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 0;
+  font-family: var(--font); font-size: 15px; font-weight: 500;
+  color: inherit; transition: color 0.2s ease;
+}
+.nav__trigger::after {
+  content: ''; width: 7px; height: 7px; margin-top: -3px;
+  border-right: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor;
+  transform: rotate(45deg); transition: transform 0.2s ease;
+}
+.nav__trigger[aria-expanded="true"]::after { transform: rotate(-135deg); margin-top: 2px; }
+
+.nav__menu {
+  position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%);
+  min-width: 262px; padding: 8px;
+  background: var(--bg, #f3f2f2); border: 1px solid var(--border);
+  border-radius: var(--btn-radius); box-shadow: 0 18px 44px rgba(0,0,0,0.16);
+  display: flex; flex-direction: column; gap: 2px; z-index: 120;
+}
+/* Puente invisible: sin esto el menú se cierra al mover el cursor hacia él. */
+.nav__menu::before {
+  content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px;
+}
+/* `display: flex` de la clase gana por especificidad a la regla [hidden] del
+   navegador: sin esto los menús cerrados seguían renderizados encima de la
+   página, invisibles pero interceptando los clics. */
+.nav__menu[hidden] { display: none; }
+
+.nav__menu a {
+  padding: 10px 12px; border-radius: 9px;
+  font-size: 14.5px; color: var(--ink); line-height: 1.35;
+  min-height: 44px; display: flex; align-items: center;  /* objetivo táctil */
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.nav__menu a:hover, .nav__menu a:focus-visible { background: color-mix(in srgb, var(--ink) 7%, transparent); }
+.nav__menu a.is-current { color: var(--cyan); font-weight: 600; }
+.nav__trigger.is-current { color: var(--cyan); }
+
+/* Hamburguesa: oculta en escritorio */
+.nav__toggle { display: none; }
+
+@media (max-width: 860px) {
+  .nav__toggle {
+    display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 44px; height: 44px; padding: 0 10px;   /* 44x44 mínimo táctil */
+    background: none; border: none; cursor: pointer; order: -1;
+  }
+  .nav__toggle span {
+    display: block; height: 2px; border-radius: 2px; background: currentColor;
+    transition: transform 0.22s ease, opacity 0.18s ease;
+  }
+  .nav__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* El panel se muestra siempre (aunque .nav__links esté oculto por otra regla) */
+  .nav .nav__links {
+    display: none;
+    position: fixed; top: 68px; left: 0; right: 0; z-index: 110;
+    /* Altura explícita: .nav es flex con align-items:center y un hijo
+       posicionado no se estira con top+bottom, quedaba de 58px de alto
+       dejando ver el hero por debajo. `dvh` evita además que la barra del
+       navegador móvil recorte el panel. */
+    height: calc(100dvh - 68px);
+    flex-direction: column; align-items: stretch; gap: 2px;
+    padding: 18px clamp(1rem, 5vw, 2rem) 40px;
+    background: var(--bg, #f3f2f2);
+    overflow-y: auto;
+    animation: navPanelIn 0.22s cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+  .nav--abierto .nav__links { display: flex; }
+
+  .nav__links > a, .nav__trigger {
+    padding: 14px 4px; font-size: 17px; min-height: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav__item { display: block; }
+  .nav__trigger { width: 100%; justify-content: space-between; }
+
+  /* En móvil el submenú se despliega en línea, no flotando */
+  .nav__menu {
+    position: static; transform: none; min-width: 0;
+    border: none; box-shadow: none; background: transparent;
+    padding: 4px 0 10px 12px;
+  }
+  .nav__menu::before { display: none; }
+  .nav__menu a { font-size: 15px; color: var(--muted); }
+}
+
+@keyframes navPanelIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  /* `.nav .nav__links` (2 clases) es la regla que pone la animación, así que
+     aquí hay que igualar esa especificidad o no se desactiva. */
+  .nav .nav__links { animation: none; }
+  .nav__trigger::after, .nav__toggle span { transition: none; }
+}

@@ -485,5 +485,17 @@
   "integracion.whatsapp.page.cta.body": "In the demo we wire up an example with your real information so you can see how it would answer your customers before you sign up.",
   "integracion.whatsapp.title": "Your WhatsApp, answering on its own",
   "integracion.whatsapp.body": "The same number your customers already use, replying instantly at any hour, with your information, and without anyone having to watch their phone.",
-  "integracion.whatsapp.link": "See how the integration works"
+  "integracion.whatsapp.link": "See how the integration works",
+  "nav.industries": "Industries",
+  "nav.menu.voz": "Voice agents",
+  "nav.menu.chat": "WhatsApp chatbots",
+  "nav.menu.whatsapp": "How the integration works",
+  "nav.menu.web": "Websites",
+  "nav.menu.salud": "Clinics and practices",
+  "nav.menu.ecommerce": "Online stores",
+  "nav.menu.servicios": "Local and technical services",
+  "nav.menu.inmobiliaria": "Real estate",
+  "nav.menu.local": "Restaurants and local business",
+  "nav.openMenu": "Open menu",
+  "nav.closeMenu": "Close menu"
 }
