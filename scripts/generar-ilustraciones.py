@@ -123,6 +123,14 @@ ESCENAS = {
     flecha(330, 230, 560, 400) + flecha(330, 500, 560, 460) + flecha(330, 770, 560, 520) +
     persona(640, 380, 2.0) + flecha(880, 470, 990, 470) + calendario(1000, 390, 0.9)),
 
+ "salud-problema": ("Un consultorio donde el teléfono suena mientras se atiende a un paciente",
+    telefono(200, 300, 2.0) + ondas(500, 500, 1.5) + persona(760, 330, 2.0) +
+    equis(1000, 620, 2.2)),
+
+ "salud-apoyo": ("Cada llamada del consultorio convertida en una cita confirmada en la agenda",
+    telefono(140, 340, 1.6) + flecha(400, 470, 540, 470) + persona(580, 360, 1.9) +
+    flecha(800, 470, 930, 470) + calendario(940, 390, 1.1)),
+
  # ---------------- CHAT ----------------
  "chat-hero": ("Un mensaje de cliente respondido al instante por el agente",
     burbuja(140, 200, 430, 155, 1, "izq") + lineas(195, 258, [310, 230]) +
