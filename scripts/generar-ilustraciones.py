@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Genera las 12 ilustraciones de las páginas de servicios.
+Genera las ilustraciones de las páginas de servicios e industrias.
 
 Sistema compartido: cada escena se dibuja una sola vez y se estampa tres veces
 —teal desplazada, magenta desplazada y tinta en registro— imitando el error de
@@ -108,7 +108,7 @@ def equis(x, y, s=1):
 def punto(x, y, r=9):
     return f'<circle cx="{x}" cy="{y}" r="{r}" stroke="none"/>'
 
-# ── Las 12 escenas ──────────────────────────────────────────────────
+# ── Las escenas ──────────────────────────────────────────────────
 ESCENAS = {
  # ---------------- VOZ ----------------
  "voz-hero": ("Una llamada entrante que el agente contesta y convierte en una cita agendada",
@@ -172,6 +172,49 @@ ESCENAS = {
     navegador(380, 120, 450, 330, 1) + flecha(520, 490, 320, 640) +
     flecha(700, 490, 880, 640) + telefono(180, 650, 1.5) +
     burbuja(830, 660, 290, 140, 1, "der", True)),
+ # ---------------- INDUSTRIAS ----------------
+ "ecommerce-problema": ("Preguntas de clientes sobre un producto que se quedan sin respuesta",
+    navegador(140, 200, 520, 400, 1) + burbuja(730, 250, 340, 130, 1, "izq") +
+    burbuja(730, 440, 340, 130, 1, "izq") + equis(880, 680, 2.6)),
+
+ "ecommerce-apoyo": ("La duda del cliente resuelta en el chat y convertida en pedido",
+    burbuja(120, 300, 320, 140, 1, "izq") + flecha(470, 370, 590, 370) +
+    burbuja(590, 250, 300, 130, 1, "der", True) +
+    flecha(740, 420, 740, 540) + navegador(560, 560, 420, 260, 1) + reloj(240, 620, 1.3)),
+
+ "inmobiliaria-problema": ("Un interesado en una propiedad que se enfría sin respuesta",
+    persona(180, 300, 2.0) + burbuja(430, 260, 380, 140, 1, "izq") +
+    reloj(560, 560, 1.8) + equis(940, 320, 2.6)),
+
+ "inmobiliaria-apoyo": ("El interesado calificado y su visita a la propiedad agendada",
+    persona(130, 340, 1.9) + flecha(360, 450, 480, 450) +
+    burbuja(500, 330, 330, 150, 1, "der", True) + flecha(860, 450, 970, 450) +
+    calendario(980, 370, 1.1)),
+
+ "negocio-problema": ("El teléfono del negocio suena fuera de horario y nadie contesta",
+    telefono(220, 280, 2.1) + ondas(520, 490, 1.5) + reloj(800, 300, 1.7) +
+    equis(880, 640, 2.6)),
+
+ "negocio-apoyo": ("Cada llamada y mensaje convertido en una reservación confirmada",
+    telefono(120, 200, 1.3) + burbuja(120, 560, 280, 130, 1, "izq") +
+    flecha(360, 300, 560, 400) + flecha(430, 620, 560, 500) +
+    persona(600, 380, 1.9) + flecha(830, 470, 950, 470) + calendario(960, 390, 1.1)),
+
+ # ---------------- SERVICIOS LOCALES ----------------
+ "servicios-hero": ("Una solicitud de servicio capturada y agendada por el agente",
+    telefono(160, 300, 1.9) + flecha(410, 460, 540, 460) +
+    burbuja(560, 330, 330, 160, 1, "der", True) + flecha(920, 460, 1020, 460) +
+    calendario(1000, 380, 1.0)),
+
+ "servicios-problema": ("Una urgencia que entra mientras el técnico está en otro trabajo",
+    persona(200, 320, 2.1) + telefono(560, 260, 1.7) + ondas(790, 450, 1.4) +
+    equis(950, 660, 2.6)),
+
+ "servicios-apoyo": ("Nombre, zona, urgencia y tipo de servicio capturados antes de agendar",
+    burbuja(130, 220, 400, 130, 1, "izq") + lineas(185, 275, [290, 210]) +
+    burbuja(130, 430, 400, 130, 1, "izq") + lineas(185, 485, [310, 240]) +
+    flecha(580, 400, 700, 400) + persona(730, 330, 1.9) +
+    flecha(960, 440, 1060, 440) + calendario(1050, 360, 0.9)),
 }
 
 def generar():
