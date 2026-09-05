@@ -1,31 +1,32 @@
 /* ════════════════════════════════════════════════════════════════
-   ATENDO — Tema "Broadsheet" (rediseño editorial 2026-07-27)
-   Re-temátiza todo a papel crema + tinta + dos acentos de proceso
-   (teal y magenta), tipografía serif, y un tratamiento de titulares
-   "placas CMY desalineadas" inspirado en impresión offset.
+   ATENDO — Tema de marca (azul, 2026-09-05)
+   Paleta tomada del logo: azul #0560fc y secundario #37a3fe sobre fondo
+   blanco azulado, con el tratamiento de titulares "placas desalineadas"
+   inspirado en impresión offset.
    Regla de oro: solo se animan transform y opacity (60fps garantizados).
    ════════════════════════════════════════════════════════════════ */
 
 :root:root {
-  --bg: #f3f2f2;
-  --bg-alt: #eae9e9;
-  --ink: #201e1d;
-  --muted: #605d5d;
+  --bg: #f7fbff;
+  --bg-alt: #eaf1fc;
+  --ink: #0a1628;
+  --muted: #4a5a72;
   --muted-light: #6a6868; /* antes #9b9797: 2.59:1 sobre crema */
-  --border: color-mix(in srgb, #201e1d 14%, transparent);
-  --bg-dark: #201e1d;
-  --bg-dark2: #201e1d;
-  --bg-dark3: #171514;
-  --violet: #aa0b56;
-  /* #0088b0 daba 4.08:1 con texto blanco y 3.65:1 como link sobre
-     crema: por debajo del 4.5:1 que exige WCAG AA. Este tono se ve
-     casi idéntico y cumple en los tres contextos: texto blanco encima (5.49:1), como
-     link sobre crema (4.91:1) y sobre el fondo alterno (4.53:1). */
-  --cyan: #007293;
-  --grad: linear-gradient(135deg, #0088b0 0%, #aa0b56 100%);
+  --border: color-mix(in srgb, #0a1628 14%, transparent);
+  --bg-dark: #0a1628;
+  --bg-dark2: #0a1628;
+  --bg-dark3: #060e1c;
+  /* Secundario de marca. Solo para rellenos y degradados: sobre fondo
+     claro da 2.4:1, así que nunca se usa como color de texto. */
+  --violet: #37a3fe;
+  /* Azul de marca tal cual viene del logo. Cumple AA en sus tres usos:
+     texto blanco encima (5.14:1), como enlace sobre el fondo (4.94:1) y
+     sobre el fondo alterno (4.53:1). */
+  --cyan: #0560fc;
+  --grad: linear-gradient(135deg, #0560fc 0%, #37a3fe 100%);
   --surface-1: #ffffff;
-  --surface-2: #201e1d;
-  --ring: rgba(0, 136, 176, 0.35);
+  --surface-2: #0a1628;
+  --ring: rgba(5, 96, 252, 0.35);
   --process-yellow: #edbb00;
 }
 
@@ -265,7 +266,9 @@ main p { color: var(--muted); }
 
 /* ── SECCIONES ─────────────────────────────────────────────────── */
 .section--alt-wrap { background: var(--bg-alt); }
-.section-label { color: var(--violet); }
+/* El secundario da 2.4:1 como texto sobre fondo claro. La etiqueta de
+   sección va en el azul de marca, que sí cumple AA en ambos fondos. */
+.section-label { color: var(--cyan); }
 .section-label--teal { color: var(--cyan); }
 
 .card, .step, .industry {
@@ -326,7 +329,8 @@ main p { color: var(--muted); }
 .agent-card__desc { color: var(--muted); }
 .agent-card__tags li { color: var(--ink); background: var(--bg-alt); border-color: var(--border); border-radius: 2px; }
 .agent-card__status { background: rgba(255,255,255,0.92); color: var(--blue-dark, #006786); }
-.agent-card__status--demo { color: var(--violet); }
+/* El secundario sobre el badge blanco da 2.7:1; se usa el azul de marca. */
+.agent-card__status--demo { color: var(--cyan); }
 .agents-showcase .section-head h2 em { font-style: italic; color: var(--violet); font-weight: 400; }
 @media (hover: hover) and (pointer: fine) {
   .agent-card:hover {
@@ -616,7 +620,9 @@ main p { color: var(--muted); }
 
 /* La etiqueta de sección usa magenta de marca, que sobre el bloque oscuro del
    CTA daba 2.29:1. En claro se mantiene el magenta; en oscuro se aclara. */
-.cta-dark .section-label { color: #c96594; }
+/* Sobre el bloque oscuro el azul de marca queda por debajo del mínimo;
+   se usa el secundario, que ahí sí contrasta (6.1:1). */
+.cta-dark .section-label { color: #37a3fe; }
 
 /* Dentro del plan destacado el fondo es teal y todo el texto va en blanco;
    el botón outline se quedaba con tinta oscura encima (3.25:1). */
@@ -643,4 +649,20 @@ main p { color: var(--muted); }
 .hero-dark__mockup img {
   width: 100%;
   height: auto;
+}
+
+/* ── Bandas de marca: piezas completas a todo lo ancho ───────────
+   Estas imágenes traen su propio titular, así que van solas en su sección:
+   ponerles un h2 al lado duplicaría el mensaje. */
+.marca-band {
+  width: 100%;
+  margin: 0;
+  background: var(--bg-alt);
+}
+.marca-band img {
+  display: block;
+  width: 100%;
+  max-width: 1400px;
+  height: auto;
+  margin: 0 auto;
 }

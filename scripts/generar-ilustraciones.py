@@ -9,8 +9,8 @@ registro de la impresión offset, igual que los titulares del sitio.
 import os
 
 W, H = 1200, 900
-CREMA, TINTA, TEAL, MAGENTA = "#f3f2f2", "#201e1d", "#007293", "#aa0b56"
-SALIDA = "/home/newpc1/Documentos/Proyectos/atendo/public/illus"
+CREMA, TINTA, TEAL, MAGENTA = "#f7fbff", "#0a1628", "#0560fc", "#37a3fe"
+SALIDA = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "public", "illus")
 
 BASE = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" role="img" aria-label="{alt}">
   <!-- Generado con scratchpad/ilustraciones.py — estilo de placas offset del sitio -->
