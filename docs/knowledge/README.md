@@ -38,3 +38,34 @@ Actualizar estos archivos cuando:
 - Se agreguen nuevos servicios (actualizar `01-servicios.md`)
 - Aparezcan nuevas preguntas frecuentes (agregar a `03-faq.md`)
 - Se identifiquen nuevas objeciones en demos (agregar a `04-objeciones.md`)
+
+## Importante: subir a Vapi como .txt, no como .md
+
+El knowledge base de Vapi **no procesa Markdown**. Los archivos suben bien y
+quedan almacenados, pero el parseo falla y el `status` del archivo queda en
+`failed` — sin ningún mensaje de error en la API ni en el dashboard.
+
+Esto tuvo el knowledge base de Sofía inservible desde junio hasta el 4 de
+septiembre de 2026: respondía solo con su system prompt y nada lo indicaba.
+Soporte de Vapi lo reprodujo y confirmó que es un bug de su lado; mientras lo
+arreglan, la solución es subir el mismo contenido con extensión `.txt` y
+`Content-Type: text/plain`.
+
+```bash
+# Convertir y subir
+cp 02-precios.md /tmp/02-precios.txt
+curl -X POST https://api.vapi.ai/file \
+  -H "Authorization: Bearer $VAPI_PRIVATE_KEY" \
+  -F "file=@/tmp/02-precios.txt;type=text/plain"
+```
+
+**Verifica siempre el status después de subir.** Si dice `failed`, el archivo
+no está en el índice aunque aparezca listado:
+
+```bash
+curl -H "Authorization: Bearer $VAPI_PRIVATE_KEY" https://api.vapi.ai/file \
+  | python3 -c "import json,sys; [print(f[\"name\"], f[\"status\"]) for f in json.load(sys.stdin)]"
+```
+
+Y recuerda que estos archivos los lee el agente frente al cliente: no dejes
+notas internas de costos o márgenes en lo que subas.
