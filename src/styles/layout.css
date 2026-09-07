@@ -367,7 +367,7 @@
 .footer-dark__links a:nth-child(2) { color: #4ade80; }
 .footer-dark__links a:nth-child(3) { color: #9ca3af; }
 .footer-dark__bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; gap: 12px; }
-.footer-dark__bottom p { color: #7a7168; font-size: 13px; }
+.footer-dark__bottom p { color: #877f77; font-size: 13px; } /* antes #7a7168: 3.80:1 */
 .footer-dark__bottom div { display: flex; gap: 18px; }
 .footer-dark__bottom a { color: #8b8178; font-size: 13px; transition: color 0.2s; }
 .footer-dark__bottom a:hover { color: #9ca3af; }

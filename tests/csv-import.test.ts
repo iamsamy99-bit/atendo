@@ -10,8 +10,8 @@ describe('splitCsvLine', () => {
   it('respeta comas dentro de campos entrecomillados', () => {
     // Este es el caso que corrompía la importación: sin manejo de comillas,
     // el teléfono terminaba en la columna de email.
-    const parts = splitCsvLine('Ana Ruiz,"Clínica Dental Juárez, S.C.",3171234567,ana@mail.com')
-    expect(parts).toEqual(['Ana Ruiz', 'Clínica Dental Juárez, S.C.', '3171234567', 'ana@mail.com'])
+    const parts = splitCsvLine('Ana Ruiz,"Clínica Dental Ejemplo, S.C.",3171234567,ana@mail.com')
+    expect(parts).toEqual(['Ana Ruiz', 'Clínica Dental Ejemplo, S.C.', '3171234567', 'ana@mail.com'])
     expect(parts[2]).toBe('3171234567')
   })
 

@@ -1,17 +1,17 @@
 :root {
-  --blue: #0088b0;
-  --blue-dark: #006786;
-  --blue-light: #e9f8ff;
-  --ink: #201e1d;
-  --muted: #605d5d;
-  --muted-light: #9b9797;
-  --amber: #aa0b56;
-  --bg: #f3f2f2;
-  --bg-alt: #eae9e9;
-  --bg-dark: #201e1d;
-  --bg-dark2: #201e1d;
-  --bg-dark3: #171514;
-  --border: color-mix(in srgb, #201e1d 16%, transparent);
+  --blue: #0560fc;  /* alineado con --cyan por contraste AA */
+  --blue-dark: #0448c4;
+  --blue-light: #e8f1ff;
+  --ink: #0a1628;
+  --muted: #4a5a72;
+  --muted-light: #6a6868; /* antes #9b9797: 2.59:1 sobre crema */
+  --amber: #37a3fe;
+  --bg: #f7fbff;
+  --bg-alt: #eaf1fc;
+  --bg-dark: #0a1628;
+  --bg-dark2: #0a1628;
+  --bg-dark3: #060e1c;
+  --border: color-mix(in srgb, #0a1628 16%, transparent);
   --radius: 3px;
   --radius-lg: 4px;
   /* Radio unico para todo lo cliqueable rectangular (.btn, .lang-toggle,
