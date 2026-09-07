@@ -651,3 +651,58 @@ main p { color: var(--muted); }
   height: auto;
   margin: 0 auto;
 }
+
+/* ── TRAZO DE MARCA BAJO LOS TITULARES ─────────────────────────────
+   El mismo gesto que llevan las piezas de marca: una barra azul corta
+   bajo la frase, no un subrayado de palabra a palabra. Al ser una barra
+   centrada y no del ancho del texto, aguanta que el titular caiga a dos
+   líneas — cosa que pasa en varios a 390px.
+
+   Se dibuja desde el centro hacia afuera cuando la sección entra en
+   pantalla, enganchada a la clase .visible que ya pone el observador de
+   scroll. Solo transform: nada de width ni background-size. */
+
+.section-head h2 { position: relative; padding-bottom: 20px; }
+.section-head h2::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 64px;
+  height: 3px;
+  margin-left: -32px;
+  border-radius: 2px;
+  background: var(--grad);
+  transform: scaleX(0);
+  transform-origin: center;
+  /* Entra después de que el titular ya asentó, no a la vez. */
+  transition: transform 0.32s cubic-bezier(0.23, 1, 0.32, 1) 0.18s;
+}
+.section-head h2.visible::after { transform: scaleX(1); }
+
+/* En el hero el titular está alineado a la izquierda, así que el trazo
+   nace del borde izquierdo y crece hacia la derecha, siguiendo la
+   lectura. No hay observador: el hero se ve de entrada. */
+.hero-dark__h1 { position: relative; padding-bottom: 26px; }
+.hero-dark__h1::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 6px;
+  width: 72px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--grad);
+  transform: scaleX(0);
+  transform-origin: left;
+  /* 0.24s de retardo de la línea + casi toda su entrada de 0.9s. */
+  animation: trazoIn 0.34s cubic-bezier(0.23, 1, 0.32, 1) 0.86s forwards;
+}
+@keyframes trazoIn { to { transform: scaleX(1); } }
+
+/* Sin movimiento: el trazo sigue ahí, simplemente no se dibuja. El bloque
+   global de prefers-reduced-motion ya reduce las duraciones a ~0. */
+@media (prefers-reduced-motion: reduce) {
+  .section-head h2::after,
+  .hero-dark__h1::after { transform: scaleX(1); }
+}
